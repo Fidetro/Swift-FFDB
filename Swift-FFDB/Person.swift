@@ -6,18 +6,11 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-import UIKit
-
-class Person: NSObject,FFDataBaseModel,FIDRuntime {
-    var primaryID: String = ""
+struct Person {
+    var name:String! = "Zhang"
     
-//    var primaryID: String = ""
-    var name : String?
-    
-    
-    
-    
-    
-    
-
+    mutating func setName( newName:String )-> Person {
+        name = newName
+        return self
+    }
 }

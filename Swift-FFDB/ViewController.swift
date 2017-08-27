@@ -13,12 +13,14 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        var person = Person.init()
-//        (person as FFDataBaseModel).primaryID = "aa"
-        person.primaryID = "bb"
-//        print(String((person as FFDataBaseModel).primaryID))
-//        print(person.primaryID as String?)
-        print("\(person.propertyOfSelf())")
+        
+        var insert = Insert()
+        
+        insert.into(tableName: "aa")
+        
+        
+//        person.primaryID = "bb"
+//        print("\(person.propertyOfSelf())")
     }
 
     override func didReceiveMemoryWarning() {
