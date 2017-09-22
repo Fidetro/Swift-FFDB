@@ -14,9 +14,27 @@
 		9A3516371F491C8600571621 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516351F491C8600571621 /* LaunchScreen.storyboard */; };
 		9A3516411F49208600571621 /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3516401F49208600571621 /* FFDB.swift */; };
 		9A4452481F4976570047E528 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4452471F4976570047E528 /* Person.swift */; };
+		9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */; };
+		9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5ABE1F663B300084812C /* InsertTest.swift */; };
+		9A4E5AC01F663CEC0084812C /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6650531F53082D003ADA51 /* Insert.swift */; };
+		9A4E5AC21F663CF20084812C /* FFDB+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6650541F53082D003ADA51 /* FFDB+Extension.swift */; };
+		9A4E5AC31F663CF60084812C /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4452471F4976570047E528 /* Person.swift */; };
+		9A4E5AC41F663CF90084812C /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A3516401F49208600571621 /* FFDB.swift */; };
 		9A6650551F530832003ADA51 /* FFDB+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6650541F53082D003ADA51 /* FFDB+Extension.swift */; };
 		9A6650561F530835003ADA51 /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6650531F53082D003ADA51 /* Insert.swift */; };
+		9A849D241F67D97600505E5F /* FFDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A849D231F67D97600505E5F /* FFDBManager.swift */; };
+		9AF2ADDD1F58EAD2001DDC87 /* String+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF2ADDC1F58EAD2001DDC87 /* String+Extension.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		9A4E5AB91F663B1E0084812C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 9A3516211F491C8600571621 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 9A3516281F491C8600571621;
+			remoteInfo = "Swift-FFDB";
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		9A3516291F491C8600571621 /* Swift-FFDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-FFDB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -28,12 +46,26 @@
 		9A3516381F491C8600571621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		9A3516401F49208600571621 /* FFDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDB.swift; sourceTree = "<group>"; };
 		9A4452471F4976570047E528 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		9A4E5AAF1F663AEC0084812C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		9A4E5AB41F663B1E0084812C /* Swift-FFDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift-FFDBTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_FFDBTests.swift; sourceTree = "<group>"; };
+		9A4E5AB81F663B1E0084812C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A4E5ABE1F663B300084812C /* InsertTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsertTest.swift; sourceTree = "<group>"; };
 		9A6650531F53082D003ADA51 /* Insert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insert.swift; sourceTree = "<group>"; };
 		9A6650541F53082D003ADA51 /* FFDB+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FFDB+Extension.swift"; sourceTree = "<group>"; };
+		9A849D231F67D97600505E5F /* FFDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBManager.swift; sourceTree = "<group>"; };
+		9AF2ADDC1F58EAD2001DDC87 /* String+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extension.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
 		9A3516261F491C8600571621 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A4E5AB11F663B1E0084812C /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -47,7 +79,9 @@
 			isa = PBXGroup;
 			children = (
 				9A35162B1F491C8600571621 /* Swift-FFDB */,
+				9A4E5AB51F663B1E0084812C /* Swift-FFDBTests */,
 				9A35162A1F491C8600571621 /* Products */,
+				9A4E5AAE1F663AEB0084812C /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -55,6 +89,7 @@
 			isa = PBXGroup;
 			children = (
 				9A3516291F491C8600571621 /* Swift-FFDB.app */,
+				9A4E5AB41F663B1E0084812C /* Swift-FFDBTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -62,18 +97,38 @@
 		9A35162B1F491C8600571621 /* Swift-FFDB */ = {
 			isa = PBXGroup;
 			children = (
+				9A3516381F491C8600571621 /* Info.plist */,
 				9A35162C1F491C8600571621 /* AppDelegate.swift */,
-				9A35162E1F491C8600571621 /* ViewController.swift */,
 				9A3516401F49208600571621 /* FFDB.swift */,
-				9A4452471F4976570047E528 /* Person.swift */,
 				9A6650541F53082D003ADA51 /* FFDB+Extension.swift */,
+				9A849D231F67D97600505E5F /* FFDBManager.swift */,
 				9A6650531F53082D003ADA51 /* Insert.swift */,
-				9A3516301F491C8600571621 /* Main.storyboard */,
+				9A4452471F4976570047E528 /* Person.swift */,
+				9AF2ADDC1F58EAD2001DDC87 /* String+Extension.swift */,
+				9A35162E1F491C8600571621 /* ViewController.swift */,
 				9A3516331F491C8600571621 /* Assets.xcassets */,
 				9A3516351F491C8600571621 /* LaunchScreen.storyboard */,
-				9A3516381F491C8600571621 /* Info.plist */,
+				9A3516301F491C8600571621 /* Main.storyboard */,
 			);
 			path = "Swift-FFDB";
+			sourceTree = "<group>";
+		};
+		9A4E5AAE1F663AEB0084812C /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				9A4E5AAF1F663AEC0084812C /* XCTest.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		9A4E5AB51F663B1E0084812C /* Swift-FFDBTests */ = {
+			isa = PBXGroup;
+			children = (
+				9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */,
+				9A4E5AB81F663B1E0084812C /* Info.plist */,
+				9A4E5ABE1F663B300084812C /* InsertTest.swift */,
+			);
+			path = "Swift-FFDBTests";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -96,6 +151,24 @@
 			productReference = 9A3516291F491C8600571621 /* Swift-FFDB.app */;
 			productType = "com.apple.product-type.application";
 		};
+		9A4E5AB31F663B1E0084812C /* Swift-FFDBTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 9A4E5ABB1F663B1E0084812C /* Build configuration list for PBXNativeTarget "Swift-FFDBTests" */;
+			buildPhases = (
+				9A4E5AB01F663B1E0084812C /* Sources */,
+				9A4E5AB11F663B1E0084812C /* Frameworks */,
+				9A4E5AB21F663B1E0084812C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				9A4E5ABA1F663B1E0084812C /* PBXTargetDependency */,
+			);
+			name = "Swift-FFDBTests";
+			productName = "Swift-FFDBTests";
+			productReference = 9A4E5AB41F663B1E0084812C /* Swift-FFDBTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -108,6 +181,10 @@
 				TargetAttributes = {
 					9A3516281F491C8600571621 = {
 						CreatedOnToolsVersion = 9.0;
+					};
+					9A4E5AB31F663B1E0084812C = {
+						CreatedOnToolsVersion = 9.0;
+						TestTargetID = 9A3516281F491C8600571621;
 					};
 				};
 			};
@@ -125,6 +202,7 @@
 			projectRoot = "";
 			targets = (
 				9A3516281F491C8600571621 /* Swift-FFDB */,
+				9A4E5AB31F663B1E0084812C /* Swift-FFDBTests */,
 			);
 		};
 /* End PBXProject section */
@@ -140,6 +218,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A4E5AB21F663B1E0084812C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -148,6 +233,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				9A6650561F530835003ADA51 /* Insert.swift in Sources */,
+				9A849D241F67D97600505E5F /* FFDBManager.swift in Sources */,
+				9AF2ADDD1F58EAD2001DDC87 /* String+Extension.swift in Sources */,
 				9A35162F1F491C8600571621 /* ViewController.swift in Sources */,
 				9A6650551F530832003ADA51 /* FFDB+Extension.swift in Sources */,
 				9A35162D1F491C8600571621 /* AppDelegate.swift in Sources */,
@@ -156,7 +243,28 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		9A4E5AB01F663B1E0084812C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9A4E5AC31F663CF60084812C /* Person.swift in Sources */,
+				9A4E5AC01F663CEC0084812C /* Insert.swift in Sources */,
+				9A4E5AC21F663CF20084812C /* FFDB+Extension.swift in Sources */,
+				9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */,
+				9A4E5AC41F663CF90084812C /* FFDB.swift in Sources */,
+				9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		9A4E5ABA1F663B1E0084812C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 9A3516281F491C8600571621 /* Swift-FFDB */;
+			targetProxy = 9A4E5AB91F663B1E0084812C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		9A3516301F491C8600571621 /* Main.storyboard */ = {
@@ -309,6 +417,36 @@
 			};
 			name = Release;
 		};
+		9A4E5ABC1F663B1E0084812C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = J3BJ7G2PUN;
+				INFOPLIST_FILE = "Swift-FFDBTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Fidetro.Swift-FFDBTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swift-FFDB.app/Swift-FFDB";
+			};
+			name = Debug;
+		};
+		9A4E5ABD1F663B1E0084812C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				DEVELOPMENT_TEAM = J3BJ7G2PUN;
+				INFOPLIST_FILE = "Swift-FFDBTests/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.Fidetro.Swift-FFDBTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Swift-FFDB.app/Swift-FFDB";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -326,6 +464,15 @@
 			buildConfigurations = (
 				9A35163C1F491C8600571621 /* Debug */,
 				9A35163D1F491C8600571621 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		9A4E5ABB1F663B1E0084812C /* Build configuration list for PBXNativeTarget "Swift-FFDBTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9A4E5ABC1F663B1E0084812C /* Debug */,
+				9A4E5ABD1F663B1E0084812C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

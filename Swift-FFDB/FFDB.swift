@@ -6,18 +6,27 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-//import UIKit
 
 
 protocol FIDRuntime {
-     func propertyOfSelf() -> Array<String>;
-     func className() -> String;
+        init()
+    
+    /// 获取对象类型
+    var subType : Any.Type {get}
+    
+    /// 相当于Objective-C中的valueForKey:
+    ///
+    /// - Parameter key: key
+    /// - Returns: value
+    func valueFrom(_ key: String) -> Any;
 }
 
-
 protocol FFDataBaseModel:FIDRuntime {
+    var primaryID : String? {get}
     
-    var primaryID : String { get set }
+    
+    static  func tableName() -> String
+    static func columnsOfSelf() -> Array<String>
     
 }
 

@@ -8,26 +8,21 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+
+ class ViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        let p = Person()
         
-        
-        var insert = Insert()
-        
-        insert.into(tableName: "aa")
-        
-        
-//        person.primaryID = "bb"
-//        print("\(person.propertyOfSelf())")
+     
+
     }
 
+    
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
-
 
 }
 

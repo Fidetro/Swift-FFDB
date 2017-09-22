@@ -6,8 +6,15 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-struct Person {
-    var name:String! = "Zhang"
+
+
+struct Person :FFDataBaseModel {
+
+    
+
+    var primaryID: String?
+
+    var name : String?
     
     mutating func setName( newName:String )-> Person {
         name = newName
