@@ -8,20 +8,17 @@
 
 struct Insert {
     
+    fileprivate var tableClass : FFObject.Type?
+    
+    var sqlStatement : String?
+    
+    
     init() {
         sqlStatement = ""
         tableClass = nil
     }
     
-    
-    fileprivate var tableClass : FFDataBaseModel.Type?
-    
-    var sqlStatement : String?
-    
-    
-    
-    
-     func into(_ tableClass:FFDataBaseModel.Type) -> Insert {
+     func into(_ tableClass:FFObject.Type) -> Insert {
         var insert = self
         insert.tableClass = tableClass
         insert.sqlStatement?.append(" insert into " + tableClass.tableName())
@@ -45,7 +42,7 @@ struct Insert {
         return insert
     }
     
-    func columns(_ tableClass:FFDataBaseModel.Type) -> Insert {
+    func columns(_ tableClass:FFObject.Type) -> Insert {
         return self.columns(tableClass.columnsOfSelf())
     }
     
@@ -56,7 +53,7 @@ struct Insert {
         insert.sqlStatement?.append(valuesString)
         return insert
     }
-      func values(_ object:FFDataBaseModel) -> Insert {
+      func values(_ object:FFObject) -> Insert {
         var insert = self
         var valuesString = " values "
         valuesString.append(" (\(object.allValue().stringToValues()));")
@@ -66,7 +63,7 @@ struct Insert {
 }
 
 extension Array {
-    func stringToColumns() -> String {
+    fileprivate func stringToColumns() -> String {
         var columnsString = String()
         for (index,element) in self.enumerated() {
             if index == 0 {
@@ -78,7 +75,7 @@ extension Array {
         return columnsString
     }
     
-    func stringToValues() -> String {
+    fileprivate func stringToValues() -> String {
         var valuesString = String()
         for (index,element) in self.enumerated() {
             if index == 0 {
@@ -89,6 +86,5 @@ extension Array {
         }
         return valuesString
     }
-    
 }
 

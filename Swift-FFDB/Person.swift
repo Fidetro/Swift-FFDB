@@ -8,7 +8,7 @@
 
 
 
-struct Person :FFDataBaseModel {
+struct Person :FFObject {
 
     
 

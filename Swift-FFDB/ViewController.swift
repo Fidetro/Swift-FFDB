@@ -13,10 +13,9 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        let p = Person()
+  
         
-     
-
+        
     }
 
     

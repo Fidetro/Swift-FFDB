@@ -11,6 +11,22 @@ extension FIDRuntime {
         let mirror  = Mirror(reflecting: self)
         return mirror.subjectType
     }
+    func valueToNotNull(_ value:Any) -> String {
+        switch String(describing: value)
+        {
+        case "nil":
+            return "\'\'"
+        case "Optional(nil)":
+            return "\"\""
+        default :
+            let val : AnyObject? = (value as AnyObject)
+            if val != nil {
+                return "\'\(String(describing: value))\'"
+            }else{
+                return "\'\'"
+            }
+        }
+    }
     fileprivate static func propertyOfSelf() -> Array<String> {
         let selfProtocol = self.init();
         let mirror  = Mirror(reflecting: selfProtocol)
@@ -31,7 +47,7 @@ extension FIDRuntime {
         
          for case let (label?, value) in mirror.children {
             if label == key {
-                return value
+                return valueToNotNull(value)
             }
         }
         
@@ -40,19 +56,21 @@ extension FIDRuntime {
     func allValue() -> Array<Any> {
         let mirror = Mirror(reflecting: self)
         var values = Array<Any>();
-    
-        for case let (_, value) in mirror.children {
-            values.append(value)
+        for case let (key?, value) in mirror.children {
+            if key == "primaryID" {
+                continue;
+            }
+            values.append(valueToNotNull(value))
         }
         
         return values
     }
 }
 
-extension FFDataBaseModel {
-    var subType: FFDataBaseModel.Type {
+extension FFObject {
+    var subType: FFObject.Type {
         let mirror  = Mirror(reflecting: self)
-        return mirror.subjectType as! FFDataBaseModel.Type
+        return mirror.subjectType as! FFObject.Type
     }
     static  func tableName() -> String {
         let tableName = self.className().replacingOccurrences(of: ".Type", with: "")

@@ -9,17 +9,19 @@
 import UIKit
 
 struct FFDBManager {
-    static func insert(object:FFDataBaseModel!, columns:[String]?) {
+    static func insert(_ object:FFObject!,_ columns:[String]?) {
         if let columnsArray = columns {
             var values = Array<Any>()
             for key in columnsArray {
                 values.append(object.valueFrom(key))
-            };
-           Insert().into(object.subType).columns(columnsArray).values(values)
+            }
+            print(Insert().into(object.subType).columns(columnsArray).values(values).sqlStatement!)
         }else{
-            Insert().into(object.subType).columns(object.subType).values(object)
+            print(Insert().into(object.subType).columns(object.subType).values(object).sqlStatement!)
         }
-        
+    }
+    static func insert(_ object:FFObject!) {
+        print(Insert().into(object.subType).columns(object.subType).values(object).sqlStatement!)
     }
 }
 
