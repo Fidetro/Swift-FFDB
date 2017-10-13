@@ -79,9 +79,9 @@ extension Array {
         var valuesString = String()
         for (index,element) in self.enumerated() {
             if index == 0 {
-                valuesString.append(String(describing: element))
+                valuesString.append("\'\(String(describing: element))\'")
             }else{
-                valuesString.append(","+String(describing: element))
+                valuesString.append(","+"\'\(String(describing: element))\'")
             }
         }
         return valuesString

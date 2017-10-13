@@ -9,7 +9,7 @@
 import UIKit
 
 struct TestStoreModel:FFObject {
-    var primaryID: String?
+    var primaryID: Int64?
     var date : Int?
     var name : String?
 }

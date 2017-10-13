@@ -15,15 +15,15 @@ extension FIDRuntime {
         switch String(describing: value)
         {
         case "nil":
-            return "\'\'"
+            return ""
         case "Optional(nil)":
-            return "\"\""
+            return ""
         default :
             let val : AnyObject? = (value as AnyObject)
             if val != nil {
-                return "\'\(String(describing: value))\'"
+                return String(describing: val!)
             }else{
-                return "\'\'"
+                return ""
             }
         }
     }
@@ -42,20 +42,19 @@ extension FIDRuntime {
         return String(describing: mirror.subjectType)
     }
     
-    func valueFrom(_ key: String) -> Any {
+    func valueFrom(_ key: String) -> Any? {
         let mirror = Mirror(reflecting: self)
         
          for case let (label?, value) in mirror.children {
             if label == key {
-                return valueToNotNull(value)
+                return value
             }
         }
-        
-        return ""
+        return nil
     }
-    func allValue() -> Array<Any> {
+    func allValue() -> Array<String> {
         let mirror = Mirror(reflecting: self)
-        var values = Array<Any>();
+        var values = Array<String>();
         for case let (key?, value) in mirror.children {
             if key == "primaryID" {
                 continue;
@@ -102,5 +101,12 @@ extension FFObject {
         }
         return columns
     }
-   
+    func valueNotNullFrom(_ key: String) -> String {
+        if let value = valueFrom(key) {
+            return valueToNotNull(value)
+        }else{
+            return ""
+        }
+        
+    }
 }

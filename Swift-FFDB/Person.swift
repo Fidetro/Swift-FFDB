@@ -9,10 +9,12 @@
 
 
 struct Person :FFObject {
+  
+    
 
     
 
-    var primaryID: String?
+    var primaryID: Int64?
 
     var name : String?
     

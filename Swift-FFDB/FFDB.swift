@@ -15,19 +15,21 @@ protocol FIDRuntime {
     var subType : Any.Type {get}
     
     func valueToNotNull(_ value:Any) -> String
-    
-    
-    /// 相当于Objective-C中的valueForKey:
+    /// 相当于Objective-C中的valueForKey: 
     ///
     /// - Parameter key: key
     /// - Returns: value
-    func valueFrom(_ key: String) -> Any;
-    
+    func valueFrom(_ key: String) -> Any?
 }
 
 protocol FFObject:FIDRuntime {
-    var primaryID : String? {get}
-    
+    var primaryID : Int64? {get}
+    /// 相当于Objective-C中的valueForKey: 但返回的值永远不会为空
+    ///
+    /// - Parameter key: key
+    /// - Returns: value
+    func valueNotNullFrom(_ key: String) -> String
+
     static  func tableName() -> String
     static func columnsOfSelf() -> Array<String>
     static func select(_ condition:String) -> Array<FFObject>?

@@ -14,13 +14,26 @@ struct Update {
     fileprivate var updateObject : FFObject?
     
     var sqlStatement : String?
-    
+
+
     init(_ table:FFObject.Type) {
         tableClass = table
         sqlStatement = ""
         sqlStatement?.append(" update " + table.tableName())
     }
     
+    init(_ object:FFObject) {
+        tableClass = object.subType
+        updateObject = object
+        sqlStatement = ""
+        if tableClass?.columnsOfSelf() != nil  {
+            if let tableName = tableClass?.tableName() {
+                sqlStatement?.append(" update " + tableName)
+            }
+        }else{
+            assertionFailure("columns is nil")
+        }
+    }
     
     func set() -> Update {
         var update = self
@@ -33,6 +46,7 @@ struct Update {
         update.sqlStatement?.append(" set " + sqlFormat + " ")
         return update
     }
+    
     func set(_ columns:[String]) -> Update {
         var update = self
         var sqlFormat = String()
@@ -44,11 +58,13 @@ struct Update {
         update.sqlStatement?.append(" set " + sqlFormat + " ")
         return update
     }
+    
     func set(_ condition:String) -> Update {
         var update = self
         update.sqlStatement?.append(" set " + condition + " ")
         return update
     }
+    
     func whereFormat(_ condition:String) -> Update {
         var update = self
         update.sqlStatement?.append(" where " + condition + " ")
@@ -60,28 +76,52 @@ struct Update {
         let mirror = Mirror(reflecting: object)
         var index = 0
         
-        for case let (key?,value) in mirror.children {
-            if key == "primaryID" {
-                continue;
-            }
-            if let inputColumns = columns {
-                if inputColumns.contains(key) {
-                    if index == 0 {
-                        index += 1
-                        SQLFormat.append(key + "=" + object.valueToNotNull(value))
-                    }else{
-                        SQLFormat.append("," + key + "=" + object.valueToNotNull(value))
+        if let inputColumns = columns {
+            for column in inputColumns {
+                var isContain = false
+                for case let (key?,value) in mirror.children {
+                    if key == "primaryID" {
+                        continue;
+                    }
+                    if key == column {
+                        isContain = true
+                            if index == 0 {
+                                index += 1
+                                SQLFormat.append(key + "=" + "'\(object.valueToNotNull(value))'")
+                            }else{
+                                SQLFormat.append("," + key + "=" + "'\(object.valueToNotNull(value))'")
+                            }
                     }
                 }
-            }else{
-                if index == 0 {
-                    index += 1
-                    SQLFormat.append(key + "=" + object.valueToNotNull(value))
-                }else{
-                    SQLFormat.append("," + key + "=" + object.valueToNotNull(value))
+                if isContain == false {
+                    assertionFailure("can't find \(column) property")
                 }
             }
         }
+        
+        
+//        for case let (key?,value) in mirror.children {
+//            if key == "primaryID" {
+//                continue;
+//            }
+//            if let inputColumns = columns {
+//                if inputColumns.contains(key) {
+//                    if index == 0 {
+//                        index += 1
+//                        SQLFormat.append(key + "=" + "'\(object.valueToNotNull(value))'")
+//                    }else{
+//                        SQLFormat.append("," + key + "=" + "'\(object.valueToNotNull(value))'")
+//                    }
+//                }
+//            }else{
+//                if index == 0 {
+//                    index += 1
+//                    SQLFormat.append(key + "=" + "'\(object.valueToNotNull(value))'")
+//                }else{
+//                    SQLFormat.append("," + key + "=" + "'\(object.valueToNotNull(value))'")
+//                }
+//            }
+//        }
         return SQLFormat
     }
 }
