@@ -21,18 +21,6 @@ struct Update {
         sqlStatement?.append(" update " + table.tableName())
     }
     
-    init(_ object:FFObject) {
-        tableClass = object.subType
-        updateObject = object
-        sqlStatement = ""
-        if tableClass?.columnsOfSelf() != nil  {
-            if let tableName = tableClass?.tableName() {
-                sqlStatement?.append(" update " + tableName)
-            }
-        }else{
-            assertionFailure("columns is nil")
-        }
-    }
     
     func set() -> Update {
         var update = self

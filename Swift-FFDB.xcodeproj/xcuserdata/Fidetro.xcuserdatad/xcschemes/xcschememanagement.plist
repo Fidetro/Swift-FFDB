@@ -9,10 +9,20 @@
 			<key>orderHint</key>
 			<integer>0</integer>
 		</dict>
+		<key>Swift-FFDBTests.xcscheme</key>
+		<dict>
+			<key>orderHint</key>
+			<integer>1</integer>
+		</dict>
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
 		<key>9A3516281F491C8600571621</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>9A4E5AB31F663B1E0084812C</key>
 		<dict>
 			<key>primary</key>
 			<true/>

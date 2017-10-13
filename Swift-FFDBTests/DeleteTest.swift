@@ -1,28 +1,23 @@
 //
-//  UpdateTest.swift
+//  DeleteTest.swift
 //  Swift-FFDBTests
 //
-//  Created by Fidetro on 2017/9/23.
+//  Created by Fidetro on 2017/10/13.
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
 import XCTest
 
-class UpdateTest: XCTestCase {
+class DeleteTest: XCTestCase {
     
-    func testUpdate() {
-        print("\(Update(TestStoreModel().subType).sqlStatement!)")
-    }
-    func testUpdateObject() {
-        let object = TestStoreModel()
-        
-        print("\(Update(object.subType).set().whereFormat("ss = 'a'").sqlStatement!)")
-        print("\(Update(object.subType).set(["date","name"]).whereFormat("ss = 'a'").sqlStatement!)")
-        print("\(Update(object.subType).set("date = ''").whereFormat("ss = 'a'").sqlStatement!)")
-    }
     override func setUp() {
         super.setUp()
         // Put setup code here. This method is called before the invocation of each test method in the class.
+    }
+    
+    func testDeleteObject() {
+        let model = TestStoreModel()
+        print(Delete().from(model.subType).whereFormat("name > \"50\"").sqlStatement!)
     }
     
     override func tearDown() {

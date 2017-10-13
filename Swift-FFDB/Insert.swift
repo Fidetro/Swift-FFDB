@@ -18,10 +18,10 @@ struct Insert {
         tableClass = nil
     }
     
-     func into(_ tableClass:FFObject.Type) -> Insert {
+     func into(_ table:FFObject.Type) -> Insert {
         var insert = self
-        insert.tableClass = tableClass
-        insert.sqlStatement?.append(" insert into " + tableClass.tableName())
+        insert.tableClass = table
+        insert.sqlStatement?.append(" insert into " + table.tableName())
         
             return insert
         }
@@ -42,8 +42,8 @@ struct Insert {
         return insert
     }
     
-    func columns(_ tableClass:FFObject.Type) -> Insert {
-        return self.columns(tableClass.columnsOfSelf())
+    func columns(_ table:FFObject.Type) -> Insert {
+        return self.columns(table.columnsOfSelf())
     }
     
     func values(_ valuesArray:[Any]) -> Insert {

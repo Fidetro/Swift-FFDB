@@ -68,6 +68,24 @@ extension FIDRuntime {
 }
 
 extension FFObject {
+    
+    static func select(_ condition:String) -> Array<FFObject>? {
+//        Select().from(self).whereFormat(condition)
+        return nil
+    }
+    func insert() -> Bool {
+//        Insert().columns(self.subType)
+        return true
+    }
+    func update() -> Bool {
+        
+        return true
+    }
+    func delete() -> Bool {
+        return true
+    }
+    
+    
     var subType: FFObject.Type {
         let mirror  = Mirror(reflecting: self)
         return mirror.subjectType as! FFObject.Type

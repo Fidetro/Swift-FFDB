@@ -30,6 +30,9 @@
 		9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28091F7648740043DCA7 /* UpdateTest.swift */; };
 		9AAB280B1F7648980043DCA7 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28071F7643170043DCA7 /* Update.swift */; };
 		9AD0D94E1F8F8617007CF049 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0D94D1F8F8617007CF049 /* Delete.swift */; };
+		9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD614541F906DE8009DB6FA /* DeleteTest.swift */; };
+		9AD614561F906E17009DB6FA /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD0D94D1F8F8617007CF049 /* Delete.swift */; };
+		9AD614571F906FBE009DB6FA /* Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE95C241F791CA1007DF583 /* Select.swift */; };
 		9AE95C251F791CA1007DF583 /* Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE95C241F791CA1007DF583 /* Select.swift */; };
 /* End PBXBuildFile section */
 
@@ -66,6 +69,7 @@
 		9AAB28071F7643170043DCA7 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		9AAB28091F7648740043DCA7 /* UpdateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTest.swift; sourceTree = "<group>"; };
 		9AD0D94D1F8F8617007CF049 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
+		9AD614541F906DE8009DB6FA /* DeleteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTest.swift; sourceTree = "<group>"; };
 		9AE95C241F791CA1007DF583 /* Select.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Select.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -140,6 +144,7 @@
 			children = (
 				9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */,
 				9A4E5AB81F663B1E0084812C /* Info.plist */,
+				9AD614541F906DE8009DB6FA /* DeleteTest.swift */,
 				9A4E5ABE1F663B300084812C /* InsertTest.swift */,
 				9AAB28091F7648740043DCA7 /* UpdateTest.swift */,
 				9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */,
@@ -276,12 +281,15 @@
 				9AAB28021F760B900043DCA7 /* FFDBManager.swift in Sources */,
 				9A4E5AC01F663CEC0084812C /* Insert.swift in Sources */,
 				9A4E5AC21F663CF20084812C /* FFDB+Extension.swift in Sources */,
+				9AD614571F906FBE009DB6FA /* Select.swift in Sources */,
 				9AAB28061F760D4D0043DCA7 /* TestStoreModel.swift in Sources */,
 				9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */,
 				9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */,
 				9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */,
 				9A4E5AC41F663CF90084812C /* FFDB.swift in Sources */,
+				9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */,
 				9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */,
+				9AD614561F906E17009DB6FA /* Delete.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
