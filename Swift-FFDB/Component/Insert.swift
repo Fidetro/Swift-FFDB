@@ -60,6 +60,18 @@ struct Insert {
         insert.sqlStatement?.append(valuesString)
         return insert
     }
+    
+    func execute() -> Bool {
+        guard let connect = FFDB.connect else {
+            assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
+            return false
+        }
+        guard let sql = sqlStatement else {
+            assertionFailure("sql can't nil")
+            return false
+        }
+        return connect.executeDBUpdateAfterClose(sql: sql)
+    }
 }
 
 extension Array {

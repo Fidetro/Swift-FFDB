@@ -11,15 +11,17 @@
 struct Person :FFObject {
   
     
+  
+    
 
     
 
     var primaryID: Int64?
 
     var name : String?
-    
-    mutating func setName( newName:String )-> Person {
-        name = newName
-        return self
-    }
+    var date : Int?
+        var a : Int?
+        var b : Int?
+ 
+   
 }

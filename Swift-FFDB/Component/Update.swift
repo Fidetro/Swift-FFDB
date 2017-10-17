@@ -71,6 +71,18 @@ struct Update {
         return update
     }
     
+    func execute() -> Bool {
+        guard let connect = FFDB.connect else {
+            assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
+            return false
+        }
+        guard let sql = sqlStatement else {
+            assertionFailure("sql can't nil")
+            return false
+        }
+        return connect.executeDBUpdateAfterClose(sql: sql)
+    }
+    
     private func columnsToSetSQLFormat(_ object:FFObject ,_ columns:[String]?) -> String {
         var SQLFormat = String()
         let mirror = Mirror(reflecting: object)
@@ -98,30 +110,6 @@ struct Update {
                 }
             }
         }
-        
-        
-//        for case let (key?,value) in mirror.children {
-//            if key == "primaryID" {
-//                continue;
-//            }
-//            if let inputColumns = columns {
-//                if inputColumns.contains(key) {
-//                    if index == 0 {
-//                        index += 1
-//                        SQLFormat.append(key + "=" + "'\(object.valueToNotNull(value))'")
-//                    }else{
-//                        SQLFormat.append("," + key + "=" + "'\(object.valueToNotNull(value))'")
-//                    }
-//                }
-//            }else{
-//                if index == 0 {
-//                    index += 1
-//                    SQLFormat.append(key + "=" + "'\(object.valueToNotNull(value))'")
-//                }else{
-//                    SQLFormat.append("," + key + "=" + "'\(object.valueToNotNull(value))'")
-//                }
-//            }
-//        }
         return SQLFormat
     }
 }

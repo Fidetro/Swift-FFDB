@@ -1,0 +1,110 @@
+//
+//  FMDBConnect.swift
+//  Swift-FFDB
+//
+//  Created by Fidetro on 2017/10/14.
+//  Copyright © 2017年 Fidetro. All rights reserved.
+//
+
+
+import FMDB
+struct FMDBConnect:FFDBConnect {
+
+    
+    init() {
+        
+    }
+    
+  static func databasePath() -> URL? {
+        if let executableFile = Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String) {
+            let fileURL = try! FileManager.default
+                .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+                .appendingPathComponent(executableFile as! String)
+            return fileURL
+        }
+        return nil
+    }
+    
+    static func database() -> FMDatabase {
+        let database = FMDatabase(url: databasePath())
+        return database
+    }
+    static func columnExists(_ columnName: String, inTableWithName: String) -> Bool {
+        let database = self.database()
+        guard database.open() else {
+            print("Unable to open database")
+            return false
+        }
+        let result = database.columnExists(columnName, inTableWithName: inTableWithName)
+        database.close()
+        return result
+    }
+    static func executeDBUpdate(sql:String) -> Bool {
+        return database().executeDBUpdate(sql: sql)
+    }
+    static func executeDBUpdateAfterClose(sql:String) -> Bool {
+        return database().executeDBUpdateAfterClose(sql: sql)
+    }
+    static func executeDBQuery<T:Decodable>(return type:T.Type, sql:String) -> Array<Decodable>? {
+          return database().executeDBQuery(return: type, sql: sql)
+    }
+}
+
+extension FMDatabase {
+    func executeDBUpdateAfterClose(sql:String) -> Bool {
+       
+        let result = executeDBUpdate(sql: sql)
+        self.close()
+        return result
+        
+    }
+    func executeDBUpdate(sql:String) -> Bool {
+   
+        guard self.open() else {
+            print("Unable to open database")
+            return false
+        }
+        
+        do {
+            try self.executeUpdate(sql, values: nil)
+            
+            return true
+            
+        } catch {
+            print("failed: \(error.localizedDescription)")
+        }
+        
+        return false
+    }
+
+    func executeDBQuery<T:Decodable>(return type:T.Type, sql:String) -> Array<Decodable>? {
+            guard self.open() else {
+                print("Unable to open database")
+                return nil
+            }
+            
+            do {
+               let result = try self.executeQuery(sql, values: nil)
+                var modelArray = Array<Decodable>()
+                while result.next() {
+                    if let dict =  result.resultDictionary {
+//TODO 这里没考虑替换了表字典名字的情况
+                        
+                        let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .init(rawValue: 0))
+                       let model = try JSONDecoder().decode(type, from: jsonData)
+                        
+                       modelArray.append(model)
+                    }
+                }
+                guard modelArray.count != 0 else {
+                    return nil
+                }
+                return modelArray
+                
+            } catch {
+                print("failed: \(error.localizedDescription)")
+            }
+            return nil
+    }
+   
+}

@@ -1,0 +1,6 @@
+framework module Pods_Swift_FFDB {
+  umbrella header "Pods-Swift-FFDB-umbrella.h"
+
+  export *
+  module * { export * }
+}

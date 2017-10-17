@@ -9,7 +9,9 @@
 import UIKit
 
 struct Select {
+    
     fileprivate var tableClass : FFObject.Type?
+    fileprivate var returnType : Decodable.Type?
     var sqlStatement : String?
     init() {
         sqlStatement = ""
@@ -29,6 +31,23 @@ struct Select {
         var select = self
         select.sqlStatement?.append(" where " + condition + " ")
         return select
+    }
+    func returnType(_ type:Decodable.Type) -> Select {
+        var select = self
+        select.returnType = type
+        return select
+    }
+    func execute<T:Decodable>(_ type:T.Type) -> Array<Decodable>? {
+        guard let connect = FFDB.connect else {
+            assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
+            return nil
+        }
+        guard let sql = sqlStatement else {
+            assertionFailure("sql can't nil")
+            return nil
+        }
+        return connect.executeDBQuery(return: type.self, sql: sql)
+  
     }
 }
 
