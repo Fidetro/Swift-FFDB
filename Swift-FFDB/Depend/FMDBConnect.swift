@@ -32,7 +32,7 @@ struct FMDBConnect:FFDBConnect {
     static func columnExists(_ columnName: String, inTableWithName: String) -> Bool {
         let database = self.database()
         guard database.open() else {
-            print("Unable to open database")
+            printDebugLog("Unable to open database")
             return false
         }
         let result = database.columnExists(columnName, inTableWithName: inTableWithName)
@@ -61,7 +61,7 @@ extension FMDatabase {
     func executeDBUpdate(sql:String) -> Bool {
    
         guard self.open() else {
-            print("Unable to open database")
+            printDebugLog("Unable to open database")
             return false
         }
         
@@ -71,7 +71,7 @@ extension FMDatabase {
             return true
             
         } catch {
-            print("failed: \(error.localizedDescription)")
+            printDebugLog("failed: \(error.localizedDescription)")
         }
         
         return false
@@ -79,7 +79,7 @@ extension FMDatabase {
 
     func executeDBQuery<T:Decodable>(return type:T.Type, sql:String) -> Array<Decodable>? {
             guard self.open() else {
-                print("Unable to open database")
+                printDebugLog("Unable to open database")
                 return nil
             }
             
@@ -88,12 +88,16 @@ extension FMDatabase {
                 var modelArray = Array<Decodable>()
                 while result.next() {
                     if let dict =  result.resultDictionary {
-//TODO 这里没考虑替换了表字典名字的情况
-                        
+//TODO 这里没考虑替换了表字典名字的情况，还有type属性类型不同的时候会出问题
                         let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .init(rawValue: 0))
+                        do{
                        let model = try JSONDecoder().decode(type, from: jsonData)
-                        
-                       modelArray.append(model)
+                            modelArray.append(model)
+                        }catch{
+                            printDebugLog(error)
+                            assertionFailure("check you func columntype,func customColumnsType,property type")
+                        }
+                       
                     }
                 }
                 guard modelArray.count != 0 else {
@@ -102,7 +106,7 @@ extension FMDatabase {
                 return modelArray
                 
             } catch {
-                print("failed: \(error.localizedDescription)")
+                printDebugLog("failed: \(error.localizedDescription)")
             }
             return nil
     }

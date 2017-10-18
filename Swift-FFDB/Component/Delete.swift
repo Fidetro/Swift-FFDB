@@ -22,6 +22,7 @@ struct Delete {
         delete.sqlStatement?.append(" from " + table.tableName())
         return delete
     }
+    
     func whereFormat(_ condition:String) -> Delete {
         var delete = self
         delete.sqlStatement?.append(" where " + condition + " ")

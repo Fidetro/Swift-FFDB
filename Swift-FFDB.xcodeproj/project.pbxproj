@@ -13,7 +13,6 @@
 		9A1957631F919E8100F8A37B /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575A1F9197C800F8A37B /* FFDB.swift */; };
 		9A1957641F919E8100F8A37B /* FFDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575B1F9197C800F8A37B /* FFDBManager.swift */; };
 		9A1957651F919E8100F8A37B /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575C1F9197C800F8A37B /* Insert.swift */; };
-		9A1957661F919E8100F8A37B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575D1F9197C800F8A37B /* Person.swift */; };
 		9A1957671F919E8100F8A37B /* Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575E1F9197C800F8A37B /* Select.swift */; };
 		9A1957681F919E8100F8A37B /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575F1F9197C800F8A37B /* Update.swift */; };
 		9A1957691F919E8200F8A37B /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1957581F9197C800F8A37B /* Delete.swift */; };
@@ -21,7 +20,6 @@
 		9A19576B1F919E8200F8A37B /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575A1F9197C800F8A37B /* FFDB.swift */; };
 		9A19576C1F919E8200F8A37B /* FFDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575B1F9197C800F8A37B /* FFDBManager.swift */; };
 		9A19576D1F919E8200F8A37B /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575C1F9197C800F8A37B /* Insert.swift */; };
-		9A19576E1F919E8200F8A37B /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575D1F9197C800F8A37B /* Person.swift */; };
 		9A19576F1F919E8200F8A37B /* Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575E1F9197C800F8A37B /* Select.swift */; };
 		9A1957701F919E8200F8A37B /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575F1F9197C800F8A37B /* Update.swift */; };
 		9A1957731F91AAF200F8A37B /* FFDBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1957721F91AAF200F8A37B /* FFDBConnect.swift */; };
@@ -62,7 +60,6 @@
 		9A19575A1F9197C800F8A37B /* FFDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDB.swift; sourceTree = "<group>"; };
 		9A19575B1F9197C800F8A37B /* FFDBManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBManager.swift; sourceTree = "<group>"; };
 		9A19575C1F9197C800F8A37B /* Insert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insert.swift; sourceTree = "<group>"; };
-		9A19575D1F9197C800F8A37B /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		9A19575E1F9197C800F8A37B /* Select.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Select.swift; sourceTree = "<group>"; };
 		9A19575F1F9197C800F8A37B /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		9A1957721F91AAF200F8A37B /* FFDBConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBConnect.swift; sourceTree = "<group>"; };
@@ -125,7 +122,6 @@
 				9A1957591F9197C800F8A37B /* FFDB+Extension.swift */,
 				9A19575B1F9197C800F8A37B /* FFDBManager.swift */,
 				9A19575C1F9197C800F8A37B /* Insert.swift */,
-				9A19575D1F9197C800F8A37B /* Person.swift */,
 				9A19575E1F9197C800F8A37B /* Select.swift */,
 				9A19575F1F9197C800F8A37B /* Update.swift */,
 				9A1957761F91FAE400F8A37B /* Create.swift */,
@@ -375,7 +371,6 @@
 				9A35162F1F491C8600571621 /* ViewController.swift in Sources */,
 				9A1957751F91DFA600F8A37B /* FMDBConnect.swift in Sources */,
 				9A1957731F91AAF200F8A37B /* FFDBConnect.swift in Sources */,
-				9A1957661F919E8100F8A37B /* Person.swift in Sources */,
 				9A35162D1F491C8600571621 /* AppDelegate.swift in Sources */,
 				9A1957671F919E8100F8A37B /* Select.swift in Sources */,
 				9A300D081F95E19200D18D12 /* Alter.swift in Sources */,
@@ -399,7 +394,6 @@
 				9A19576A1F919E8200F8A37B /* FFDB+Extension.swift in Sources */,
 				9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */,
 				9A19576C1F919E8200F8A37B /* FFDBManager.swift in Sources */,
-				9A19576E1F919E8200F8A37B /* Person.swift in Sources */,
 				9A1957701F919E8200F8A37B /* Update.swift in Sources */,
 				9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */,
 				9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */,

@@ -25,10 +25,14 @@ struct Create {
                 sql.append(column)
             }
             sql.append(" ")
-            if let type = table.columnsType()?[column] {
+            if let type = table.customColumnsType()?[column] {
                 sql.append(type)
             }else{
+                if let type = table.columnsType()[column]{
+                    sql.append(type)
+                }else{
                 sql.append("TEXT")
+                }
             }
         }
         return sql

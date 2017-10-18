@@ -45,10 +45,14 @@ struct Alter {
     
   
             sql.append(" \(newColumn) ")
-            if let type = tableClass?.columnsType()?[newColumn] {
+            if let type = tableClass?.customColumnsType()?[newColumn] {
                 sql.append(type)
             }else{
-                sql.append("TEXT")
+                if let type = tableClass?.columnsType()[newColumn]{
+                    sql.append(type)
+                }else{
+                    sql.append("TEXT")
+                }
             }
         return sql
     }

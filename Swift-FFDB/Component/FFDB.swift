@@ -5,7 +5,15 @@
 //  Created by Fidetro on 2017/8/20.
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
-
+func printDebugLog<T>(_ message: T,
+                 file: String = #file,
+                 method: String = #function,
+                 line: Int = #line)
+{
+    #if DEBUG
+        print("\(file)[\(line)], \(method): \(message)")
+    #endif
+}
 struct FFDB {
     static var connect : FFDBConnect.Type?
     static func setup(_ type:FFDBConnectType){
@@ -33,12 +41,12 @@ protocol FFObject:FIDRuntime,Decodable {
     var primaryID : Int64? {get}
     
     
-    static func registerTable() -> Bool
+    static func registerTable()
     static func select(_ condition:String?) -> Array<FFObject>?
     func insert() -> Bool
     func update() -> Bool
     func delete() -> Bool
-    
+    static func columnsType() -> [String:String]
     
     /// 相当于Objective-C中的valueForKey: 但返回的值永远不会为空
     ///
@@ -47,7 +55,7 @@ protocol FFObject:FIDRuntime,Decodable {
     func valueNotNullFrom(_ key: String) -> String
     static func columnsOfSelf() -> Array<String>
     static func memoryPropertys() -> [String]?
-    static func columnsType() -> [String:String]?
+    static func customColumnsType() -> [String:String]?
     static func customColumns() -> [String:String]?
     static  func tableName() -> String
 }
