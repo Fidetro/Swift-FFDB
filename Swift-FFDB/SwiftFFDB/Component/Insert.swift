@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-struct Insert {
+public struct Insert {
     
     fileprivate var tableClass : FFObject.Type?
     
@@ -18,7 +18,7 @@ struct Insert {
         tableClass = nil
     }
     
-     func into(_ table:FFObject.Type) -> Insert {
+  public   func into(_ table:FFObject.Type) -> Insert {
         var insert = self
         insert.tableClass = table
         insert.sqlStatement?.append(" insert into " + table.tableName())
@@ -26,7 +26,7 @@ struct Insert {
             return insert
         }
     
-    func columns(_ columnsArray:[String]?) -> Insert {
+  public  func columns(_ columnsArray:[String]?) -> Insert {
         var insert = self
         var columnsString = String()
         if let columns = columnsArray {
@@ -42,18 +42,18 @@ struct Insert {
         return insert
     }
     
-    func columns(_ table:FFObject.Type) -> Insert {
+  public  func columns(_ table:FFObject.Type) -> Insert {
         return self.columns(table.columnsOfSelf())
     }
     
-    func values(_ valuesArray:[Any]) -> Insert {
+ public   func values(_ valuesArray:[Any]) -> Insert {
         var insert = self
         var valuesString = " values "
         valuesString.append(" (\(valuesArray.stringToValues()));")
         insert.sqlStatement?.append(valuesString)
         return insert
     }
-      func values(_ object:FFObject) -> Insert {
+ public     func values(_ object:FFObject) -> Insert {
         var insert = self
         var valuesString = " values "
         valuesString.append(" (\(object.allValue().stringToValues()));")
@@ -61,7 +61,7 @@ struct Insert {
         return insert
     }
     
-    func execute() -> Bool {
+  public  func execute() -> Bool {
         guard let connect = FFDB.connect else {
             assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
             return false
@@ -79,9 +79,9 @@ extension Array {
         var columnsString = String()
         for (index,element) in self.enumerated() {
             if index == 0 {
-                columnsString.append(String(describing: element))
+                columnsString.append(anyToString(element))
             }else{
-                columnsString.append(","+String(describing: element))
+                columnsString.append(","+anyToString(element))
             }
         }
         return columnsString
@@ -91,9 +91,9 @@ extension Array {
         var valuesString = String()
         for (index,element) in self.enumerated() {
             if index == 0 {
-                valuesString.append("\'\(String(describing: element))\'")
+                valuesString.append("\'\(anyToString(element))\'")
             }else{
-                valuesString.append(","+"\'\(String(describing: element))\'")
+                valuesString.append(","+"\'\(anyToString(element))\'")
             }
         }
         return valuesString

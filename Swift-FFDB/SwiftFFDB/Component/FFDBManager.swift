@@ -7,7 +7,7 @@
 //
 
 
-struct FFDBManager {
+public struct FFDBManager {
     
 }
 

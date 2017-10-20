@@ -7,31 +7,124 @@
 //
 
 // MARK: - CUSTOM
+
+#if os(Linux)
+    
+#else
+    import Foundation
+#endif
+
+
+func anyToString(_ describing:Any) -> String {
+    let mirror  = Mirror(reflecting: describing)
+    switch mirror.subjectType {
+    case is Date.Type:
+        let date = describing as! Date
+        return "\(date.timeIntervalSince1970)"
+    case is Optional<Date>.Type:
+        guard let date = describing as? Date else{
+            return "\(Date().timeIntervalSince1970)"
+        }
+        return "\(date.timeIntervalSince1970)"
+    case is Optional<Float>.Type:
+        guard let value = describing as? Float else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Float64>.Type:
+        guard let value = describing as? Float64 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Float32>.Type:
+        guard let value = describing as? Float32 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Double>.Type:
+        guard let value = describing as? Double else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int>.Type:
+        guard let value = describing as? Int else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int8>.Type:
+        guard let value = describing as? Int8 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int16>.Type:
+        guard let value = describing as? Int16 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int32>.Type:
+        guard let value = describing as? Int32 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int64>.Type:
+        guard let value = describing as? Int64 else{
+            return "0"
+        }
+        return "\(value)"
+    default:
+        switch String(describing: describing)
+        {
+        case "nil":
+            return ""
+        case "Optional(nil)":
+            return ""
+        default :
+            let value : AnyObject? = (describing as AnyObject)
+            if value != nil {
+                return String(describing: value!)
+            }else{
+                return ""
+            }
+        }
+    }
+    
+
+}
+
+
+
 extension FFObject {
-    static  func tableName() -> String {
+    public static  func tableName() -> String {
         let tableName = self.className().replacingOccurrences(of: ".Type", with: "")
         return tableName
     }
-    //    static func memoryPropertys() -> [String]? {return nil}
-    //    static func columnsType() -> [String:String]? {return nil}
-    //    static func customColumns() -> [String:String]? {return nil}
+    
 }
 
 // MARK: - sql
 extension FFObject {
-    static func select(_ condition:String?) -> Array<FFObject>? {
+    public  static func select(_ condition:String?) -> Array<FFObject>? {
         return (FFDBManager.select(self, nil, where: condition) as! Array<FFObject>?)
     }
-    func insert() -> Bool {
+    public func insert() -> Bool {
         return FFDBManager.insert(self)
     }
-    func update() -> Bool {
+    public  func update() -> Bool {
         return FFDBManager.update(self, set: nil)
     }
-    func delete() -> Bool {
+    public  func update(set condition:String) -> Bool {
+        if let primaryID = self.primaryID  {
+              return FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'")
+        }else{
+            assertionFailure("primaryID is nil")
+            return false
+        }
+      
+    }
+    public  func delete() -> Bool {
         return FFDBManager.delete(self)
     }
-    static func registerTable() {
+    public   static func registerTable() {
         let createResult = FFDBManager.create(self)
         let alterResult = FFDBManager.alter(self)
         if createResult == true && alterResult == true {
@@ -43,24 +136,42 @@ extension FFObject {
 
 extension FFObject {
     
-    var subType: FFObject.Type {
+    public  var subType: FFObject.Type {
         let mirror  = Mirror(reflecting: self)
         return mirror.subjectType as! FFObject.Type
     }
-    static func columnsType() -> [String:String] {
+    public static func columnsType() -> [String:String] {
         var columnsType = [String:String]()
         let selfProtocol = self.init();
         let mirror  = Mirror(reflecting: selfProtocol)
         for case let (label?, value) in mirror.children {
             
             let valueMirror  = Mirror(reflecting: value)
+            #if os(Linux)
+                
+            #else
+                 switch valueMirror.subjectType {
+                 case is Date.Type:
+                    columnsType[label] = "double"
+                    continue
+                 case is Optional<Date>.Type:
+                    columnsType[label] = "double"
+                    continue
+                 default:
+                    break
+                }
+            #endif
             switch valueMirror.subjectType {
+                
+            
+                
             case is String.Type:
                 columnsType[label] = "text"
                 break
             case is Optional<String>.Type:
                 columnsType[label] = "text"
                 break
+
             case is Float.Type:
                 columnsType[label] = "float"
                 break
@@ -79,12 +190,15 @@ extension FFObject {
             case is Optional<Float64>.Type:
                 columnsType[label] = "float"
                 break
-            case is Float80.Type:
-                columnsType[label] = "float"
-                break
-            case is Optional<Float80>.Type:
-                columnsType[label] = "float"
-                break
+                
+                // check https://forums.developer.apple.com/thread/5026
+                //            case is Float80.Type:
+                //                columnsType[label] = "float"
+                //                break
+                //            case is Optional<Float80>.Type:
+                //                columnsType[label] = "float"
+                //                break
+                
             case is Double.Type:
                 columnsType[label] = "double"
                 break
@@ -128,7 +242,7 @@ extension FFObject {
         }
         return columnsType
     }
-    static func columnsOfSelf() -> Array<String> {
+    public  static func columnsOfSelf() -> Array<String> {
         var columns = self.propertyOfSelf()
         var newColumns = [String]()
         if let index = columns.index(of: "primaryID") {
@@ -150,15 +264,17 @@ extension FFObject {
                     newColumns.append(column)
                 }
             }
+        }else{
+            newColumns = columns
         }
         
         
         return newColumns
     }
     
-    func valueNotNullFrom(_ key: String) -> String {
+    public   func valueNotNullFrom(_ key: String) -> String {
         if let value = valueFrom(key) {
-            return valueToNotNull(value)
+            return anyToString(value)
         }else{
             return ""
         }
@@ -168,26 +284,11 @@ extension FFObject {
 
 
 extension FIDRuntime {
-    var subType: Any.Type {
+    public  var subType: Any.Type {
         let mirror  = Mirror(reflecting: self)
         return mirror.subjectType
     }
-    func valueToNotNull(_ value:Any) -> String {
-        switch String(describing: value)
-        {
-        case "nil":
-            return ""
-        case "Optional(nil)":
-            return ""
-        default :
-            let val : AnyObject? = (value as AnyObject)
-            if val != nil {
-                return String(describing: val!)
-            }else{
-                return ""
-            }
-        }
-    }
+    
     fileprivate static func propertyOfSelf() -> Array<String> {
         let selfProtocol = self.init();
         let mirror  = Mirror(reflecting: selfProtocol)
@@ -203,7 +304,7 @@ extension FIDRuntime {
         return String(describing: mirror.subjectType)
     }
     
-    func valueFrom(_ key: String) -> Any? {
+    public  func valueFrom(_ key: String) -> Any? {
         let mirror = Mirror(reflecting: self)
         
         for case let (label?, value) in mirror.children {
@@ -220,9 +321,10 @@ extension FIDRuntime {
             if key == "primaryID" {
                 continue;
             }
-            values.append(valueToNotNull(value))
+            values.append(anyToString(value))
         }
         
         return values
     }
 }
+

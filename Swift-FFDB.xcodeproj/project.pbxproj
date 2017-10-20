@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		01D81B6EF7E204AAE44C66AF /* Pods_Swift_FFDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 343C9B626F1C82BE5086B24E /* Pods_Swift_FFDB.framework */; };
 		9A1957611F919E8100F8A37B /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1957581F9197C800F8A37B /* Delete.swift */; };
 		9A1957621F919E8100F8A37B /* FFDB+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A1957591F9197C800F8A37B /* FFDB+Extension.swift */; };
 		9A1957631F919E8100F8A37B /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A19575A1F9197C800F8A37B /* FFDB.swift */; };
@@ -39,6 +38,7 @@
 		9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD614541F906DE8009DB6FA /* DeleteTest.swift */; };
 		9AD6145B1F9096BB009DB6FA /* SelectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD6145A1F9096BB009DB6FA /* SelectTest.swift */; };
 		9AE447F91F94938A008C369F /* PerfectMySQLConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE447F81F949389008C369F /* PerfectMySQLConnect.swift */; };
+		9AF4C4811F9786D500C37809 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4C4801F9786D500C37809 /* Person.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,10 +51,24 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		9AA1AE7C1F96F0600005946C /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		078F04E326FFF12E9A37FAA4 /* Pods-Swift-FFDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDB.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDB/Pods-Swift-FFDB.release.xcconfig"; sourceTree = "<group>"; };
 		29E42EB5C8B1C25D12BE6F5D /* Pods-Swift-FFDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDB/Pods-Swift-FFDB.debug.xcconfig"; sourceTree = "<group>"; };
-		343C9B626F1C82BE5086B24E /* Pods_Swift_FFDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_FFDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3E23C1B543AAC50123BAF7BB /* Pods-SwiftFFDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFFDB.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFFDB/Pods-SwiftFFDB.release.xcconfig"; sourceTree = "<group>"; };
+		3F1A743F2F3BC30D2060E25C /* Pods_SwiftFFDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFFDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A1957581F9197C800F8A37B /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		9A1957591F9197C800F8A37B /* FFDB+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FFDB+Extension.swift"; sourceTree = "<group>"; };
 		9A19575A1F9197C800F8A37B /* FFDB.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDB.swift; sourceTree = "<group>"; };
@@ -84,6 +98,8 @@
 		9AD614541F906DE8009DB6FA /* DeleteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTest.swift; sourceTree = "<group>"; };
 		9AD6145A1F9096BB009DB6FA /* SelectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTest.swift; sourceTree = "<group>"; };
 		9AE447F81F949389008C369F /* PerfectMySQLConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectMySQLConnect.swift; sourceTree = "<group>"; };
+		9AF4C4801F9786D500C37809 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		E4224232E6F75B829F6DB32E /* Pods-SwiftFFDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFFDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFFDB/Pods-SwiftFFDB.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -91,7 +107,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				01D81B6EF7E204AAE44C66AF /* Pods_Swift_FFDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -110,6 +125,8 @@
 			children = (
 				29E42EB5C8B1C25D12BE6F5D /* Pods-Swift-FFDB.debug.xcconfig */,
 				078F04E326FFF12E9A37FAA4 /* Pods-Swift-FFDB.release.xcconfig */,
+				E4224232E6F75B829F6DB32E /* Pods-SwiftFFDB.debug.xcconfig */,
+				3E23C1B543AAC50123BAF7BB /* Pods-SwiftFFDB.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -117,6 +134,7 @@
 		9A1957571F9197C800F8A37B /* Component */ = {
 			isa = PBXGroup;
 			children = (
+				9A1957721F91AAF200F8A37B /* FFDBConnect.swift */,
 				9A1957581F9197C800F8A37B /* Delete.swift */,
 				9A19575A1F9197C800F8A37B /* FFDB.swift */,
 				9A1957591F9197C800F8A37B /* FFDB+Extension.swift */,
@@ -133,7 +151,6 @@
 		9A1957711F91A9DA00F8A37B /* Depend */ = {
 			isa = PBXGroup;
 			children = (
-				9A1957721F91AAF200F8A37B /* FFDBConnect.swift */,
 				9A1957741F91DFA600F8A37B /* FMDBConnect.swift */,
 				9AE447F81F949389008C369F /* PerfectMySQLConnect.swift */,
 			);
@@ -163,10 +180,10 @@
 		9A35162B1F491C8600571621 /* Swift-FFDB */ = {
 			isa = PBXGroup;
 			children = (
-				9A1957711F91A9DA00F8A37B /* Depend */,
-				9A1957571F9197C800F8A37B /* Component */,
+				9AEEED891F99C7C700037B4C /* SwiftFFDB */,
 				9A3516381F491C8600571621 /* Info.plist */,
 				9A35162C1F491C8600571621 /* AppDelegate.swift */,
+				9AF4C4801F9786D500C37809 /* Person.swift */,
 				9A35162E1F491C8600571621 /* ViewController.swift */,
 				9A3516331F491C8600571621 /* Assets.xcassets */,
 				9A3516351F491C8600571621 /* LaunchScreen.storyboard */,
@@ -179,7 +196,7 @@
 			isa = PBXGroup;
 			children = (
 				9A4E5AAF1F663AEC0084812C /* XCTest.framework */,
-				343C9B626F1C82BE5086B24E /* Pods_Swift_FFDB.framework */,
+				3F1A743F2F3BC30D2060E25C /* Pods_SwiftFFDB.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -199,6 +216,15 @@
 			path = "Swift-FFDBTests";
 			sourceTree = "<group>";
 		};
+		9AEEED891F99C7C700037B4C /* SwiftFFDB */ = {
+			isa = PBXGroup;
+			children = (
+				9A1957711F91A9DA00F8A37B /* Depend */,
+				9A1957571F9197C800F8A37B /* Component */,
+			);
+			path = SwiftFFDB;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -212,6 +238,7 @@
 				9A3516271F491C8600571621 /* Resources */,
 				CFB28CD1F51FACBAFC9C6565 /* [CP] Embed Pods Frameworks */,
 				D5A08E7B582D905E66C5E7CB /* [CP] Copy Pods Resources */,
+				9AA1AE7C1F96F0600005946C /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -362,6 +389,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AF4C4811F9786D500C37809 /* Person.swift in Sources */,
 				9A1957651F919E8100F8A37B /* Insert.swift in Sources */,
 				9A1957611F919E8100F8A37B /* Delete.swift in Sources */,
 				9A1957681F919E8100F8A37B /* Update.swift in Sources */,
@@ -434,6 +462,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -489,6 +518,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
@@ -537,8 +567,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 29E42EB5C8B1C25D12BE6F5D /* Pods-Swift-FFDB.debug.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = J3BJ7G2PUN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Swift-FFDB/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
@@ -553,8 +588,13 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 078F04E326FFF12E9A37FAA4 /* Pods-Swift-FFDB.release.xcconfig */;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = J3BJ7G2PUN;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
 				INFOPLIST_FILE = "Swift-FFDB/Info.plist";
 				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";

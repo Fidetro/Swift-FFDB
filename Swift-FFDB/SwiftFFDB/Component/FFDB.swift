@@ -6,30 +6,29 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 func printDebugLog<T>(_ message: T,
-                 file: String = #file,
-                 method: String = #function,
-                 line: Int = #line)
+                      file: String = #file,
+                      method: String = #function,
+                      line: Int = #line)
 {
     #if DEBUG
         print("\(file)[\(line)], \(method): \(message)")
     #endif
 }
-struct FFDB {
+public struct FFDB {
     static var connect : FFDBConnect.Type?
-    static func setup(_ type:FFDBConnectType){
+    public  static func setup(_ type:FFDBConnectType){
         connect = type.connect()
     }
 }
 
 
 
-protocol FIDRuntime {
+public protocol FIDRuntime {
     init()
     
     /// 获取对象类型
     var subType : Any.Type {get}
     
-    func valueToNotNull(_ value:Any) -> String
     /// 相当于Objective-C中的valueForKey: 
     ///
     /// - Parameter key: key
@@ -37,7 +36,7 @@ protocol FIDRuntime {
     func valueFrom(_ key: String) -> Any?
 }
 
-protocol FFObject:FIDRuntime,Decodable {
+public protocol FFObject:FIDRuntime,Decodable {
     var primaryID : Int64? {get}
     
     

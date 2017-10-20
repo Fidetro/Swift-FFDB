@@ -56,9 +56,9 @@ extension Array {
         var columnsString = String()
         for (index,element) in self.enumerated() {
             if index == 0 {
-                columnsString.append(String(describing: element))
+                columnsString.append(anyToString(element))
             }else{
-                columnsString.append(","+String(describing: element))
+                columnsString.append(","+anyToString(element))
             }
         }
         return columnsString
@@ -68,9 +68,9 @@ extension Array {
         var valuesString = String()
         for (index,element) in self.enumerated() {
             if index == 0 {
-                valuesString.append(String(describing: element))
+                valuesString.append(anyToString(element))
             }else{
-                valuesString.append(","+String(describing: element))
+                valuesString.append(","+anyToString(element))
             }
         }
         return valuesString

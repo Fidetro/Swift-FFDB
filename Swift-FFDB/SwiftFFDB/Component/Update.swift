@@ -99,9 +99,9 @@ struct Update {
                         isContain = true
                             if index == 0 {
                                 index += 1
-                                SQLFormat.append(key + "=" + "'\(object.valueToNotNull(value))'")
+                                SQLFormat.append(key + "=" + "'\(anyToString(value))'")
                             }else{
-                                SQLFormat.append("," + key + "=" + "'\(object.valueToNotNull(value))'")
+                                SQLFormat.append("," + key + "=" + "'\(anyToString(value))'")
                             }
                     }
                 }
