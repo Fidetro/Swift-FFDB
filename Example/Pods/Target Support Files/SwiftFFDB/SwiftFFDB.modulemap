@@ -1,6 +1,0 @@
-framework module SwiftFFDB {
-  umbrella header "SwiftFFDB-umbrella.h"
-
-  export *
-  module * { export * }
-}
