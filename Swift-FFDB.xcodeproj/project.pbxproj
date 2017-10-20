@@ -180,7 +180,7 @@
 		9A35162B1F491C8600571621 /* Swift-FFDB */ = {
 			isa = PBXGroup;
 			children = (
-				9AEEED891F99C7C700037B4C /* SwiftFFDB */,
+				9AEEED891F99C7C700037B4C /* Classes */,
 				9A3516381F491C8600571621 /* Info.plist */,
 				9A35162C1F491C8600571621 /* AppDelegate.swift */,
 				9AF4C4801F9786D500C37809 /* Person.swift */,
@@ -216,13 +216,13 @@
 			path = "Swift-FFDBTests";
 			sourceTree = "<group>";
 		};
-		9AEEED891F99C7C700037B4C /* SwiftFFDB */ = {
+		9AEEED891F99C7C700037B4C /* Classes */ = {
 			isa = PBXGroup;
 			children = (
 				9A1957711F91A9DA00F8A37B /* Depend */,
 				9A1957571F9197C800F8A37B /* Component */,
 			);
-			path = SwiftFFDB;
+			path = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
