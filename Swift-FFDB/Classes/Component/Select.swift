@@ -6,38 +6,38 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-import UIKit
+
 
 struct Select {
     
     fileprivate var tableClass : FFObject.Type?
     fileprivate var returnType : Decodable.Type?
     var sqlStatement : String?
-    init() {
+    public  init() {
         sqlStatement = ""
         sqlStatement?.append(" select " + " * ")
     }
-    init(_ columns:[String]) {
+    public  init(_ columns:[String]) {
         sqlStatement = ""
         sqlStatement?.append(" select " + columns.stringToColumns())
     }
-    func from(_ table:FFObject.Type) -> Select {
+    public    func from(_ table:FFObject.Type) -> Select {
         var select = self
         select.tableClass = table
         select.sqlStatement?.append(" from " + table.tableName())
         return select
     }
-    func whereFormat(_ condition:String) -> Select {
+    public   func whereFormat(_ condition:String) -> Select {
         var select = self
         select.sqlStatement?.append(" where " + condition + " ")
         return select
     }
-    func returnType(_ type:Decodable.Type) -> Select {
+    public   func returnType(_ type:Decodable.Type) -> Select {
         var select = self
         select.returnType = type
         return select
     }
-    func execute<T:Decodable>(_ type:T.Type) -> Array<Decodable>? {
+    public  func execute<T:Decodable>(_ type:T.Type) -> Array<Decodable>? {
         guard let connect = FFDB.connect else {
             assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
             return nil
@@ -47,7 +47,7 @@ struct Select {
             return nil
         }
         return connect.executeDBQuery(return: type.self, sql: sql)
-  
+        
     }
 }
 

@@ -19,15 +19,22 @@ extension FFDBConnect {
 }
 
 public enum FFDBConnectType {
+    #if os(iOS)
     case FMDB
+    #else
     case PerfectMySQL
-    public   func connect() -> FFDBConnect.Type {
-        switch self {
-        case .FMDB:
-            return FMDBConnect.self
-        case .PerfectMySQL:
-            return PerfectMySQLConnect.self
-            
-        }
+    #endif
+    public  func connect() -> FFDBConnect.Type {
+        #if os(iOS)
+            switch self {
+            case .FMDB:
+                return FMDBConnect.self
+            }
+        #else
+            switch self {
+            case .PerfectMySQL:
+                return PerfectMySQLConnect.self
+            }
+        #endif
     }
 }

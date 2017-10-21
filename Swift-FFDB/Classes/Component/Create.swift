@@ -12,7 +12,11 @@ struct Create {
 
     init(_ table:FFObject.Type) {
         tableClass = table
-        sqlStatement = (" create table if  not exists \(table.tableName()) (primaryID integer PRIMARY KEY AUTOINCREMENT\(createTableSQL(table: table)))")
+        #if os(iOS)
+            sqlStatement = (" create table if  not exists \(table.tableName()) (primaryID integer PRIMARY KEY AUTOINCREMENT\(createTableSQL(table: table)))")
+        #else
+            sqlStatement = (" create table if  not exists \(table.tableName()) (primaryID integer PRIMARY KEY auto_increment\(createTableSQL(table: table)))")
+        #endif
     }
     
     func createTableSQL(table:FFObject.Type) -> String {

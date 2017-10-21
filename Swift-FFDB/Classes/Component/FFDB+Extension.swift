@@ -8,88 +8,11 @@
 
 // MARK: - CUSTOM
 
-#if os(Linux)
-    
-#else
-    import Foundation
-#endif
+
+import Foundation
 
 
-func anyToString(_ describing:Any) -> String {
-    let mirror  = Mirror(reflecting: describing)
-    switch mirror.subjectType {
-    case is Date.Type:
-        let date = describing as! Date
-        return "\(date.timeIntervalSince1970)"
-    case is Optional<Date>.Type:
-        guard let date = describing as? Date else{
-            return "\(Date().timeIntervalSince1970)"
-        }
-        return "\(date.timeIntervalSince1970)"
-    case is Optional<Float>.Type:
-        guard let value = describing as? Float else{
-            return "0"
-        }
-        return "\(value)"
-    case is Optional<Float64>.Type:
-        guard let value = describing as? Float64 else{
-            return "0"
-        }
-        return "\(value)"
-    case is Optional<Float32>.Type:
-        guard let value = describing as? Float32 else{
-            return "0"
-        }
-        return "\(value)"
-    case is Optional<Double>.Type:
-        guard let value = describing as? Double else{
-            return "0"
-        }
-        return "\(value)"
-    case is Optional<Int>.Type:
-        guard let value = describing as? Int else{
-            return "0"
-        }
-        return "\(value)"
-    case is Optional<Int8>.Type:
-        guard let value = describing as? Int8 else{
-            return "0"
-        }
-        return "\(value)"
-    case is Optional<Int16>.Type:
-        guard let value = describing as? Int16 else{
-            return "0"
-        }
-        return "\(value)"
-    case is Optional<Int32>.Type:
-        guard let value = describing as? Int32 else{
-            return "0"
-        }
-        return "\(value)"
-    case is Optional<Int64>.Type:
-        guard let value = describing as? Int64 else{
-            return "0"
-        }
-        return "\(value)"
-    default:
-        switch String(describing: describing)
-        {
-        case "nil":
-            return ""
-        case "Optional(nil)":
-            return ""
-        default :
-            let value : AnyObject? = (describing as AnyObject)
-            if value != nil {
-                return String(describing: value!)
-            }else{
-                return ""
-            }
-        }
-    }
-    
 
-}
 
 
 
@@ -103,7 +26,7 @@ extension FFObject {
 
 // MARK: - sql
 extension FFObject {
-    public  static func select(_ condition:String?) -> Array<FFObject>? {
+    public  static func select(where condition:String?) -> Array<FFObject>? {
         return (FFDBManager.select(self, nil, where: condition) as! Array<FFObject>?)
     }
     public func insert() -> Bool {
@@ -328,3 +251,79 @@ extension FIDRuntime {
     }
 }
 
+
+func anyToString(_ describing:Any) -> String {
+    let mirror  = Mirror(reflecting: describing)
+    switch mirror.subjectType {
+    case is Date.Type:
+        let date = describing as! Date
+        return "\(date.timeIntervalSince1970)"
+    case is Optional<Date>.Type:
+        guard let date = describing as? Date else{
+            return "\(Date().timeIntervalSince1970)"
+        }
+        return "\(date.timeIntervalSince1970)"
+    case is Optional<Float>.Type:
+        guard let value = describing as? Float else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Float64>.Type:
+        guard let value = describing as? Float64 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Float32>.Type:
+        guard let value = describing as? Float32 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Double>.Type:
+        guard let value = describing as? Double else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int>.Type:
+        guard let value = describing as? Int else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int8>.Type:
+        guard let value = describing as? Int8 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int16>.Type:
+        guard let value = describing as? Int16 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int32>.Type:
+        guard let value = describing as? Int32 else{
+            return "0"
+        }
+        return "\(value)"
+    case is Optional<Int64>.Type:
+        guard let value = describing as? Int64 else{
+            return "0"
+        }
+        return "\(value)"
+    default:
+        switch String(describing: describing)
+        {
+        case "nil":
+            return ""
+        case "Optional(nil)":
+            return ""
+        default :
+            let value : AnyObject? = (describing as AnyObject)
+            if value != nil {
+                return String(describing: value!)
+            }else{
+                return ""
+            }
+        }
+    }
+    
+    
+}

@@ -13,6 +13,8 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        FFDB.setup(.FMDB)
+//        Person.registerTable()
     }
 
     

@@ -41,7 +41,7 @@ public protocol FFObject:FIDRuntime,Decodable {
     
     
     static func registerTable()
-    static func select(_ condition:String?) -> Array<FFObject>?
+    static func select(where condition:String?) -> Array<FFObject>?
     func insert() -> Bool
     func update() -> Bool
     func delete() -> Bool

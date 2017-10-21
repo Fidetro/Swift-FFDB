@@ -37,8 +37,8 @@
 		9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28091F7648740043DCA7 /* UpdateTest.swift */; };
 		9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD614541F906DE8009DB6FA /* DeleteTest.swift */; };
 		9AD6145B1F9096BB009DB6FA /* SelectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD6145A1F9096BB009DB6FA /* SelectTest.swift */; };
-		9AE447F91F94938A008C369F /* PerfectMySQLConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AE447F81F949389008C369F /* PerfectMySQLConnect.swift */; };
-		9AF4C4811F9786D500C37809 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF4C4801F9786D500C37809 /* Person.swift */; };
+		9AF93DBB1F9B326D00561CFF /* PerfectMySQLConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AF93DBA1F9B326C00561CFF /* PerfectMySQLConnect.swift */; };
+		D1B82F9DE3DF724B7D5E3E80 /* Pods_Swift_FFDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CC94E611D8BFA62D7DEC66 /* Pods_Swift_FFDB.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -97,8 +97,8 @@
 		9AAB28091F7648740043DCA7 /* UpdateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTest.swift; sourceTree = "<group>"; };
 		9AD614541F906DE8009DB6FA /* DeleteTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteTest.swift; sourceTree = "<group>"; };
 		9AD6145A1F9096BB009DB6FA /* SelectTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectTest.swift; sourceTree = "<group>"; };
-		9AE447F81F949389008C369F /* PerfectMySQLConnect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PerfectMySQLConnect.swift; sourceTree = "<group>"; };
-		9AF4C4801F9786D500C37809 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		9AF93DBA1F9B326C00561CFF /* PerfectMySQLConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfectMySQLConnect.swift; sourceTree = "<group>"; };
+		B6CC94E611D8BFA62D7DEC66 /* Pods_Swift_FFDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_FFDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4224232E6F75B829F6DB32E /* Pods-SwiftFFDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFFDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFFDB/Pods-SwiftFFDB.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -107,6 +107,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D1B82F9DE3DF724B7D5E3E80 /* Pods_Swift_FFDB.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -151,8 +152,8 @@
 		9A1957711F91A9DA00F8A37B /* Depend */ = {
 			isa = PBXGroup;
 			children = (
+				9AF93DBA1F9B326C00561CFF /* PerfectMySQLConnect.swift */,
 				9A1957741F91DFA600F8A37B /* FMDBConnect.swift */,
-				9AE447F81F949389008C369F /* PerfectMySQLConnect.swift */,
 			);
 			path = Depend;
 			sourceTree = "<group>";
@@ -183,7 +184,6 @@
 				9AEEED891F99C7C700037B4C /* Classes */,
 				9A3516381F491C8600571621 /* Info.plist */,
 				9A35162C1F491C8600571621 /* AppDelegate.swift */,
-				9AF4C4801F9786D500C37809 /* Person.swift */,
 				9A35162E1F491C8600571621 /* ViewController.swift */,
 				9A3516331F491C8600571621 /* Assets.xcassets */,
 				9A3516351F491C8600571621 /* LaunchScreen.storyboard */,
@@ -197,6 +197,7 @@
 			children = (
 				9A4E5AAF1F663AEC0084812C /* XCTest.framework */,
 				3F1A743F2F3BC30D2060E25C /* Pods_SwiftFFDB.framework */,
+				B6CC94E611D8BFA62D7DEC66 /* Pods_Swift_FFDB.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -389,9 +390,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9AF4C4811F9786D500C37809 /* Person.swift in Sources */,
 				9A1957651F919E8100F8A37B /* Insert.swift in Sources */,
 				9A1957611F919E8100F8A37B /* Delete.swift in Sources */,
+				9AF93DBB1F9B326D00561CFF /* PerfectMySQLConnect.swift in Sources */,
 				9A1957681F919E8100F8A37B /* Update.swift in Sources */,
 				9A1957641F919E8100F8A37B /* FFDBManager.swift in Sources */,
 				9A1957631F919E8100F8A37B /* FFDB.swift in Sources */,
@@ -403,7 +404,6 @@
 				9A1957671F919E8100F8A37B /* Select.swift in Sources */,
 				9A300D081F95E19200D18D12 /* Alter.swift in Sources */,
 				9A1957771F91FAE400F8A37B /* Create.swift in Sources */,
-				9AE447F91F94938A008C369F /* PerfectMySQLConnect.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -580,7 +580,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Fidetro.Swift-FFDB";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -601,7 +601,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Fidetro.Swift-FFDB";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

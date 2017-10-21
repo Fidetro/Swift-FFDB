@@ -6,15 +6,15 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
+#if os(iOS)
 
 import FMDB
 struct FMDBConnect:FFDBConnect {
-    
-    
+
     init() {
         
     }
-    
+ 
     static func databasePath() -> URL? {
         if let executableFile = Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String) {
             let fileURL = try! FileManager.default
@@ -115,4 +115,5 @@ extension FMDatabase {
     }
     
 }
-
+#else
+#endif

@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-import UIKit
+
 
 struct Alter {
     fileprivate var tableClass : FFObject.Type?
