@@ -8,9 +8,7 @@
 
 #if os(iOS)
 #else
-import PerfectLib
 import PerfectMySQL
-import PerfectLogger
 import Foundation
 struct PerfectMySQLConnect :FFDBConnect {
 
@@ -26,18 +24,16 @@ struct PerfectMySQLConnect :FFDBConnect {
     
      func setup(complete:(MySQL) -> ()) {
         
-        // 创建一个MySQL连接实例
-        //        self.mysql.setOption(MYSQL_SET_CHARSET_NAME, "utf8")
         let setOptionSuccess = PerfectMySQLConnect.mysql.setOption(.MYSQL_SET_CHARSET_NAME, "utf8")
         guard setOptionSuccess else {
-            LogFile.error("设置UTF-8失败")
+            printDebugLog("set UTF-8 fail")
             return
         }
         
         let connected = PerfectMySQLConnect.mysql.connect(host: self.host, user: self.user, password: self.password, db: self.db)
         
         guard connected else {
-            LogFile.error(PerfectMySQLConnect.mysql.errorMessage())
+            printDebugLog(PerfectMySQLConnect.mysql.errorMessage())
             return
         }
         
@@ -53,8 +49,7 @@ struct PerfectMySQLConnect :FFDBConnect {
         let sql = "select * from \(inTableWithName)"
         let prepareSuccess = stmt.prepare(statement:sql)
         guard prepareSuccess else {
-            LogFile.info("查询错误sql:" + sql)
-            LogFile.error(mysql.errorMessage())
+            printDebugLog(mysql.errorMessage())
             return false
         }
         let fieldNames = stmt.fieldNames()
@@ -68,11 +63,10 @@ struct PerfectMySQLConnect :FFDBConnect {
         
         let querySuccess = PerfectMySQLConnect.mysql.query(statement: sql)
         guard querySuccess else {
-            LogFile.error(PerfectMySQLConnect.mysql.errorMessage())
-            LogFile.error("错误sql" + sql)
+            printDebugLog(sql + PerfectMySQLConnect.mysql.errorMessage())
             return false
         }
-        LogFile.info("执行成功")
+        
         
         return true
     }
@@ -82,11 +76,9 @@ struct PerfectMySQLConnect :FFDBConnect {
     static func executeDBUpdateAfterClose(sql: String) -> Bool {
         let querySuccess = PerfectMySQLConnect.mysql.query(statement: sql)
         guard querySuccess else {
-            LogFile.error(PerfectMySQLConnect.mysql.errorMessage())
-            LogFile.error("错误sql" + sql)
+            printDebugLog(sql + PerfectMySQLConnect.mysql.errorMessage())
             return false
         }
-        LogFile.info("执行成功")
         
         return true
     }
@@ -95,14 +87,12 @@ struct PerfectMySQLConnect :FFDBConnect {
         let stmt = MySQLStmt(mysql)
         let prepareSuccess = stmt.prepare(statement: sql)
         guard prepareSuccess else {
-            LogFile.info("查询错误sql:" + sql)
-            LogFile.error(mysql.errorMessage())
+            printDebugLog(sql + mysql.errorMessage())
             return nil
         }
         let querySuccess = stmt.execute()
         guard querySuccess else {
-            LogFile.info("查询错误sql:" + sql)
-            LogFile.error(mysql.errorMessage())
+            printDebugLog(sql + mysql.errorMessage())
             return nil
         }
         let results = stmt.results()
@@ -127,7 +117,7 @@ struct PerfectMySQLConnect :FFDBConnect {
                     let model = try decoder.decode(type, from: jsonData)
                     modelArray.append(model)
                 }catch{
-                    LogFile.error(error.localizedDescription)
+                    printDebugLog(error.localizedDescription)
                     assertionFailure("check you func columntype,func customColumnsType,property type")
                 }
             }
@@ -135,7 +125,7 @@ struct PerfectMySQLConnect :FFDBConnect {
             return modelArray
         } catch  {
             stmt.close()
-            LogFile.error(error.localizedDescription)
+            printDebugLog(error.localizedDescription)
             
         }
         return nil
