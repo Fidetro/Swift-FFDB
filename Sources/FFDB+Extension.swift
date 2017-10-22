@@ -37,12 +37,12 @@ extension FFObject {
     }
     public  func update(set condition:String) -> Bool {
         if let primaryID = self.primaryID  {
-              return FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'")
+            return FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'")
         }else{
             assertionFailure("primaryID is nil")
             return false
         }
-      
+        
     }
     public  func delete() -> Bool {
         return FFDBManager.delete(self)
@@ -73,20 +73,20 @@ extension FFObject {
             #if os(Linux)
                 
             #else
-                 switch valueMirror.subjectType {
-                 case is Date.Type:
+                switch valueMirror.subjectType {
+                case is Date.Type:
                     columnsType[label] = "double"
                     continue
-                 case is Optional<Date>.Type:
+                case is Optional<Date>.Type:
                     columnsType[label] = "double"
                     continue
-                 default:
+                default:
                     break
                 }
             #endif
             switch valueMirror.subjectType {
                 
-            
+                
                 
             case is String.Type:
                 columnsType[label] = "text"
@@ -94,7 +94,7 @@ extension FFObject {
             case is Optional<String>.Type:
                 columnsType[label] = "text"
                 break
-
+                
             case is Float.Type:
                 columnsType[label] = "float"
                 break
@@ -316,7 +316,11 @@ func anyToString(_ describing:Any) -> String {
         case "Optional(nil)":
             return ""
         default :
-            let value : AnyObject? = (describing as AnyObject)
+            #if os(Linux)
+                let value : AnyObject? = (describing as! AnyObject)
+            #else
+                let value : AnyObject? = (describing as AnyObject)
+            #endif
             if value != nil {
                 return String(describing: value!)
             }else{
