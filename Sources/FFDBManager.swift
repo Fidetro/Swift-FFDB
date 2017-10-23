@@ -13,7 +13,7 @@ public struct FFDBManager {
 
 // MARK: - Insert
 extension FFDBManager {
-    static func insert(_ object:FFObject, _ columns:[String]?) -> Bool {
+    public static func insert(_ object:FFObject, _ columns:[String]?) -> Bool {
         if let columnsArray = columns {
             var values = Array<Any>()
             for key in columnsArray {
@@ -26,10 +26,10 @@ extension FFDBManager {
             return Insert().into(object.subType).columns(object.subType).values(object).execute()
         }
     }
-    static func insert(_ object:FFObject) -> Bool {
+    public  static func insert(_ object:FFObject) -> Bool {
         return insert(object, nil)
     }
-    static func insert(_ table:FFObject.Type,_ columns:[String],values:[Any]) -> Bool{
+    public  static func insert(_ table:FFObject.Type,_ columns:[String],values:[Any]) -> Bool{
         return Insert().into(table).columns(columns).values(values).execute()
     }
 }
@@ -37,7 +37,7 @@ extension FFDBManager {
 
 // MARK: - Select
 extension FFDBManager {
-    static func select<T:FFObject,U:Decodable>(_ table:T.Type, _ columns:[String]?, where condition:String?, return type:U.Type) -> Array<Decodable>? {
+    public  static func select<T:FFObject,U:Decodable>(_ table:T.Type, _ columns:[String]?, where condition:String?, return type:U.Type) -> Array<Decodable>? {
         
         if let format = condition {
             if let col = columns {
@@ -55,14 +55,14 @@ extension FFDBManager {
         }
     }
     
-    static func select<T:FFObject>(_ table:T.Type,_ columns:[String]?,where condition:String?) -> Array<Decodable>? {
+    public   static func select<T:FFObject>(_ table:T.Type,_ columns:[String]?,where condition:String?) -> Array<Decodable>? {
         return select(table, columns, where: condition, return: table)
     }
 }
 
 // MARK: - Update
 extension FFDBManager {
-    static func update(_ object:FFObject,set columns:[String]?) -> Bool {
+    public static func update(_ object:FFObject,set columns:[String]?) -> Bool {
         if let primaryID = object.primaryID  {
             if let col = columns {
                 return Update(object).set(col).whereFormat("primaryID = '\(primaryID)'").execute()
@@ -74,7 +74,7 @@ extension FFDBManager {
             return false
         }
     }
-    static func update(_ table:FFObject.Type,set setFormat:String,where whereFormat:String?) -> Bool {
+    public  static func update(_ table:FFObject.Type,set setFormat:String,where whereFormat:String?) -> Bool {
         if let format = whereFormat  {
             return Update(table).set(setFormat).whereFormat(format).execute()
         }else{
@@ -86,14 +86,14 @@ extension FFDBManager {
 
 // MARK: - Delete
 extension FFDBManager {
-    static func delete(_ table:FFObject.Type,where condition:String?) -> Bool{
+    public  static func delete(_ table:FFObject.Type,where condition:String?) -> Bool{
         if let format = condition {
             return Delete().from(table).whereFormat(format).execute()
         }else{
             return Delete().from(table).execute()
         }
     }
-    static func delete(_ object:FFObject) -> Bool{
+    public   static func delete(_ object:FFObject) -> Bool{
         if let primaryID = object.primaryID {
             return Delete().from(object.subType).whereFormat("primaryID = '\(primaryID)'").execute()
         }else{

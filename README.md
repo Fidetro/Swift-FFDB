@@ -5,11 +5,18 @@ SwiftFFDB is a Object/Relational Mapping (ORM) support to iOS and Perfect-Server
 if you use Objective-C,you can use [FFDB](https://github.com/fidetro/ffdb)  
 
 # Requirements
+## iOS
 * Build  Swift4.0 releases toolchain   
 * Deployment on iOS 8 or above  
-* Perfect-Server v3(linking your project with PerfectMySQL)
+* depend [FMDB](https://github.com/ccgus/fmdb)
+
+## Perfect-Swift-Server
+* Build  Swift4.0 releases toolchain   
+* Perfect-Server v3
+* depend [PerfectMySQL](https://github.com/PerfectlySoft/Perfect-MySQL)
 
 # Installing
+## CocoaPod
 SwiftFFDB can be installed using CocoaPod
 ```
 vim Podfile
@@ -22,7 +29,17 @@ use_frameworks!
 pod 'SwiftFFDB'
 end
 ```
+## Swift Package Manager
+```
+import PackageDescription
 
+let package = Package(
+    name: "PatchServer",
+    dependencies: [
+          .Package(url: "https://github.com/Fidetro/swiftFFDB.git",versions: Version(0, 0, 0)..<Version(1, .max, .max))]
+)
+
+```
 # Useage
 
 ## Setting
@@ -76,3 +93,23 @@ Person.select(where: nil)
 Person.select(where: "name = 'fidetro'")
 ```
 ## Delete
+```
+// find name is 'fidetro' object
+let personList = Person.select(where: "name = 'fidetro'")
+
+for (let person in personList){
+    // delete this person in database
+    person.delete()
+}
+
+
+
+```
+also you can:
+```
+FFDBManager.delete(Person.self, where: "name = 'fidetro'")
+```  
+
+
+# Support
+`SwiftFFDB` is a personal open source project,but I happy to answer questions in [Issues](https://github.com/Fidetro/SwiftFFDB/issues) or email to zykzzzz@hotmail.com
