@@ -207,6 +207,11 @@ extension FFObject {
 
 
 extension FIDRuntime {
+    
+    public init() {
+        self.init()
+    }
+    
     public  var subType: Any.Type {
         let mirror  = Mirror(reflecting: self)
         return mirror.subjectType

@@ -101,9 +101,6 @@ for (let person in personList){
     // delete this person in database
     person.delete()
 }
-
-
-
 ```
 also you can:
 ```
@@ -113,3 +110,4 @@ FFDBManager.delete(Person.self, where: "name = 'fidetro'")
 
 # Support
 `SwiftFFDB` is a personal open source project,but I happy to answer questions in [Issues](https://github.com/Fidetro/SwiftFFDB/issues) or email to zykzzzz@hotmail.com
+
