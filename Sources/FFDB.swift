@@ -39,7 +39,6 @@ public protocol FIDRuntime {
 public protocol FFObject:FIDRuntime,Decodable {
     var primaryID : Int64? {get}
     
-    
     static func registerTable()
     static func select(where condition:String?) -> Array<FFObject>?
     func insert() -> Bool

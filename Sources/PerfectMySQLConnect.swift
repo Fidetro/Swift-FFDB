@@ -45,7 +45,8 @@
             }
             
             defer {
-                PerfectMySQLConnect.mysql.close()
+                
+                //                PerfectMySQLConnect.mysql.close()
             }
             
             complete(PerfectMySQLConnect.mysql)
@@ -81,6 +82,7 @@
         
         
         public static func executeDBUpdateAfterClose(sql: String) -> Bool {
+            
             let querySuccess = PerfectMySQLConnect.mysql.query(statement: sql)
             guard querySuccess else {
                 printDebugLog(sql + PerfectMySQLConnect.mysql.errorMessage())
@@ -105,13 +107,14 @@
             let results = stmt.results()
             let fieldNames = stmt.fieldNames()
             var resultArr = [[String:Any?]]()
+            
             _ = results.forEachRow { row in
                 var resultDict = [String:Any?]()
                 for (index,value) in row.enumerated() {
                     let fieldName = fieldNames[index]
                     resultDict[fieldName!] = value
-                    resultArr.append(resultDict)
                 }
+                resultArr.append(resultDict)
             }
             do {
                 var modelArray = Array<Decodable>()
