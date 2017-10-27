@@ -319,16 +319,16 @@ func anyToString(_ describing:Any) -> String {
         case "Optional(nil)":
             return ""
         default :
-            #if os(Linux)
-                let value : AnyObject? = (describing as! AnyObject)
-            #else
+            #if os(iOS)
                 let value : AnyObject? = (describing as AnyObject)
+                if value != nil {
+                    return String(describing: value!)
+                }else{
+                    return ""
+                }
+            #else
+                return String(describing: describing)
             #endif
-            if value != nil {
-                return String(describing: value!)
-            }else{
-                return ""
-            }
         }
     }
     

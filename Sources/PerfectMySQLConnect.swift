@@ -46,7 +46,6 @@
             
             defer {
                 
-                //                PerfectMySQLConnect.mysql.close()
             }
             
             complete(PerfectMySQLConnect.mysql)
