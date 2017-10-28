@@ -311,6 +311,11 @@ func anyToString(_ describing:Any) -> String {
             return "0"
         }
         return "\(value)"
+    case is Optional<String>.Type:
+        guard let value = describing as? String else{
+            return ""
+        }
+        return "\(value)"
     default:
         switch String(describing: describing)
         {
