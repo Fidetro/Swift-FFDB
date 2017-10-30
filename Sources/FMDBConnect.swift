@@ -9,7 +9,20 @@
 #if os(iOS)
 
 import FMDB
-struct FMDBConnect:FFDBConnect {
+    struct FMDBConnect:FFDBConnect {
+        static func executeDBUpdate(sql: String, values: [Any]?) -> Bool {
+            return database().executeDBUpdate(sql: sql, values: values)
+        }
+        
+        static func executeDBUpdateAfterClose(sql: String, values: [Any]?) -> Bool {
+            return database().executeDBUpdateAfterClose(sql:sql,values:values)
+        }
+        
+        static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?) -> Array<Decodable>? where T : Decodable {
+           return database().executeDBQuery(return: type, sql: sql, values: values)
+        }
+        
+   
 
     init() {
         
@@ -39,26 +52,29 @@ struct FMDBConnect:FFDBConnect {
         database.close()
         return result
     }
-    static func executeDBUpdate(sql:String) -> Bool {
-        return database().executeDBUpdate(sql: sql)
-    }
-    static func executeDBUpdateAfterClose(sql:String) -> Bool {
-        return database().executeDBUpdateAfterClose(sql: sql)
-    }
-    static func executeDBQuery<T:Decodable>(return type:T.Type, sql:String) -> Array<Decodable>? {
-        return database().executeDBQuery(return: type, sql: sql)
-    }
+
 }
 
 extension FMDatabase {
-    func executeDBUpdateAfterClose(sql:String) -> Bool {
+    func executeDBUpdateAfterClose(sql:String,values:[Any]?) -> Bool {
+        guard self.open() else {
+            printDebugLog("Unable to open database")
+            return false
+        }
         
-        let result = executeDBUpdate(sql: sql)
-        self.close()
-        return result
+        do {
+            try self.executeUpdate(sql, values: values)
+            self.close()
+            return true
+            
+        } catch {
+            printDebugLog("failed: \(error.localizedDescription)")
+        }
+        
+        return false
         
     }
-    func executeDBUpdate(sql:String) -> Bool {
+    func executeDBUpdate(sql:String,values:[Any]?) -> Bool {
         
         guard self.open() else {
             printDebugLog("Unable to open database")
@@ -66,7 +82,7 @@ extension FMDatabase {
         }
         
         do {
-            try self.executeUpdate(sql, values: nil)
+            try self.executeUpdate(sql, values: values)
             
             return true
             
@@ -76,19 +92,19 @@ extension FMDatabase {
         
         return false
     }
-    
-    func executeDBQuery<T:Decodable>(return type:T.Type, sql:String) -> Array<Decodable>? {
+
+    func executeDBQuery<T:Decodable>(return type:T.Type, sql:String, values:[Any]?) -> Array<Decodable>? {
         guard self.open() else {
             printDebugLog("Unable to open database")
             return nil
         }
         
         do {
-            let result = try self.executeQuery(sql, values: nil)
+            let result = try self.executeQuery(sql, values: values)
             var modelArray = Array<Decodable>()
             while result.next() {
                 if let dict =  result.resultDictionary {
-                    //TODO 这里没考虑替换了表字典名字的情况，还有type属性类型不同的时候会出问题
+                    
                     let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .init(rawValue: 0))
                     do{
                         let decoder = JSONDecoder()

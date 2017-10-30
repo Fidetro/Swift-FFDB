@@ -7,9 +7,10 @@
 //
 
 public protocol FFDBConnect {
-    static func executeDBUpdate(sql:String) -> Bool
-    static func executeDBUpdateAfterClose(sql:String) -> Bool
-    static func executeDBQuery<T:Decodable>(return type:T.Type, sql:String) -> Array<Decodable>?
+
+    static func executeDBUpdate(sql:String,values:[Any]?) -> Bool
+    static func executeDBUpdateAfterClose(sql:String,values:[Any]?) -> Bool
+    static func executeDBQuery<T:Decodable>(return type:T.Type, sql:String,values:[Any]?) -> Array<Decodable>?
     static func columnExists(_ columnName : String, inTableWithName: String) -> Bool
     
 }

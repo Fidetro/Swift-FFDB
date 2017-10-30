@@ -7,30 +7,34 @@
 //
 
 
-struct Delete {
+public struct Delete {
     fileprivate var tableClass : FFObject.Type?
     var sqlStatement : String?
-    init() {
+    private var values = [Any]()
+ public   init() {
         sqlStatement = ""
         sqlStatement?.append(" delete ")
     }
  
     
-    func from(_ table:FFObject.Type) -> Delete {
+ public   func from(_ table:FFObject.Type) -> Delete {
         var delete = self
         delete.tableClass = table
-        
         delete.sqlStatement?.append(" from " + table.tableName())
         return delete
     }
     
-    func whereFormat(_ condition:String) -> Delete {
+ public   func whereFormat(_ condition:String) -> Delete {
         var delete = self
         delete.sqlStatement?.append(" where " + condition + " ")
         return delete
     }
-    
-    func execute() -> Bool {
+    public   func values(_ valuesArray:[Any]) -> Delete {
+        var delete = self
+        delete.values.append(contentsOf: valuesArray)
+        return delete
+    }
+  public  func execute(values valuesArray:[Any]?) -> Bool {
         guard let connect = FFDB.connect else {
             assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
             return false
@@ -39,7 +43,13 @@ struct Delete {
             assertionFailure("sql can't nil")
             return false
         }
-        return connect.executeDBUpdateAfterClose(sql: sql)
+    var delete = self
+    if let values = valuesArray {
+        for value in values {
+            delete.values.append(value)
+        }
+    }
+        return connect.executeDBUpdateAfterClose(sql: sql, values: values)
     }
 }
 

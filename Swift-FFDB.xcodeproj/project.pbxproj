@@ -23,7 +23,6 @@
 		9A5056D81F9C317F0071DAF2 /* FFDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */; };
 		9A5056D91F9C317F0071DAF2 /* FMDBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */; };
 		9A5056DA1F9C317F0071DAF2 /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CE1F9C317F0071DAF2 /* Insert.swift */; };
-		9A5056DB1F9C317F0071DAF2 /* PerfectMySQLConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CF1F9C317F0071DAF2 /* PerfectMySQLConnect.swift */; };
 		9A5056DC1F9C317F0071DAF2 /* Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056D01F9C317F0071DAF2 /* Select.swift */; };
 		9A5056DD1F9C317F0071DAF2 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056D11F9C317F0071DAF2 /* Update.swift */; };
 		9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */; };
@@ -83,7 +82,6 @@
 		9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFDBManager.swift; sourceTree = "<group>"; };
 		9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDBConnect.swift; sourceTree = "<group>"; };
 		9A5056CE1F9C317F0071DAF2 /* Insert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Insert.swift; sourceTree = "<group>"; };
-		9A5056CF1F9C317F0071DAF2 /* PerfectMySQLConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PerfectMySQLConnect.swift; sourceTree = "<group>"; };
 		9A5056D01F9C317F0071DAF2 /* Select.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Select.swift; sourceTree = "<group>"; };
 		9A5056D11F9C317F0071DAF2 /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBManagerTest.swift; sourceTree = "<group>"; };
@@ -196,7 +194,6 @@
 				9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */,
 				9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */,
 				9A5056CE1F9C317F0071DAF2 /* Insert.swift */,
-				9A5056CF1F9C317F0071DAF2 /* PerfectMySQLConnect.swift */,
 				9A5056D01F9C317F0071DAF2 /* Select.swift */,
 				9A5056D11F9C317F0071DAF2 /* Update.swift */,
 			);
@@ -378,7 +375,6 @@
 				9A5056D31F9C317F0071DAF2 /* Create.swift in Sources */,
 				9A5056DA1F9C317F0071DAF2 /* Insert.swift in Sources */,
 				9A5056D81F9C317F0071DAF2 /* FFDBManager.swift in Sources */,
-				9A5056DB1F9C317F0071DAF2 /* PerfectMySQLConnect.swift in Sources */,
 				9A5056D51F9C317F0071DAF2 /* FFDB+Extension.swift in Sources */,
 				9A5056D91F9C317F0071DAF2 /* FMDBConnect.swift in Sources */,
 			);

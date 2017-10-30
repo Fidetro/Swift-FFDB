@@ -37,26 +37,26 @@ extension FFDBManager {
 
 // MARK: - Select
 extension FFDBManager {
-    public  static func select<T:FFObject,U:Decodable>(_ table:T.Type, _ columns:[String]?, where condition:String?, return type:U.Type) -> Array<Decodable>? {
+    public  static func select<T:FFObject,U:Decodable>(_ table:T.Type, _ columns:[String]?, where condition:String?,values:[Any]?, return type:U.Type) -> Array<Decodable>? {
         
         if let format = condition {
             if let col = columns {
-                return Select(col).from(table).whereFormat(format).execute(type)
+                return Select(col).from(table).whereFormat(format).execute(type, values: values)
             }else{
-                return Select().from(table).whereFormat(format).execute(type)
+                return Select().from(table).whereFormat(format).execute(type, values: values)
             }
         }else{
             
             if let col = columns {
-                return Select(col).from(table).execute(type)
+                return Select(col).from(table).execute(type, values: values)
             }else{
-                return Select().from(table).execute(type)
+                return Select().from(table).execute(type, values: values)
             }
         }
     }
     
-    public   static func select<T:FFObject>(_ table:T.Type,_ columns:[String]?,where condition:String?) -> Array<Decodable>? {
-        return select(table, columns, where: condition, return: table)
+    public   static func select<T:FFObject>(_ table:T.Type,_ columns:[String]?,where condition:String?,values:[Any]?) -> Array<Decodable>? {
+        return select(table, columns, where: condition,values:values, return: table)
     }
 }
 
@@ -65,20 +65,20 @@ extension FFDBManager {
     public static func update(_ object:FFObject,set columns:[String]?) -> Bool {
         if let primaryID = object.primaryID  {
             if let col = columns {
-                return Update(object).set(col).whereFormat("primaryID = '\(primaryID)'").execute()
+                return Update(object).set(col).whereFormat("primaryID = '\(primaryID)'").execute(values: nil)
             }else{
-                return Update(object).set().whereFormat("primaryID = '\(primaryID)'").execute()
+                return Update(object).set().whereFormat("primaryID = '\(primaryID)'").execute(values: nil)
             }
         }else{
             assertionFailure("primaryID can't be nil")
             return false
         }
     }
-    public  static func update(_ table:FFObject.Type,set setFormat:String,where whereFormat:String?) -> Bool {
+    public  static func update(_ table:FFObject.Type,set setFormat:String,where whereFormat:String?,values:[Any]?) -> Bool {
         if let format = whereFormat  {
-            return Update(table).set(setFormat).whereFormat(format).execute()
+            return Update(table).set(setFormat).whereFormat(format).execute(values: values)
         }else{
-            return Update(table).set(setFormat).execute()
+            return Update(table).set(setFormat).execute(values: values)
         }
     }
 }
@@ -86,16 +86,16 @@ extension FFDBManager {
 
 // MARK: - Delete
 extension FFDBManager {
-    public  static func delete(_ table:FFObject.Type,where condition:String?) -> Bool{
+    public  static func delete(_ table:FFObject.Type,where condition:String?,values:[Any]?) -> Bool{
         if let format = condition {
-            return Delete().from(table).whereFormat(format).execute()
+            return Delete().from(table).whereFormat(format).execute(values: values)
         }else{
-            return Delete().from(table).execute()
+            return Delete().from(table).execute(values: values)
         }
     }
     public   static func delete(_ object:FFObject) -> Bool{
         if let primaryID = object.primaryID {
-            return Delete().from(object.subType).whereFormat("primaryID = '\(primaryID)'").execute()
+            return Delete().from(object.subType).whereFormat("primaryID = '\(primaryID)'").execute(values: nil)
         }else{
             assertionFailure("primaryID can't be nil")
             return false

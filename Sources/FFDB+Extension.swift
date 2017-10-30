@@ -13,9 +13,6 @@ import Foundation
 
 
 
-
-
-
 extension FFObject {
     public static  func tableName() -> String {
         let tableName = self.className().replacingOccurrences(of: ".Type", with: "")
@@ -26,8 +23,8 @@ extension FFObject {
 
 // MARK: - sql
 extension FFObject {
-    public  static func select(where condition:String?) -> Array<Self>? {
-        return (FFDBManager.select(self, nil, where: condition) as! Array<Self>?)
+    public  static func select(where condition:String?,values:[Any]?) -> Array<FFObject>? {
+        return FFDBManager.select(self, nil, where: condition, values: values) as! Array<FFObject>?
     }
     public func insert() -> Bool {
         return FFDBManager.insert(self)
@@ -35,9 +32,9 @@ extension FFObject {
     public  func update() -> Bool {
         return FFDBManager.update(self, set: nil)
     }
-    public  func update(set condition:String) -> Bool {
+    public  func update(set condition:String,values:[Any]?) -> Bool {
         if let primaryID = self.primaryID  {
-            return FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'")
+            return FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'", values: values)
         }else{
             assertionFailure("primaryID is nil")
             return false
@@ -309,11 +306,6 @@ func anyToString(_ describing:Any) -> String {
     case is Optional<Int64>.Type:
         guard let value = describing as? Int64 else{
             return "0"
-        }
-        return "\(value)"
-    case is Optional<String>.Type:
-        guard let value = describing as? String else{
-            return ""
         }
         return "\(value)"
     default:

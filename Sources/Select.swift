@@ -8,10 +8,11 @@
 
 
 
-struct Select {
+public struct Select {
     
     fileprivate var tableClass : FFObject.Type?
     fileprivate var returnType : Decodable.Type?
+    private var values = [Any]()
     var sqlStatement : String?
     public  init() {
         sqlStatement = ""
@@ -32,12 +33,14 @@ struct Select {
         select.sqlStatement?.append(" where " + condition + " ")
         return select
     }
+
     public   func returnType(_ type:Decodable.Type) -> Select {
         var select = self
         select.returnType = type
         return select
     }
-    public  func execute<T:Decodable>(_ type:T.Type) -> Array<Decodable>? {
+    
+    public  func execute<T:Decodable>(_ type:T.Type,values valuesArray:[Any]?) -> Array<Decodable>? {
         guard let connect = FFDB.connect else {
             assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
             return nil
@@ -46,7 +49,14 @@ struct Select {
             assertionFailure("sql can't nil")
             return nil
         }
-        return connect.executeDBQuery(return: type.self, sql: sql)
+        var select = self
+        if let values = valuesArray {
+            for value in values {
+                select.values.append(value)
+            }
+        }
+
+        return connect.executeDBQuery(return: type.self, sql: sql, values: values)
         
     }
 }

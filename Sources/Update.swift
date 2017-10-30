@@ -8,21 +8,21 @@
 
 
 
-struct Update {
+public struct Update {
     
     fileprivate var tableClass : FFObject.Type?
     fileprivate var updateObject : FFObject?
-    
+    private var values = [Any]()
     var sqlStatement : String?
 
 
-    init(_ table:FFObject.Type) {
+  public  init(_ table:FFObject.Type) {
         tableClass = table
         sqlStatement = ""
         sqlStatement?.append(" update " + table.tableName())
     }
     
-    init(_ object:FFObject) {
+  public  init(_ object:FFObject) {
         tableClass = object.subType
         updateObject = object
         sqlStatement = ""
@@ -35,7 +35,7 @@ struct Update {
         }
     }
     
-    func set() -> Update {
+  public  func set() -> Update {
         var update = self
         var sqlFormat = String()
         if let object = self.updateObject {
@@ -47,31 +47,31 @@ struct Update {
         return update
     }
     
-    func set(_ columns:[String]) -> Update {
+  public  func set(_ columns:[String]) -> Update {
         var update = self
         var sqlFormat = String()
         if let object = self.updateObject {
             sqlFormat.append(columnsToSetSQLFormat(object, columns))
         }else{
-            assertionFailure("please use init(_ object:FFDataBaseModel)")
+            sqlFormat.append(columnsToSetSQLFormat(nil, columns))
         }
         update.sqlStatement?.append(" set " + sqlFormat + " ")
         return update
     }
     
-    func set(_ condition:String) -> Update {
+   public func set(_ condition:String) -> Update {
         var update = self
         update.sqlStatement?.append(" set " + condition + " ")
         return update
     }
     
-    func whereFormat(_ condition:String) -> Update {
+  public  func whereFormat(_ condition:String) -> Update {
         var update = self
         update.sqlStatement?.append(" where " + condition + " ")
         return update
     }
-    
-    func execute() -> Bool {
+ 
+   public func execute(values valuesArray:[Any]?) -> Bool {
         guard let connect = FFDB.connect else {
             assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
             return false
@@ -80,12 +80,31 @@ struct Update {
             assertionFailure("sql can't nil")
             return false
         }
-        return connect.executeDBUpdateAfterClose(sql: sql)
+    var update = self
+    if let values = valuesArray {
+        for value in values {
+            update.values.append(value)
+        }
+    }
+        return connect.executeDBUpdateAfterClose(sql: sql, values: values)
     }
     
-    private func columnsToSetSQLFormat(_ object:FFObject ,_ columns:[String]?) -> String {
+    private func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?) -> String {
+        var update = self
         var SQLFormat = String()
-        let mirror = Mirror(reflecting: object)
+        
+        guard let obj = object else {
+            for (index,column) in columns!.enumerated() {
+                if index == 0 {
+                    SQLFormat.append(column + "=" + "?")
+                }else{
+                    SQLFormat.append("," + column + "=" + "?")
+                }
+            }
+            return SQLFormat
+        }
+        
+        let mirror = Mirror(reflecting: obj)
         var index = 0
         
         if let inputColumns = columns {
@@ -99,9 +118,11 @@ struct Update {
                         isContain = true
                             if index == 0 {
                                 index += 1
-                                SQLFormat.append(key + "=" + "'\(anyToString(value))'")
+                                SQLFormat.append(key + "=" + "?")
+                                update.values.append(anyToString(value))
                             }else{
-                                SQLFormat.append("," + key + "=" + "'\(anyToString(value))'")
+                                SQLFormat.append("," + key + "=" + "?")
+                                update.values.append(anyToString(value))
                             }
                     }
                 }
