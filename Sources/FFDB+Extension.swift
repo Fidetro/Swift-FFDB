@@ -26,8 +26,8 @@ extension FFObject {
 
 // MARK: - sql
 extension FFObject {
-    public  static func select(where condition:String?) -> Array<FFObject>? {
-        return (FFDBManager.select(self, nil, where: condition) as! Array<FFObject>?)
+    public  static func select(where condition:String?) -> Array<Self>? {
+        return (FFDBManager.select(self, nil, where: condition) as! Array<Self>?)
     }
     public func insert() -> Bool {
         return FFDBManager.insert(self)

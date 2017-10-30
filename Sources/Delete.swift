@@ -19,6 +19,7 @@ struct Delete {
     func from(_ table:FFObject.Type) -> Delete {
         var delete = self
         delete.tableClass = table
+        
         delete.sqlStatement?.append(" from " + table.tableName())
         return delete
     }
