@@ -40,7 +40,7 @@ public struct Select {
         return select
     }
     
-    public  func execute<T:Decodable>(_ type:T.Type,values valuesArray:[Any]?) -> Array<Decodable>? {
+    public  func execute<T:Decodable>(_ type:T.Type,values valuesArray:[Any]? = nil) -> Array<Decodable>? {
         guard let connect = FFDB.connect else {
             assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
             return nil
@@ -56,7 +56,7 @@ public struct Select {
             }
         }
 
-        return connect.executeDBQuery(return: type.self, sql: sql, values: values)
+        return connect.executeDBQuery(return: type.self, sql: sql, values: values, shouldClose: true)
         
     }
 }

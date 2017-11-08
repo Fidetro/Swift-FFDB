@@ -50,7 +50,7 @@ struct Create {
             assertionFailure("sql can't nil")
             return false
         }
-        return connect.executeDBUpdateAfterClose(sql: sql, values: nil)
+        return connect.executeDBUpdate(sql: sql, values: nil, shouldClose: true)
     }
 }
 

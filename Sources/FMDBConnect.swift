@@ -6,27 +6,22 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-#if os(iOS)
+
 
 import FMDB
-    struct FMDBConnect:FFDBConnect {
-        static func executeDBUpdate(sql: String, values: [Any]?) -> Bool {
-            return database().executeDBUpdate(sql: sql, values: values)
-        }
-        
-        static func executeDBUpdateAfterClose(sql: String, values: [Any]?) -> Bool {
-            return database().executeDBUpdateAfterClose(sql:sql,values:values)
-        }
-        
-        static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?) -> Array<Decodable>? where T : Decodable {
-           return database().executeDBQuery(return: type, sql: sql, values: values)
-        }
-        
-   
-
-    init() {
-        
+struct FMDBConnect:FFDBConnect {
+    static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?, shouldClose: Bool) -> Array<Decodable>? where T : Decodable {
+          return database().executeDBQuery(return: type, sql: sql, values: values)
     }
+    
+   
+    static func executeDBUpdate(sql: String, values: [Any]?, shouldClose: Bool = true) -> Bool {
+        return database().executeDBUpdate(sql: sql, values: values, shouldClose: shouldClose)
+    }
+        
+
+
+    init() {}
  
     static func databasePath() -> URL? {
         if let executableFile = Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String) {
@@ -42,6 +37,7 @@ import FMDB
         let database = FMDatabase(url: databasePath())
         return database
     }
+        
     static func columnExists(_ columnName: String, inTableWithName: String) -> Bool {
         let database = self.database()
         guard database.open() else {
@@ -52,48 +48,28 @@ import FMDB
         database.close()
         return result
     }
-
 }
 
 extension FMDatabase {
-    func executeDBUpdateAfterClose(sql:String,values:[Any]?) -> Bool {
+    
+    func executeDBUpdate(sql:String,values:[Any]?,shouldClose: Bool) -> Bool {
         guard self.open() else {
             printDebugLog("Unable to open database")
             return false
         }
-        
         do {
             try self.executeUpdate(sql, values: values)
-            self.close()
+            if shouldClose == true {
+                self.close()
+            }
             return true
-            
         } catch {
             printDebugLog("failed: \(error.localizedDescription)")
         }
-        
-        return false
-        
-    }
-    func executeDBUpdate(sql:String,values:[Any]?) -> Bool {
-        
-        guard self.open() else {
-            printDebugLog("Unable to open database")
-            return false
-        }
-        
-        do {
-            try self.executeUpdate(sql, values: values)
-            
-            return true
-            
-        } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
-        }
-        
         return false
     }
 
-    func executeDBQuery<T:Decodable>(return type:T.Type, sql:String, values:[Any]?) -> Array<Decodable>? {
+    func executeDBQuery<T:Decodable>(return type:T.Type, sql:String, values:[Any]?,shouldClose: Bool? = true) -> Array<Decodable>? {
         guard self.open() else {
             printDebugLog("Unable to open database")
             return nil
@@ -113,23 +89,29 @@ extension FMDatabase {
                         let model = try decoder.decode(type, from: jsonData)
                         modelArray.append(model)
                     }catch{
+                        self.close()
                         printDebugLog(error)
                         assertionFailure("check you func columntype,func customColumnsType,property type")
                     }
                     
                 }
             }
+            
+            if shouldClose == true {
+                self.close()
+            }
+            
             guard modelArray.count != 0 else {
                 return nil
             }
             return modelArray
             
         } catch {
+            self.close()
             printDebugLog("failed: \(error.localizedDescription)")
         }
         return nil
     }
     
 }
-#else
-#endif
+

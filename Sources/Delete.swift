@@ -34,7 +34,7 @@ public struct Delete {
         delete.values.append(contentsOf: valuesArray)
         return delete
     }
-  public  func execute(values valuesArray:[Any]?) -> Bool {
+  public  func execute(values valuesArray:[Any]? = nil) -> Bool {
         guard let connect = FFDB.connect else {
             assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
             return false
@@ -49,7 +49,7 @@ public struct Delete {
             delete.values.append(value)
         }
     }
-        return connect.executeDBUpdateAfterClose(sql: sql, values: values)
+        return connect.executeDBUpdate(sql: sql, values: values, shouldClose: true)
     }
 }
 

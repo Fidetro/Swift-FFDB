@@ -8,13 +8,31 @@
 
 import UIKit
 
+struct Man:FFObject {
+    var primaryID: Int64?
+    
+    static func memoryPropertys() -> [String]? {
+        return nil
+    }
+    
+    static func customColumnsType() -> [String : String]? {
+        return nil
+    }
+    
+    static func customColumns() -> [String : String]? {
+        return nil
+    }
+    
+    
+}
+
  class ViewController: UIViewController {
 
 
     override func viewDidLoad() {
         super.viewDidLoad()
         FFDB.setup(.FMDB)
-//        Person.registerTable()
+        
     }
 
     

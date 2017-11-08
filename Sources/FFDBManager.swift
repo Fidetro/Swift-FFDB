@@ -13,23 +13,21 @@ public struct FFDBManager {
 
 // MARK: - Insert
 extension FFDBManager {
-    public static func insert(_ object:FFObject, _ columns:[String]?) -> Bool {
+    @discardableResult public static func insert(_ object:FFObject, _ columns:[String]? = nil) -> Bool {
         if let columnsArray = columns {
             var values = Array<Any>()
             for key in columnsArray {
                 values.append(object.valueNotNullFrom(key))
             }
             return Insert().into(object.subType).columns(columnsArray).values(values).execute()
-            
-            
         }else{
             return Insert().into(object.subType).columns(object.subType).values(object).execute()
         }
     }
-    public  static func insert(_ object:FFObject) -> Bool {
+    @discardableResult public static func insert(_ object:FFObject) -> Bool {
         return insert(object, nil)
     }
-    public  static func insert(_ table:FFObject.Type,_ columns:[String],values:[Any]) -> Bool{
+    @discardableResult public static func insert(_ table:FFObject.Type,_ columns:[String],values:[Any]) -> Bool{
         return Insert().into(table).columns(columns).values(values).execute()
     }
 }
@@ -37,7 +35,7 @@ extension FFDBManager {
 
 // MARK: - Select
 extension FFDBManager {
-    public  static func select<T:FFObject,U:Decodable>(_ table:T.Type, _ columns:[String]?, where condition:String?,values:[Any]?, return type:U.Type) -> Array<Decodable>? {
+    public static func select<T:FFObject,U:Decodable>(_ table:T.Type, _ columns:[String]? = nil, where condition:String? = nil,values:[Any]? = nil, return type:U.Type) -> Array<Decodable>? {
         
         if let format = condition {
             if let col = columns {
@@ -46,7 +44,6 @@ extension FFDBManager {
                 return Select().from(table).whereFormat(format).execute(type, values: values)
             }
         }else{
-            
             if let col = columns {
                 return Select(col).from(table).execute(type, values: values)
             }else{
@@ -55,14 +52,14 @@ extension FFDBManager {
         }
     }
     
-    public   static func select<T:FFObject>(_ table:T.Type,_ columns:[String]?,where condition:String?,values:[Any]?) -> Array<Decodable>? {
+     public static func select<T:FFObject>(_ table:T.Type,_ columns:[String]? = nil,where condition:String? = nil,values:[Any]? = nil) -> Array<Decodable>? {
         return select(table, columns, where: condition,values:values, return: table)
     }
 }
 
 // MARK: - Update
 extension FFDBManager {
-    public static func update(_ object:FFObject,set columns:[String]?) -> Bool {
+    @discardableResult public static func update(_ object:FFObject,set columns:[String]? = nil) -> Bool {
         if let primaryID = object.primaryID  {
             if let col = columns {
                 return Update(object).set(col).whereFormat("primaryID = '\(primaryID)'").execute(values: nil)
@@ -74,7 +71,7 @@ extension FFDBManager {
             return false
         }
     }
-    public  static func update(_ table:FFObject.Type,set setFormat:String,where whereFormat:String?,values:[Any]?) -> Bool {
+    @discardableResult public static func update(_ table:FFObject.Type,set setFormat:String,where whereFormat:String?,values:[Any]? = nil) -> Bool {
         if let format = whereFormat  {
             return Update(table).set(setFormat).whereFormat(format).execute(values: values)
         }else{
@@ -86,14 +83,14 @@ extension FFDBManager {
 
 // MARK: - Delete
 extension FFDBManager {
-    public  static func delete(_ table:FFObject.Type,where condition:String?,values:[Any]?) -> Bool{
+    @discardableResult public static func delete(_ table:FFObject.Type,where condition:String? = nil,values:[Any]? = nil) -> Bool{
         if let format = condition {
             return Delete().from(table).whereFormat(format).execute(values: values)
         }else{
             return Delete().from(table).execute(values: values)
         }
     }
-    public   static func delete(_ object:FFObject) -> Bool{
+    @discardableResult public static func delete(_ object:FFObject) -> Bool{
         if let primaryID = object.primaryID {
             return Delete().from(object.subType).whereFormat("primaryID = '\(primaryID)'").execute(values: nil)
         }else{

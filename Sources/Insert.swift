@@ -70,7 +70,7 @@ public struct Insert {
         }
      
     
-        return connect.executeDBUpdateAfterClose(sql: sql, values: self.values)
+        return connect.executeDBUpdate(sql: sql, values: self.values, shouldClose: true)
     }
 }
 

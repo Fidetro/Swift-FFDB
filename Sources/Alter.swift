@@ -32,7 +32,7 @@ struct Alter {
         for newColumn in newColumns {
             var sql =  "alter table `\(table.tableName())` add "
             sql.append(alterColumnsInTableSQL(newColumn))
-            let alterResult = connect.executeDBUpdateAfterClose(sql: sql, values: nil)
+            let alterResult = connect.executeDBUpdate(sql: sql, values: nil, shouldClose: true)
             if alterResult == false {
                 result = false
             }

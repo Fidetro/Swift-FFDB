@@ -23,16 +23,16 @@ extension FFObject {
 
 // MARK: - sql
 extension FFObject {
-    public  static func select(where condition:String?,values:[Any]?) -> Array<FFObject>? {
+    public  static func select(where condition:String?,values:[Any]? = nil) -> Array<FFObject>? {
         return FFDBManager.select(self, nil, where: condition, values: values) as! Array<FFObject>?
     }
-    public func insert() -> Bool {
+    @discardableResult  public func insert() -> Bool {
         return FFDBManager.insert(self)
     }
-    public  func update() -> Bool {
+    @discardableResult  public  func update() -> Bool {
         return FFDBManager.update(self, set: nil)
     }
-    public  func update(set condition:String,values:[Any]?) -> Bool {
+    @discardableResult  public  func update(set condition:String,values:[Any]? = nil) -> Bool {
         if let primaryID = self.primaryID  {
             return FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'", values: values)
         }else{
@@ -41,7 +41,7 @@ extension FFObject {
         }
         
     }
-    public  func delete() -> Bool {
+    @discardableResult   public  func delete() -> Bool {
         return FFDBManager.delete(self)
     }
     public   static func registerTable() {
@@ -205,7 +205,7 @@ extension FFObject {
 
 extension FIDRuntime {
     
-   
+    
     
     public  var subType: Any.Type {
         let mirror  = Mirror(reflecting: self)

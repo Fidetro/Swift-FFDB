@@ -71,7 +71,7 @@ public struct Update {
         return update
     }
  
-   public func execute(values valuesArray:[Any]?) -> Bool {
+   public func execute(values valuesArray:[Any]? = nil) -> Bool {
         guard let connect = FFDB.connect else {
             assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
             return false
@@ -86,7 +86,7 @@ public struct Update {
             update.values.append(value)
         }
     }
-        return connect.executeDBUpdateAfterClose(sql: sql, values: values)
+    return connect.executeDBUpdate(sql: sql, values: values, shouldClose: true)
     }
     
     private func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?) -> String {
