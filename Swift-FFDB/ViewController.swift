@@ -8,25 +8,10 @@
 
 import UIKit
 
-struct Man:FFObject {
-    var primaryID: Int64?
-    
-    static func memoryPropertys() -> [String]? {
-        return nil
-    }
-    
-    static func customColumnsType() -> [String : String]? {
-        return nil
-    }
-    
-    static func customColumns() -> [String : String]? {
-        return nil
-    }
-    
-    
-}
 
- class ViewController: UIViewController {
+
+
+ class ViewController: UIViewController,UIImagePickerControllerDelegate,UINavigationControllerDelegate {
 
 
     override func viewDidLoad() {
@@ -34,8 +19,6 @@ struct Man:FFObject {
         FFDB.setup(.FMDB)
         
     }
-
-    
 
     
     override func didReceiveMemoryWarning() {

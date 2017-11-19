@@ -84,7 +84,6 @@ extension FMDatabase {
                     let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .init(rawValue: 0))
                     do{
                         let decoder = JSONDecoder()
-                        NSLog("%@", dict)
                         decoder.dateDecodingStrategy = .secondsSince1970
                         let model = try decoder.decode(type, from: jsonData)
                         modelArray.append(model)
