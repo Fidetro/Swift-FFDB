@@ -39,11 +39,12 @@ public struct Update {
         var update = self
         var sqlFormat = String()
         if let object = self.updateObject {
-            sqlFormat.append(columnsToSetSQLFormat(object, nil))
+            sqlFormat.append(columnsToSetSQLFormat(object, nil, update: &update))
         }else{
             assertionFailure("please use init(_ object:FFDataBaseModel)")
         }
         update.sqlStatement?.append(" set " + sqlFormat + " ")
+    
         return update
     }
     
@@ -51,9 +52,9 @@ public struct Update {
         var update = self
         var sqlFormat = String()
         if let object = self.updateObject {
-            sqlFormat.append(columnsToSetSQLFormat(object, columns))
+            sqlFormat.append(columnsToSetSQLFormat(object, columns, update: &update))
         }else{
-            sqlFormat.append(columnsToSetSQLFormat(nil, columns))
+            sqlFormat.append(columnsToSetSQLFormat(nil, columns, update: &update))
         }
         update.sqlStatement?.append(" set " + sqlFormat + " ")
         return update
@@ -82,6 +83,7 @@ public struct Update {
         }
     var update = self
     if let values = valuesArray {
+        update.values = [Any]()
         for value in values {
             update.values.append(value)
         }
@@ -89,8 +91,8 @@ public struct Update {
     return connect.executeDBUpdate(sql: sql, values: values, shouldClose: true)
     }
     
-    private func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?) -> String {
-        var update = self
+    func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?, update:inout Update) -> String {
+        
         var SQLFormat = String()
         
         guard let obj = object else {
@@ -106,9 +108,12 @@ public struct Update {
         
         let mirror = Mirror(reflecting: obj)
         var index = 0
-        
-        if let inputColumns = columns {
-            for column in inputColumns {
+        var columns = columns
+        if let _ = columns {
+        }else{
+            columns = tableClass!.columnsOfSelf()
+        }
+            for column in columns! {
                 var isContain = false
                 for case let (key?,value) in mirror.children {
                     if key == "primaryID" {
@@ -130,7 +135,6 @@ public struct Update {
                     assertionFailure("can't find \(column) property")
                 }
             }
-        }
         return SQLFormat
     }
 }

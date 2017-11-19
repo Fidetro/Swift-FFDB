@@ -155,6 +155,12 @@ extension FFObject {
             case is Optional<Int64>.Type:
                 columnsType[label] = "integer"
                 break
+            case is Bool.Type:
+                columnsType[label] = "integer"
+                break
+            case is Optional<Bool>.Type:
+                columnsType[label] = "Bool"
+                break
             default:
                 columnsType[label] = "text"
                 break
@@ -308,6 +314,16 @@ func anyToString(_ describing:Any) -> String {
             return "0"
         }
         return "\(value)"
+    case is Optional<Bool>.Type:
+        guard let value = describing as? Bool else{
+            return "false"
+        }
+        return value == true ? "true" : "false"
+    case is Bool.Type:
+        guard let value = describing as? Bool else{
+            return "false"
+        }
+        return value == true ? "true" : "false"
     default:
         switch String(describing: describing)
         {
