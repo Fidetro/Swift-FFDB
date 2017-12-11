@@ -9,7 +9,8 @@
 import UIKit
 
 class CustomCollectionViewLayout: UICollectionViewLayout {
-
+    
+    
     var numberOfColumns : Int
     var shouldPinFirstColumn = true
     var shouldPinFirstRow = true

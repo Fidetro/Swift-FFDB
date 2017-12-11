@@ -37,14 +37,15 @@ public protocol FIDRuntime {
 }
 
 public protocol FFObject:FIDRuntime,Decodable {
+    
     var primaryID : Int64? {get}
     
     static func registerTable()
     static func select(where condition:String?,values:[Any]?) -> Array<FFObject>?
-    func insert() -> Bool
-    func update() -> Bool
-    func update(set condition:String,values:[Any]?) -> Bool
-    func delete() -> Bool
+    @discardableResult func insert() -> Bool
+    @discardableResult func update() -> Bool
+    @discardableResult func update(set condition:String,values:[Any]?) -> Bool
+    @discardableResult func delete() -> Bool
     static func columnsType() -> [String:String]
     
     /// 相当于Objective-C中的valueForKey: 但返回的值永远不会为空

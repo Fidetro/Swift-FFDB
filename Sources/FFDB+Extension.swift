@@ -41,13 +41,13 @@ extension FFObject {
         }
         
     }
-    @discardableResult   public  func delete() -> Bool {
+    @discardableResult public  func delete() -> Bool {
         return FFDBManager.delete(self)
     }
     public   static func registerTable() {
         let createResult = FFDBManager.create(self)
         let alterResult = FFDBManager.alter(self)
-        if createResult == true && alterResult == true {
+        if createResult == true,alterResult == true {
         }else{
             assertionFailure("register fail")
         }
@@ -211,8 +211,7 @@ extension FFObject {
 
 extension FIDRuntime {
     
-    
-    
+
     public  var subType: Any.Type {
         let mirror  = Mirror(reflecting: self)
         return mirror.subjectType

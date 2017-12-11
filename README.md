@@ -43,7 +43,7 @@ let package = Package(
 # Useage
 
 ## Setting
-You can check out the [example project](https://github.com/Fidetro/SwiftFFDB-Example)  
+You can check out the [example project](https://github.com/Fidetro/SwiftFFDB)
 if you use in iOS:
 ```
 FFDB.setup(.FMDB) //select database type

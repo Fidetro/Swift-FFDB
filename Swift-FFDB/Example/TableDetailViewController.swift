@@ -93,21 +93,21 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
         
         switch indexPath.row {
         case 0:
-            showDeleteAlert(delete: {
-                let object = self.dataSource![indexPath.section - 1]
-                object.delete()
-                self.refreshEvent()
+            showDeleteAlert(delete: { [weak self] in
+                let object = self?.dataSource![indexPath.section - 1]
+                object?.delete()
+                self?.refreshEvent()
             })
         case 2...type!.columnsOfSelf().count:
             let object = self.dataSource![indexPath.section - 1]
-            showEditAlert(eidt: { (textField) in
-                let value = object.valueNotNullFrom(self.type!.columnsOfSelf()[indexPath.row - 2])
+            showEditAlert(eidt: { [weak self] (textField) in
+                let value = object.valueNotNullFrom((self?.type!.columnsOfSelf()[indexPath.row - 2])!)
                 textField.text = value
                 
-            }, update: {(text) in
-                let column = self.type!.columnsOfSelf()[indexPath.row - 2]
-                object.update(set:"\(column) = '\(text)'", values: nil)
-                self.refreshEvent()
+            }, update: {[weak self] (text)  in
+                let column = self?.type!.columnsOfSelf()[indexPath.row - 2]
+                object.update(set:"\(String(describing: column)) = '\(text)'", values: nil)
+                self?.refreshEvent()
             })
         default:
             break

@@ -7,9 +7,7 @@
 //
 
 
-public struct FFDBManager {
-    
-}
+public struct FFDBManager {}
 
 // MARK: - Insert
 extension FFDBManager {
@@ -107,7 +105,7 @@ extension FFDBManager {
     }
 }
 
-// MARK: - Create
+// MARK: - Alter
 extension FFDBManager {
     static func alter(_ table:FFObject.Type) -> Bool {
         return Alter(table).execute()
