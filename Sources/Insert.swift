@@ -5,6 +5,7 @@
 //  Created by Fidetro on 2017/8/27.
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
+import FMDB
 
 public struct Insert {
     
@@ -59,18 +60,18 @@ public struct Insert {
         return insert
     }
     
-    public  func execute() -> Bool {
-        guard let connect = FFDB.connect else {
-            assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
-            return false
-        }
+    public  func execute(database db:FMDatabase? = nil) throws -> Bool {
+        
         guard let sql = sqlStatement else {
             assertionFailure("sql can't nil")
             return false
         }
-     
-    
-        return connect.executeDBUpdate(sql: sql, values: self.values, shouldClose: true)
+        
+        guard let db = db else {
+            return try FFDB.connect.executeDBUpdate(sql: sql, values: self.values, shouldClose: true)
+        }
+        return try db.executeDBUpdate(sql: sql, values: self.values, shouldClose: false)
+        
     }
 }
 

@@ -16,7 +16,8 @@ import UIKit
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        FFDB.setup(.FMDB)
+//        FFDB.setup(.FMDB)
+        
         
     }
 

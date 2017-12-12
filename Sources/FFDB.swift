@@ -15,10 +15,7 @@ func printDebugLog<T>(_ message: T,
     #endif
 }
 public struct FFDB {
-    static var connect : FFDBConnect.Type?
-    public  static func setup(_ type:FFDBConnectType){
-        connect = type.connect()
-    }
+    static var connect = FMDBConnect.self
 }
 
 
@@ -29,7 +26,7 @@ public protocol FIDRuntime {
     /// 获取对象类型
     var subType : Any.Type {get}
     
-    /// 相当于Objective-C中的valueForKey: 
+    /// like Objective-C - (void)valueForKey
     ///
     /// - Parameter key: key
     /// - Returns: value
@@ -48,7 +45,7 @@ public protocol FFObject:FIDRuntime,Decodable {
     @discardableResult func delete() -> Bool
     static func columnsType() -> [String:String]
     
-    /// 相当于Objective-C中的valueForKey: 但返回的值永远不会为空
+    /// like Objective-C - (void)valueForKey: but alway return isn't nil
     ///
     /// - Parameter key: key
     /// - Returns: value

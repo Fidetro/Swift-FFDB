@@ -24,27 +24,55 @@ extension FFObject {
 // MARK: - sql
 extension FFObject {
     public  static func select(where condition:String?,values:[Any]? = nil) -> Array<FFObject>? {
-        return FFDBManager.select(self, nil, where: condition, values: values) as! Array<FFObject>?
+        do {
+            return try FFDBManager.select(self, nil, where: condition, values: values) as! Array<FFObject>?
+        } catch {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return nil
+        }
     }
     @discardableResult  public func insert() -> Bool {
-        return FFDBManager.insert(self)
-    }
-    @discardableResult  public  func update() -> Bool {
-        return FFDBManager.update(self, set: nil)
-    }
-    @discardableResult  public  func update(set condition:String,values:[Any]? = nil) -> Bool {
-        if let primaryID = self.primaryID  {
-            return FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'", values: values)
-        }else{
-            assertionFailure("primaryID is nil")
+        do {
+            return try FFDBManager.insert(self)
+        } catch {
+            printDebugLog("failed: \(error.localizedDescription)")
             return false
         }
-        
     }
+    
+    @discardableResult  public  func update() -> Bool {
+        do {
+            return try FFDBManager.update(self)
+        } catch {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    @discardableResult  public  func update(set condition:String,values:[Any]? = nil) -> Bool {
+        do {
+            if let primaryID = self.primaryID  {
+                return try FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'", values: values)
+            }else{
+                assertionFailure("primaryID is nil")
+                return false
+            }
+        } catch {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
     @discardableResult public  func delete() -> Bool {
-        return FFDBManager.delete(self)
+        do {
+            return try FFDBManager.delete(self)
+        } catch {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
     }
-    public   static func registerTable() {
+    
+    public static func registerTable() {
         let createResult = FFDBManager.create(self)
         let alterResult = FFDBManager.alter(self)
         if createResult == true,alterResult == true {

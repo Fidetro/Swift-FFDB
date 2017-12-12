@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-
+import FMDB
 
 public struct Update {
     
@@ -14,15 +14,15 @@ public struct Update {
     fileprivate var updateObject : FFObject?
     private var values = [Any]()
     var sqlStatement : String?
-
-
-  public  init(_ table:FFObject.Type) {
+    
+    
+    public  init(_ table:FFObject.Type) {
         tableClass = table
         sqlStatement = ""
         sqlStatement?.append(" update " + table.tableName())
     }
     
-  public  init(_ object:FFObject) {
+    public  init(_ object:FFObject) {
         tableClass = object.subType
         updateObject = object
         sqlStatement = ""
@@ -35,7 +35,7 @@ public struct Update {
         }
     }
     
-  public  func set() -> Update {
+    public  func set() -> Update {
         var update = self
         var sqlFormat = String()
         if let object = self.updateObject {
@@ -44,11 +44,11 @@ public struct Update {
             assertionFailure("please use init(_ object:FFDataBaseModel)")
         }
         update.sqlStatement?.append(" set " + sqlFormat + " ")
-    
+        
         return update
     }
     
-  public  func set(_ columns:[String]) -> Update {
+    public  func set(_ columns:[String]) -> Update {
         var update = self
         var sqlFormat = String()
         if let object = self.updateObject {
@@ -60,35 +60,35 @@ public struct Update {
         return update
     }
     
-   public func set(_ condition:String) -> Update {
+    public func set(_ condition:String) -> Update {
         var update = self
         update.sqlStatement?.append(" set " + condition + " ")
         return update
     }
     
-  public  func whereFormat(_ condition:String) -> Update {
+    public  func whereFormat(_ condition:String) -> Update {
         var update = self
         update.sqlStatement?.append(" where " + condition + " ")
         return update
     }
- 
-   public func execute(values valuesArray:[Any]? = nil) -> Bool {
-        guard let connect = FFDB.connect else {
-            assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
-            return false
-        }
+    
+    public func execute(database db:FMDatabase? = nil,values valuesArray:[Any]? = nil) throws -> Bool {
         guard let sql = sqlStatement else {
             assertionFailure("sql can't nil")
             return false
         }
-    var update = self
-    if let values = valuesArray {
-        update.values = [Any]()
-        for value in values {
-            update.values.append(value)
+        var update = self
+        if let values = valuesArray {
+            update.values = [Any]()
+            for value in values {
+                update.values.append(value)
+            }
         }
-    }
-    return connect.executeDBUpdate(sql: sql, values: values, shouldClose: true)
+        
+        guard let db = db else {
+            return try FFDB.connect.executeDBUpdate(sql: sql, values: values, shouldClose: true)
+        }
+        return try db.executeDBUpdate(sql: sql, values: values, shouldClose: false)
     }
     
     func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?, update:inout Update) -> String {
@@ -113,28 +113,28 @@ public struct Update {
         }else{
             columns = tableClass!.columnsOfSelf()
         }
-            for column in columns! {
-                var isContain = false
-                for case let (key?,value) in mirror.children {
-                    if key == "primaryID" {
-                        continue;
-                    }
-                    if key == column {
-                        isContain = true
-                            if index == 0 {
-                                index += 1
-                                SQLFormat.append(key + "=" + "?")
-                                update.values.append(anyToString(value))
-                            }else{
-                                SQLFormat.append("," + key + "=" + "?")
-                                update.values.append(anyToString(value))
-                            }
-                    }
+        for column in columns! {
+            var isContain = false
+            for case let (key?,value) in mirror.children {
+                if key == "primaryID" {
+                    continue;
                 }
-                if isContain == false {
-                    assertionFailure("can't find \(column) property")
+                if key == column {
+                    isContain = true
+                    if index == 0 {
+                        index += 1
+                        SQLFormat.append(key + "=" + "?")
+                        update.values.append(anyToString(value))
+                    }else{
+                        SQLFormat.append("," + key + "=" + "?")
+                        update.values.append(anyToString(value))
+                    }
                 }
             }
+            if isContain == false {
+                assertionFailure("can't find \(column) property")
+            }
+        }
         return SQLFormat
     }
 }

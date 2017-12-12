@@ -32,7 +32,6 @@ struct FFShop :FFObject {
 
 struct FFGood :FFObject {
     var primaryID: Int64?
-    
     static func memoryPropertys() -> [String]? {
         return nil
     }

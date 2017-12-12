@@ -33,6 +33,7 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
     
     func refreshEvent() {
         dataSource = type?.select(where: nil, values: nil)
+        
         collectionView.reloadData()
     }
     @objc func onRightClick() {
@@ -106,7 +107,7 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
                 
             }, update: {[weak self] (text)  in
                 let column = self?.type!.columnsOfSelf()[indexPath.row - 2]
-                object.update(set:"\(String(describing: column)) = '\(text)'", values: nil)
+                object.update(set:"\(column!) = '\(text)'", values: nil)
                 self?.refreshEvent()
             })
         default:

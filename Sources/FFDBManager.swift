@@ -6,74 +6,202 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-
+import FMDB
 public struct FFDBManager {}
 
 // MARK: - Insert
 extension FFDBManager {
-    @discardableResult public static func insert(_ object:FFObject, _ columns:[String]? = nil) -> Bool {
+    
+    
+    
+    ///   insert object
+    ///
+    ///   ````
+    ///   let john = Person.init(primaryID: nil, name: "john", age: 10, address: "China")
+    ///
+    ///   FFDBManager.insert(john) // primaryID = 1,name = "john",age = 10,address = "China"
+    ///
+    ///   FFDBManager.insert(john,["name","age"]) // primaryID = 1,name = "john",age = 10
+    ///   ````
+    /// - Parameters:
+    ///   - object:  object
+    ///   - columns: column name
+    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
+    /// - Returns: result
+    /// - Throws: FMDB error
+    @discardableResult public static func insert(_ object:FFObject,
+                                                 _ columns:[String]? = nil,
+                                                 database db:FMDatabase? = nil) throws -> Bool {
+        
         if let columnsArray = columns {
             var values = Array<Any>()
             for key in columnsArray {
                 values.append(object.valueNotNullFrom(key))
             }
-            return Insert().into(object.subType).columns(columnsArray).values(values).execute()
+            return try Insert()
+                .into(object.subType)
+                .columns(columnsArray)
+                .values(values)
+                .execute(database: db)
         }else{
-            return Insert().into(object.subType).columns(object.subType).values(object).execute()
+            return try Insert()
+                .into(object.subType)
+                .columns(object.subType)
+                .values(object)
+                .execute(database: db)
         }
     }
-    @discardableResult public static func insert(_ object:FFObject) -> Bool {
-        return insert(object, nil)
-    }
-    @discardableResult public static func insert(_ table:FFObject.Type,_ columns:[String],values:[Any]) -> Bool{
-        return Insert().into(table).columns(columns).values(values).execute()
+    
+    
+    /// insert value in table
+    ///
+    /// - Parameters:
+    ///   - table:  FFObject.Type
+    ///   - columns: insert columns
+    ///   - values: the value of column
+    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
+    /// - Returns: result
+    /// - Throws: FMDB error
+    @discardableResult public static func insert(_ table:FFObject.Type,
+                                                 _ columns:[String],
+                                                 values:[Any],
+                                                 database db:FMDatabase? = nil) throws -> Bool {
+        return try Insert()
+            .into(table)
+            .columns(columns)
+            .values(values)
+            .execute(database: db)
     }
 }
 
 
 // MARK: - Select
 extension FFDBManager {
-    public static func select<T:FFObject,U:Decodable>(_ table:T.Type, _ columns:[String]? = nil, where condition:String? = nil,values:[Any]? = nil, return type:U.Type) -> Array<Decodable>? {
-        
+    
+    /// select column from table
+    ///
+    /// - Parameters:
+    ///   - table: table of FFObject.Type
+    ///   - columns: select columns,if columns is nil,return table all columns
+    ///   - condition: for example, "age > ? and address = ? "
+    ///   - values: use params query
+    ///   - type: The type of reception
+    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
+    /// - Returns: return select objects
+    /// - Throws: FMDB error
+    public static func select<T:FFObject,U:Decodable>(_ table:T.Type,
+                                                      _ columns:[String]? = nil,
+                                                      where condition:String? = nil,
+                                                      values:[Any]? = nil,
+                                                      return type:U.Type,
+                                                      database db:FMDatabase? = nil) throws -> Array<Decodable>? {
         if let format = condition {
             if let col = columns {
-                return Select(col).from(table).whereFormat(format).execute(type, values: values)
+                return try Select(col)
+                    .from(table)
+                    .whereFormat(format)
+                    .execute(database: db,type, values: values)
             }else{
-                return Select().from(table).whereFormat(format).execute(type, values: values)
+                return try Select()
+                    .from(table)
+                    .whereFormat(format)
+                    .execute(database: db,type, values: values)
             }
         }else{
             if let col = columns {
-                return Select(col).from(table).execute(type, values: values)
+                return try Select(col)
+                    .from(table)
+                    .execute(database: db,type, values: values)
             }else{
-                return Select().from(table).execute(type, values: values)
+                return try Select()
+                    .from(table)
+                    .execute(database: db,type, values: values)
             }
         }
     }
     
-     public static func select<T:FFObject>(_ table:T.Type,_ columns:[String]? = nil,where condition:String? = nil,values:[Any]? = nil) -> Array<Decodable>? {
-        return select(table, columns, where: condition,values:values, return: table)
+    /// select column from table
+    ///
+    /// - Parameters:
+    ///   - table: table of FFObject.Type
+    ///   - columns: select columns,if columns is nil,return table all columns
+    ///   - condition: for example, "age > ? and address = ? "
+    ///   - values: use params query
+    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
+    /// - Returns: return select objects
+    /// - Throws: FMDB error
+    public static func select<T:FFObject>(_ table:T.Type,
+                                          _ columns:[String]? = nil,
+                                          where condition:String? = nil,
+                                          values:[Any]? = nil,
+                                          database db:FMDatabase? = nil) throws -> Array<Decodable>? {
+        
+        return try select(table, columns,
+                          where: condition,
+                          values:values,
+                          return: table,
+                          database: db)
     }
 }
 
 // MARK: - Update
 extension FFDBManager {
-    @discardableResult public static func update(_ object:FFObject,set columns:[String]? = nil) -> Bool {
+    
+    /// update value by columns,you can custom set columns to update
+    ///
+    /// - Parameters:
+    ///   - object: object
+    ///   - columns: set columns to update,if columns is nil,it will be update all property
+    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
+    /// - Returns: result
+    /// - Throws: FMDB error
+    @discardableResult public static func update(_ object:FFObject,
+                                                 set columns:[String]? = nil,
+                                                 database db:FMDatabase? = nil) throws -> Bool {
         if let primaryID = object.primaryID  {
             if let col = columns {
-                return Update(object).set(col).whereFormat("primaryID = '\(primaryID)'").execute(values: nil)
+                return try Update(object)
+                    .set(col)
+                    .whereFormat("primaryID = '\(primaryID)'")
+                    .execute(database: db,values: nil)
             }else{
-                return Update(object).set().whereFormat("primaryID = '\(primaryID)'").execute(values: nil)
+                return try Update(object)
+                    .set()
+                    .whereFormat("primaryID = '\(primaryID)'")
+                    .execute(database: db,values: nil)
             }
         }else{
             assertionFailure("primaryID can't be nil")
             return false
         }
+        
     }
-    @discardableResult public static func update(_ table:FFObject.Type,set setFormat:String,where whereFormat:String?,values:[Any]? = nil) -> Bool {
-        if let format = whereFormat  {
-            return Update(table).set(setFormat).whereFormat(format).execute(values: values)
+    
+    
+    /// update value of the table
+    ///
+    /// - Parameters:
+    ///   - table: table of FFObject.Type
+    ///   - setFormat: for example,you want to update Person name and age,you can set "name = ?,age = ?"
+    ///   - condition: for example, "age > ? and address = ? "
+    ///   - values: use params query
+    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
+    /// - Returns: result
+    /// - Throws: FMDB error
+    @discardableResult public static func update(_ table:FFObject.Type,
+                                                 set setFormat:String,
+                                                 where condition:String?,
+                                                 values:[Any]? = nil,
+                                                 database db:FMDatabase? = nil) throws -> Bool {
+        if let condition = condition  {
+            return try Update(table)
+                .set(setFormat)
+                .whereFormat(condition)
+                .execute(database: db,values: values)
         }else{
-            return Update(table).set(setFormat).execute(values: values)
+            return try Update(table)
+                .set(setFormat)
+                .execute(database: db,values: values)
         }
     }
 }
@@ -81,16 +209,48 @@ extension FFDBManager {
 
 // MARK: - Delete
 extension FFDBManager {
-    @discardableResult public static func delete(_ table:FFObject.Type,where condition:String? = nil,values:[Any]? = nil) -> Bool{
+    
+    /// delete row of the table
+    ///
+    /// - Parameters:
+    ///   - table: table of FFObject.Type
+    ///   - condition: for example, "age > ? and address = ? "
+    ///   - values: use params query
+    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
+    /// - Returns: result
+    /// - Throws: FMDB error
+    @discardableResult public static func delete(_ table:FFObject.Type,
+                                                 where condition:String? = nil,
+                                                 values:[Any]? = nil,
+                                                 database db:FMDatabase? = nil) throws -> Bool {
         if let format = condition {
-            return Delete().from(table).whereFormat(format).execute(values: values)
+            return try Delete()
+                .from(table)
+                .whereFormat(format)
+                .execute(database: db,values: values)
         }else{
-            return Delete().from(table).execute(values: values)
+            return try Delete()
+                .from(table)
+                .execute(database: db,values: values)
         }
     }
-    @discardableResult public static func delete(_ object:FFObject) -> Bool{
+    
+    
+    
+    /// delete object of the table
+    ///
+    /// - Parameters:
+    ///   - object: object
+    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
+    /// - Returns: result
+    /// - Throws: FMDB error
+    @discardableResult public static func delete(_ object:FFObject,
+                                                 database db:FMDatabase? = nil) throws -> Bool {
         if let primaryID = object.primaryID {
-            return Delete().from(object.subType).whereFormat("primaryID = '\(primaryID)'").execute(values: nil)
+            return try Delete()
+                .from(object.subType)
+                .whereFormat("primaryID = '\(primaryID)'")
+                .execute(database: db,values: nil)
         }else{
             assertionFailure("primaryID can't be nil")
             return false
@@ -101,14 +261,24 @@ extension FFDBManager {
 // MARK: - Create
 extension FFDBManager {
     static func create(_ table:FFObject.Type) -> Bool {
-        return Create(table).execute()
+        do {
+            return try Create(table).execute()
+        } catch  {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
     }
 }
 
 // MARK: - Alter
 extension FFDBManager {
     static func alter(_ table:FFObject.Type) -> Bool {
-        return Alter(table).execute()
+        do {
+            return try Alter(table).execute()
+        } catch  {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
     }
 }
 

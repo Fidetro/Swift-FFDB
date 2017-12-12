@@ -18,13 +18,13 @@
 		9A5056D41F9C317F0071DAF2 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056C81F9C317F0071DAF2 /* Delete.swift */; };
 		9A5056D51F9C317F0071DAF2 /* FFDB+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056C91F9C317F0071DAF2 /* FFDB+Extension.swift */; };
 		9A5056D61F9C317F0071DAF2 /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CA1F9C317F0071DAF2 /* FFDB.swift */; };
-		9A5056D71F9C317F0071DAF2 /* FFDBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CB1F9C317F0071DAF2 /* FFDBConnect.swift */; };
 		9A5056D81F9C317F0071DAF2 /* FFDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */; };
 		9A5056D91F9C317F0071DAF2 /* FMDBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */; };
 		9A5056DA1F9C317F0071DAF2 /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CE1F9C317F0071DAF2 /* Insert.swift */; };
 		9A5056DC1F9C317F0071DAF2 /* Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056D01F9C317F0071DAF2 /* Select.swift */; };
 		9A5056DD1F9C317F0071DAF2 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056D11F9C317F0071DAF2 /* Update.swift */; };
 		9A6031D61FDE2F2D0085A5BB /* FFDBSafeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */; };
+		9A6031DB1FDF64380085A5BB /* FFDBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6031DA1FDF64380085A5BB /* FFDBTransaction.swift */; };
 		9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */; };
 		9AAB28061F760D4D0043DCA7 /* TestStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28051F760D4D0043DCA7 /* TestStoreModel.swift */; };
 		9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28091F7648740043DCA7 /* UpdateTest.swift */; };
@@ -85,13 +85,13 @@
 		9A5056C81F9C317F0071DAF2 /* Delete.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		9A5056C91F9C317F0071DAF2 /* FFDB+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFDB+Extension.swift"; sourceTree = "<group>"; };
 		9A5056CA1F9C317F0071DAF2 /* FFDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFDB.swift; sourceTree = "<group>"; };
-		9A5056CB1F9C317F0071DAF2 /* FFDBConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFDBConnect.swift; sourceTree = "<group>"; };
 		9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFDBManager.swift; sourceTree = "<group>"; };
 		9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDBConnect.swift; sourceTree = "<group>"; };
 		9A5056CE1F9C317F0071DAF2 /* Insert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Insert.swift; sourceTree = "<group>"; };
 		9A5056D01F9C317F0071DAF2 /* Select.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Select.swift; sourceTree = "<group>"; };
 		9A5056D11F9C317F0071DAF2 /* Update.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
 		9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBSafeOperation.swift; sourceTree = "<group>"; };
+		9A6031DA1FDF64380085A5BB /* FFDBTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBTransaction.swift; sourceTree = "<group>"; };
 		9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBManagerTest.swift; sourceTree = "<group>"; };
 		9AAB28051F760D4D0043DCA7 /* TestStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStoreModel.swift; sourceTree = "<group>"; };
 		9AAB28091F7648740043DCA7 /* UpdateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTest.swift; sourceTree = "<group>"; };
@@ -207,9 +207,9 @@
 				9A5056C81F9C317F0071DAF2 /* Delete.swift */,
 				9A5056C91F9C317F0071DAF2 /* FFDB+Extension.swift */,
 				9A5056CA1F9C317F0071DAF2 /* FFDB.swift */,
-				9A5056CB1F9C317F0071DAF2 /* FFDBConnect.swift */,
 				9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */,
 				9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */,
+				9A6031DA1FDF64380085A5BB /* FFDBTransaction.swift */,
 				9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */,
 				9A5056CE1F9C317F0071DAF2 /* Insert.swift */,
 				9A5056D01F9C317F0071DAF2 /* Select.swift */,
@@ -397,8 +397,8 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				9A5056D71F9C317F0071DAF2 /* FFDBConnect.swift in Sources */,
 				9ADA70871FC28ACD008B58B0 /* TableListViewController.swift in Sources */,
+				9A6031DB1FDF64380085A5BB /* FFDBTransaction.swift in Sources */,
 				9A5056D41F9C317F0071DAF2 /* Delete.swift in Sources */,
 				9A5056DD1F9C317F0071DAF2 /* Update.swift in Sources */,
 				9ADA70831FC28ACD008B58B0 /* TableDetailViewController.swift in Sources */,

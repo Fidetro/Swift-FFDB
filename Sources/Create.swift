@@ -41,16 +41,13 @@ struct Create {
         }
         return sql
     }
-    func execute() -> Bool {
-        guard let connect = FFDB.connect else {
-            assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
-            return false
-        }
+    func execute() throws -> Bool {
+ 
         guard let sql = sqlStatement else {
             assertionFailure("sql can't nil")
             return false
         }
-        return connect.executeDBUpdate(sql: sql, values: nil, shouldClose: true)
+        return try FFDB.connect.executeDBUpdate(sql: sql, values: nil, shouldClose: true)
     }
 }
 

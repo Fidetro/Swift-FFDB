@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-
+import FMDB
 
 public struct Select {
     
@@ -33,18 +33,15 @@ public struct Select {
         select.sqlStatement?.append(" where " + condition + " ")
         return select
     }
-
+    
     public   func returnType(_ type:Decodable.Type) -> Select {
         var select = self
         select.returnType = type
         return select
     }
     
-    public  func execute<T:Decodable>(_ type:T.Type,values valuesArray:[Any]? = nil) -> Array<Decodable>? {
-        guard let connect = FFDB.connect else {
-            assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
-            return nil
-        }
+    public  func execute<T:Decodable>(database db:FMDatabase? = nil,_ type:T.Type,values valuesArray:[Any]? = nil) throws -> Array<Decodable>? {
+        
         guard let sql = sqlStatement else {
             assertionFailure("sql can't nil")
             return nil
@@ -55,9 +52,10 @@ public struct Select {
                 select.values.append(value)
             }
         }
-
-        return connect.executeDBQuery(return: type.self, sql: sql, values: values, shouldClose: true)
-        
+        guard let db = db else{
+            return try FFDB.connect.executeDBQuery(return: type.self, sql: sql, values: values, shouldClose: true)
+        }
+        return try db.executeDBQuery(return: type.self, sql: sql, values: values, shouldClose: false)
     }
 }
 

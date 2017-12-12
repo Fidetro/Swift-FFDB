@@ -9,20 +9,23 @@
 
 
 import FMDB
-struct FMDBConnect:FFDBConnect {
-    static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?, shouldClose: Bool) -> Array<Decodable>? where T : Decodable {
-          return database().executeDBQuery(return: type, sql: sql, values: values)
+struct FMDBConnect {
+    
+    init() {}
+    
+    static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?, shouldClose: Bool) throws -> Array<Decodable>? where T : Decodable {
+          return try database().executeDBQuery(return: type, sql: sql, values: values)
     }
     
    
-    static func executeDBUpdate(sql: String, values: [Any]?, shouldClose: Bool = true) -> Bool {
-        return database().executeDBUpdate(sql: sql, values: values, shouldClose: shouldClose)
+    static func executeDBUpdate(sql: String, values: [Any]?, shouldClose: Bool = true) throws -> Bool {
+        return try database().executeDBUpdate(sql: sql, values: values, shouldClose: shouldClose)
     }
         
 
-
-    init() {}
- 
+    /// Get databaseContentFileURL
+    ///
+    /// - Returns: databaseURL
     static func databasePath() -> URL? {
         if let executableFile = Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String) {
             let fileURL = try! FileManager.default
@@ -52,30 +55,26 @@ struct FMDBConnect:FFDBConnect {
 
 extension FMDatabase {
     
-    func executeDBUpdate(sql:String,values:[Any]?,shouldClose: Bool) -> Bool {
+    func executeDBUpdate(sql:String,values:[Any]?,shouldClose: Bool) throws -> Bool {
         guard self.open() else {
             printDebugLog("Unable to open database")
             return false
         }
-        do {
+        
             try self.executeUpdate(sql, values: values)
             if shouldClose == true {
                 self.close()
             }
             return true
-        } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
-        }
-        return false
+        
     }
 
-    func executeDBQuery<T:Decodable>(return type:T.Type, sql:String, values:[Any]?,shouldClose: Bool? = true) -> Array<Decodable>? {
+    func executeDBQuery<T:Decodable>(return type:T.Type, sql:String, values:[Any]?,shouldClose: Bool? = true) throws -> Array<Decodable>? {
         guard self.open() else {
             printDebugLog("Unable to open database")
             return nil
         }
         
-        do {
             let result = try self.executeQuery(sql, values: values)
             var modelArray = Array<Decodable>()
             while result.next() {
@@ -99,17 +98,11 @@ extension FMDatabase {
             if shouldClose == true {
                 self.close()
             }
-            
+        
             guard modelArray.count != 0 else {
                 return nil
             }
             return modelArray
-            
-        } catch {
-            self.close()
-            printDebugLog("failed: \(error.localizedDescription)")
-        }
-        return nil
     }
     
 }

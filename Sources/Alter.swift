@@ -15,11 +15,8 @@ struct Alter {
         tableClass = table
         
     }
-    func execute() -> Bool {
-        guard let connect = FFDB.connect else {
-            assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
-            return false
-        }
+    func execute() throws -> Bool {
+
         guard let table = tableClass else {
             assertionFailure("tableClass can't nil,use init(_ table:FFObject.Type)")
             return false
@@ -32,7 +29,7 @@ struct Alter {
         for newColumn in newColumns {
             var sql =  "alter table `\(table.tableName())` add "
             sql.append(alterColumnsInTableSQL(newColumn))
-            let alterResult = connect.executeDBUpdate(sql: sql, values: nil, shouldClose: true)
+            let alterResult = try FFDB.connect.executeDBUpdate(sql: sql, values: nil, shouldClose: true)
             if alterResult == false {
                 result = false
             }
@@ -59,11 +56,8 @@ struct Alter {
     func findNewColumns(_ table:FFObject.Type) -> [String]? {
         var newColumns = [String]()
         for column in table.columnsOfSelf() {
-            guard let connect = FFDB.connect else {
-                assertionFailure("must be instance FFDB.setup(_ type:FFDBConnectType)")
-                return nil
-            }
-            let result = connect.columnExists(column, inTableWithName: table.tableName())
+
+            let result = FFDB.connect.columnExists(column, inTableWithName: table.tableName())
             if result == false {
                 newColumns.append(column)
             }
