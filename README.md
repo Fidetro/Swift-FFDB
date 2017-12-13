@@ -36,7 +36,7 @@ import PackageDescription
 let package = Package(
     name: "PatchServer",
     dependencies: [
-          .Package(url: "https://github.com/Fidetro/swiftFFDB.git",versions: Version(0, 0, 0)..<Version(1, .max, .max))]
+          .Package(url: "https://github.com/Fidetro/PerfectFFDB.git",versions: Version(0, 0, 0)..<Version(1, .max, .max))]
 )
 
 ```
@@ -46,12 +46,10 @@ let package = Package(
 You can check out the [example project](https://github.com/Fidetro/SwiftFFDB)
 if you use in iOS:
 ```
-FFDB.setup(.FMDB) //select database type
 Person.registerTable() //create table
 ```
 or Perfect-server:
 ```
-   FFDB.setup(.PerfectMySQL)
     PerfectMySQLConnect(host: "", user: "", password: "", db: "").setup(complete: { (mysql) in
         Person.registerTable() //create table
     })
