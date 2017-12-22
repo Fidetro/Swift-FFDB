@@ -13,7 +13,6 @@ class TableListViewController: UIViewController,UITableViewDelegate,UITableViewD
     @IBOutlet weak var tableView: UITableView!
     override func viewDidLoad() {
         super.viewDidLoad()
-//        FFDB.setup(.FMDB)
         registerTable()
         tableView.delegate = self
         tableView.dataSource = self

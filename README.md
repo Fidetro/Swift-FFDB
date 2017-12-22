@@ -87,12 +87,12 @@ person.insert()
 ```
 // find all Object
 Person.select(where: nil)
-// find name is 'fidetro' object
+// find name is 'fidetro' 
 Person.select(where: "name = 'fidetro'")
 ```
 ## Delete
 ```
-// find name is 'fidetro' object
+// find name is 'fidetro' 
 let personList = Person.select(where: "name = 'fidetro'")
 
 for (let person in personList){
