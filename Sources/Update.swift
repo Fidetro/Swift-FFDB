@@ -86,9 +86,9 @@ public struct Update {
         }
         
         guard let db = db else {
-            return try FFDB.connect.executeDBUpdate(sql: sql, values: values, shouldClose: true)
+            return try FFDB.connect.executeDBUpdate(sql: sql, values: update.values, shouldClose: true)
         }
-        return try db.executeDBUpdate(sql: sql, values: values, shouldClose: false)
+        return try db.executeDBUpdate(sql: sql, values: update.values, shouldClose: false)
     }
     
     func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?, update:inout Update) -> String {
