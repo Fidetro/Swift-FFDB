@@ -155,7 +155,8 @@ extension FFDBManager {
     ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
     /// - Returns: result
     /// - Throws: FMDB error
-    @discardableResult public static func update(_ object:FFObject,
+    @discardableResult
+    public static func update(_ object:FFObject,
                                                  set columns:[String]? = nil,
                                                  database db:FMDatabase? = nil) throws -> Bool {
         if let primaryID = object.primaryID  {
@@ -188,7 +189,8 @@ extension FFDBManager {
     ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
     /// - Returns: result
     /// - Throws: FMDB error
-    @discardableResult public static func update(_ table:FFObject.Type,
+    @discardableResult
+    public static func update(_ table:FFObject.Type,
                                                  set setFormat:String,
                                                  where condition:String?,
                                                  values:[Any]? = nil,
@@ -219,7 +221,8 @@ extension FFDBManager {
     ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
     /// - Returns: result
     /// - Throws: FMDB error
-    @discardableResult public static func delete(_ table:FFObject.Type,
+    @discardableResult
+    public static func delete(_ table:FFObject.Type,
                                                  where condition:String? = nil,
                                                  values:[Any]? = nil,
                                                  database db:FMDatabase? = nil) throws -> Bool {
@@ -244,7 +247,8 @@ extension FFDBManager {
     ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
     /// - Returns: result
     /// - Throws: FMDB error
-    @discardableResult public static func delete(_ object:FFObject,
+    @discardableResult
+    public static func delete(_ object:FFObject,
                                                  database db:FMDatabase? = nil) throws -> Bool {
         if let primaryID = object.primaryID {
             return try Delete()
