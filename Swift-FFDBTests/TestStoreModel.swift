@@ -9,6 +9,18 @@
 import UIKit
 
 struct TestStoreModel:FFObject {
+    static func memoryPropertys() -> [String]? {
+        return nil
+    }
+    
+    static func customColumnsType() -> [String : String]? {
+        return nil
+    }
+    
+    static func customColumns() -> [String : String]? {
+        return nil
+    }
+    
     var primaryID: Int64?
     var date : Int?
     var name : String?

@@ -93,28 +93,59 @@ extension FFDBManager {
                                                       _ columns:[String]? = nil,
                                                       where condition:String? = nil,
                                                       values:[Any]? = nil,
+                                                      orderBy orderCondition:String? = nil,
+                                                      orderByType:OrderByType? = nil,
                                                       return type:U.Type,
                                                       database db:FMDatabase? = nil) throws -> Array<Decodable>? {
+        guard let orderCondition = orderCondition, let orderByType = orderByType else {
+            if let format = condition {
+                if let col = columns {
+                    return try Select(col)
+                        .from(table)
+                        .whereFormat(format)
+                        .execute(database: db,type, values: values)
+                }else{
+                    return try Select()
+                        .from(table)
+                        .whereFormat(format)
+                        .execute(database: db,type, values: values)
+                }
+            }else{
+                if let col = columns {
+                    return try Select(col)
+                        .from(table)
+                        .execute(database: db,type, values: values)
+                }else{
+                    return try Select()
+                        .from(table)
+                        .execute(database: db,type, values: values)
+                }
+            }
+        }
         if let format = condition {
             if let col = columns {
                 return try Select(col)
                     .from(table)
                     .whereFormat(format)
+                    .order(by: orderCondition, orderByType)
                     .execute(database: db,type, values: values)
             }else{
                 return try Select()
                     .from(table)
                     .whereFormat(format)
+                    .order(by: orderCondition, orderByType)
                     .execute(database: db,type, values: values)
             }
         }else{
             if let col = columns {
                 return try Select(col)
                     .from(table)
+                    .order(by: orderCondition, orderByType)
                     .execute(database: db,type, values: values)
             }else{
                 return try Select()
                     .from(table)
+                    .order(by: orderCondition, orderByType)
                     .execute(database: db,type, values: values)
             }
         }
@@ -134,11 +165,15 @@ extension FFDBManager {
                                           _ columns:[String]? = nil,
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
+                                          orderBy orderCondition:String? = nil,
+                                          orderByType:OrderByType? = nil,
                                           database db:FMDatabase? = nil) throws -> Array<Decodable>? {
         
         return try select(table, columns,
                           where: condition,
-                          values:values,
+                          values: values,
+                          orderBy: orderCondition,
+                          orderByType: orderByType,
                           return: table,
                           database: db)
     }

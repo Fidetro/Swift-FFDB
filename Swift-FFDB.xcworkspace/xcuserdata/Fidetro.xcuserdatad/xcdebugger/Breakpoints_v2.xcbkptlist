@@ -2,4 +2,118 @@
 <Bucket
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Swift-FFDBTests/SelectTest.swift"
+            timestampString = "539754391.398912"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "24"
+            endingLineNumber = "24"
+            landmarkName = "testSelect()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/Select.swift"
+            timestampString = "539754391.39942"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "execute(database:_:values:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift_FFDB.Select.execute&lt;A where A: Swift.Decodable&gt;(database: Swift.Optional&lt;__ObjC.FMDatabase&gt;, A.Type, values: Swift.Optional&lt;Swift.Array&lt;Any&gt;&gt;) throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Decodable&gt;&gt;"
+                  moduleName = "Swift-FFDB"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/swift-ffdb/Sources/Select.swift"
+                  timestampString = "539754391.443624"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "1525">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift_FFDBTests.Select.execute&lt;A where A: Swift.Decodable&gt;(database: Swift.Optional&lt;__ObjC.FMDatabase&gt;, A.Type, values: Swift.Optional&lt;Swift.Array&lt;Any&gt;&gt;) throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Decodable&gt;&gt;"
+                  moduleName = "Swift-FFDBTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/swift-ffdb/Sources/Select.swift"
+                  timestampString = "539754392.363575"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "71"
+                  endingLineNumber = "71"
+                  offsetFromSymbolStart = "1525">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "Yes"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "Sources/Select.swift"
+            timestampString = "539754391.399489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "execute(database:_:values:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift_FFDB.Select.execute&lt;A where A: Swift.Decodable&gt;(database: Swift.Optional&lt;__ObjC.FMDatabase&gt;, A.Type, values: Swift.Optional&lt;Swift.Array&lt;Any&gt;&gt;) throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Decodable&gt;&gt;"
+                  moduleName = "Swift-FFDB"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/swift-ffdb/Sources/Select.swift"
+                  timestampString = "539754391.4686559"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "1229">
+               </Location>
+               <Location
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "Swift_FFDBTests.Select.execute&lt;A where A: Swift.Decodable&gt;(database: Swift.Optional&lt;__ObjC.FMDatabase&gt;, A.Type, values: Swift.Optional&lt;Swift.Array&lt;Any&gt;&gt;) throws -&gt; Swift.Optional&lt;Swift.Array&lt;Swift.Decodable&gt;&gt;"
+                  moduleName = "Swift-FFDBTests"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/mac/Desktop/swift-ffdb/Sources/Select.swift"
+                  timestampString = "539754392.367415"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "73"
+                  endingLineNumber = "73"
+                  offsetFromSymbolStart = "1229">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

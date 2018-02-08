@@ -35,7 +35,7 @@ public struct Delete {
         delete.values.append(contentsOf: valuesArray)
         return delete
     }
-    public  func execute(database db:FMDatabase? = nil,values valuesArray:[Any]? = nil) throws -> Bool {
+    public func execute(database db:FMDatabase? = nil,values valuesArray:[Any]? = nil) throws -> Bool {
         
         guard let sql = sqlStatement else {
             assertionFailure("sql can't nil")
@@ -48,9 +48,9 @@ public struct Delete {
             }
         }
         guard let db = db else {
-            return try FFDB.connect.executeDBUpdate(sql: sql, values: values, shouldClose: true)
+            return try FFDB.connect.executeDBUpdate(sql: sql, values: delete.values, shouldClose: true)
         }
-        return try db.executeDBUpdate(sql: sql, values: values, shouldClose: false)
+        return try db.executeDBUpdate(sql: sql, values: delete.values, shouldClose: false)
     }
 }
 

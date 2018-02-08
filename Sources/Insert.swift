@@ -60,17 +60,15 @@ public struct Insert {
         return insert
     }
     
-    public  func execute(database db:FMDatabase? = nil) throws -> Bool {
-        
+    public func execute(database db:FMDatabase? = nil) throws -> Bool {
         guard let sql = sqlStatement else {
             assertionFailure("sql can't nil")
             return false
         }
-        
         guard let db = db else {
-            return try FFDB.connect.executeDBUpdate(sql: sql, values: self.values, shouldClose: true)
+            return try FFDB.connect.executeDBUpdate(sql: sql, values: values, shouldClose: true)
         }
-        return try db.executeDBUpdate(sql: sql, values: self.values, shouldClose: false)
+        return try db.executeDBUpdate(sql: sql, values: values, shouldClose: false)
         
     }
 }

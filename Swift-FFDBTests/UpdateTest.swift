@@ -12,12 +12,52 @@ class UpdateTest: XCTestCase {
     
  
     func testUpdateObject() {
-        let object = TestStoreModel()
+        var object = TestStoreModel()
+        object.name = "zzcaa"
+        let sql1 = Update(object).sqlStatement!
+        print(sql1)
+        let sql2 = Update(object).set().sqlStatement!
+        print(sql2)
+        let sql3 = Update(object).set(["name"]).sqlStatement!
+        print(sql3)
+        let sql4 = Update(object).set("name = 'zxccs'").sqlStatement!
+        print(sql4)
         
-        print("\(Update(object).set().whereFormat("ss = 'a'").sqlStatement!)")
-        print("\(Update(object).set(["date","name"]).whereFormat("ss = 'a'").sqlStatement!)")
-        print("\(Update(object).set("date = ''").whereFormat("ss = 'a'").sqlStatement!)")
+        do {
+            try Update(object).set().execute()
+            try Update(object).set(["name"]).execute()
+            try Update(object).set("name = 'zxccs'").execute()
+        } catch  {
+            
+        }
+        
+    }
+    
+    func testUpdateTable() {
+        var object = TestStoreModel()
+        object.name = "zzcaa"
+        let sql1 = Update(TestStoreModel.self).sqlStatement!
+        print(sql1)
+        let sql2 = Update(TestStoreModel.self).set().sqlStatement!
+        print(sql2)
+        let sql3 = Update(TestStoreModel.self).set(["name"]).sqlStatement!
+        print(sql3)
+        let sql4 = Update(TestStoreModel.self).set("name = 'zxccs'").sqlStatement!
+        print(sql4)
+        do {
+            try Update(TestStoreModel.self).set().execute()
+            try Update(TestStoreModel.self).set(["name"]).execute()
+            try Update(TestStoreModel.self).set("name = 'zxccs'").execute()
+        } catch  {
+            
+        }
     }
  
+    func testUpdateUnfind() {
+        var object = TestStoreModel()
+        object.name = "zzcaa"
+        let sql4 = Update(object).set(["unfind"]).sqlStatement!
+        print(sql4)
+    }
 
 }

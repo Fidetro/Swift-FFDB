@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		94ABEEBEB97D13F346FF0B03 /* Pods_Swift_FFDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8684087375A66FC5F1B455 /* Pods_Swift_FFDBTests.framework */; };
 		9A35162D1F491C8600571621 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162C1F491C8600571621 /* AppDelegate.swift */; };
 		9A35162F1F491C8600571621 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162E1F491C8600571621 /* ViewController.swift */; };
 		9A3516341F491C8600571621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516331F491C8600571621 /* Assets.xcassets */; };
@@ -38,6 +39,18 @@
 		9ADA70871FC28ACD008B58B0 /* TableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA707A1FC28ACD008B58B0 /* TableListViewController.swift */; };
 		9ADA70891FC28ACD008B58B0 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA707C1FC28ACD008B58B0 /* TableModel.swift */; };
 		9ADA708B1FC28B42008B58B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ADA708A1FC28B42008B58B0 /* Main.storyboard */; };
+		9AE4B0C7202BDC0A00873973 /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CA1F9C317F0071DAF2 /* FFDB.swift */; };
+		9AE4B0C8202BDC0C00873973 /* FFDB+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056C91F9C317F0071DAF2 /* FFDB+Extension.swift */; };
+		9AE4B0C9202BDCB300873973 /* FMDBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */; };
+		9AE4B0CA202BDD3200873973 /* FFDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */; };
+		9AE4B0CB202BDD4D00873973 /* FFDBSafeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */; };
+		9AE4B0CC202BDD4E00873973 /* FFDBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6031DA1FDF64380085A5BB /* FFDBTransaction.swift */; };
+		9AE4B0CD202BDD5200873973 /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CE1F9C317F0071DAF2 /* Insert.swift */; };
+		9AE4B0CE202BDD5400873973 /* Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056D01F9C317F0071DAF2 /* Select.swift */; };
+		9AE4B0CF202BDD5600873973 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056D11F9C317F0071DAF2 /* Update.swift */; };
+		9AE4B0D0202BDD5800873973 /* Alter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056C61F9C317F0071DAF2 /* Alter.swift */; };
+		9AE4B0D1202BDD5B00873973 /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056C71F9C317F0071DAF2 /* Create.swift */; };
+		9AE4B0D2202BDD5D00873973 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056C81F9C317F0071DAF2 /* Delete.swift */; };
 		D1B82F9DE3DF724B7D5E3E80 /* Pods_Swift_FFDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CC94E611D8BFA62D7DEC66 /* Pods_Swift_FFDB.framework */; };
 /* End PBXBuildFile section */
 
@@ -69,6 +82,8 @@
 		29E42EB5C8B1C25D12BE6F5D /* Pods-Swift-FFDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDB/Pods-Swift-FFDB.debug.xcconfig"; sourceTree = "<group>"; };
 		3E23C1B543AAC50123BAF7BB /* Pods-SwiftFFDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFFDB.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFFDB/Pods-SwiftFFDB.release.xcconfig"; sourceTree = "<group>"; };
 		3F1A743F2F3BC30D2060E25C /* Pods_SwiftFFDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFFDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6AF947B98372906F14A79A9E /* Pods-Swift-FFDBTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDBTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests.debug.xcconfig"; sourceTree = "<group>"; };
+		8C7E824D04CB9B22B28DA8AD /* Pods-Swift-FFDBTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDBTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A3516291F491C8600571621 /* Swift-FFDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-FFDB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A35162C1F491C8600571621 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A35162E1F491C8600571621 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -105,6 +120,7 @@
 		9ADA707A1FC28ACD008B58B0 /* TableListViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableListViewController.swift; sourceTree = "<group>"; };
 		9ADA707C1FC28ACD008B58B0 /* TableModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableModel.swift; sourceTree = "<group>"; };
 		9ADA708A1FC28B42008B58B0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
+		AD8684087375A66FC5F1B455 /* Pods_Swift_FFDBTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_FFDBTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CC94E611D8BFA62D7DEC66 /* Pods_Swift_FFDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_FFDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E4224232E6F75B829F6DB32E /* Pods-SwiftFFDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFFDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFFDB/Pods-SwiftFFDB.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -122,6 +138,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				94ABEEBEB97D13F346FF0B03 /* Pods_Swift_FFDBTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +152,8 @@
 				078F04E326FFF12E9A37FAA4 /* Pods-Swift-FFDB.release.xcconfig */,
 				E4224232E6F75B829F6DB32E /* Pods-SwiftFFDB.debug.xcconfig */,
 				3E23C1B543AAC50123BAF7BB /* Pods-SwiftFFDB.release.xcconfig */,
+				6AF947B98372906F14A79A9E /* Pods-Swift-FFDBTests.debug.xcconfig */,
+				8C7E824D04CB9B22B28DA8AD /* Pods-Swift-FFDBTests.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -180,6 +199,7 @@
 				9A4E5AAF1F663AEC0084812C /* XCTest.framework */,
 				3F1A743F2F3BC30D2060E25C /* Pods_SwiftFFDB.framework */,
 				B6CC94E611D8BFA62D7DEC66 /* Pods_Swift_FFDB.framework */,
+				AD8684087375A66FC5F1B455 /* Pods_Swift_FFDBTests.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -260,9 +280,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 9A4E5ABB1F663B1E0084812C /* Build configuration list for PBXNativeTarget "Swift-FFDBTests" */;
 			buildPhases = (
+				CDD761FD6B88AA189F7EBE05 /* [CP] Check Pods Manifest.lock */,
 				9A4E5AB01F663B1E0084812C /* Sources */,
 				9A4E5AB11F663B1E0084812C /* Frameworks */,
 				9A4E5AB21F663B1E0084812C /* Resources */,
+				6833DDD4F388BBD932E5917D /* [CP] Embed Pods Frameworks */,
+				098973127C18C5A9F45AB8E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -339,6 +362,39 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		098973127C18C5A9F45AB8E2 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6833DDD4F388BBD932E5917D /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/FMDB/FMDB.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FMDB.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		71144C43BEDE6BA337724CA5 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -351,6 +407,24 @@
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
 				"$(DERIVED_FILE_DIR)/Pods-Swift-FFDB-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		CDD761FD6B88AA189F7EBE05 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Swift-FFDBTests-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -424,13 +498,25 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9AE4B0CD202BDD5200873973 /* Insert.swift in Sources */,
+				9AE4B0CB202BDD4D00873973 /* FFDBSafeOperation.swift in Sources */,
 				9AAB28061F760D4D0043DCA7 /* TestStoreModel.swift in Sources */,
 				9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */,
 				9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */,
 				9AD6145B1F9096BB009DB6FA /* SelectTest.swift in Sources */,
 				9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */,
+				9AE4B0C8202BDC0C00873973 /* FFDB+Extension.swift in Sources */,
 				9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */,
+				9AE4B0D1202BDD5B00873973 /* Create.swift in Sources */,
 				9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */,
+				9AE4B0CF202BDD5600873973 /* Update.swift in Sources */,
+				9AE4B0D0202BDD5800873973 /* Alter.swift in Sources */,
+				9AE4B0CA202BDD3200873973 /* FFDBManager.swift in Sources */,
+				9AE4B0C7202BDC0A00873973 /* FFDB.swift in Sources */,
+				9AE4B0CC202BDD4E00873973 /* FFDBTransaction.swift in Sources */,
+				9AE4B0C9202BDCB300873973 /* FMDBConnect.swift in Sources */,
+				9AE4B0D2202BDD5D00873973 /* Delete.swift in Sources */,
+				9AE4B0CE202BDD5400873973 /* Select.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -605,6 +691,7 @@
 		};
 		9A4E5ABC1F663B1E0084812C /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6AF947B98372906F14A79A9E /* Pods-Swift-FFDBTests.debug.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J3BJ7G2PUN;
@@ -620,6 +707,7 @@
 		};
 		9A4E5ABD1F663B1E0084812C /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 8C7E824D04CB9B22B28DA8AD /* Pods-Swift-FFDBTests.release.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				DEVELOPMENT_TEAM = J3BJ7G2PUN;

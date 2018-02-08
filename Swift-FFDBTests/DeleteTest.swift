@@ -12,7 +12,15 @@ class DeleteTest: XCTestCase {
 
     func testDeleteObject() {
         let model = TestStoreModel()
-        print(Delete().from(model.subType).whereFormat("name > \'50\'").sqlStatement!)
+       let sql1 = Delete().from(model.subType).whereFormat("name > \'50\'").sqlStatement
+        print(sql1!)
+       let sql2 = Delete().from(TestStoreModel.self).sqlStatement
+        print(sql2!)
+        do {
+            try  Delete().from(model.subType).whereFormat("name > ?").execute(database: nil, values: ["zxc"])
+        } catch  {
+            
+        }
     }
     
 

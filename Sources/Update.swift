@@ -35,7 +35,7 @@ public struct Update {
         }
     }
     
-    public  func set() -> Update {
+    public func set() -> Update {
         var update = self
         var sqlFormat = String()
         if let object = self.updateObject {
@@ -48,7 +48,7 @@ public struct Update {
         return update
     }
     
-    public  func set(_ columns:[String]) -> Update {
+    public func set(_ columns:[String]) -> Update {
         var update = self
         var sqlFormat = String()
         if let object = self.updateObject {
@@ -91,7 +91,7 @@ public struct Update {
         return try db.executeDBUpdate(sql: sql, values: update.values, shouldClose: false)
     }
     
-    func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?, update:inout Update) -> String {
+    private func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?, update:inout Update) -> String {
         
         var SQLFormat = String()
         

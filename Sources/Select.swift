@@ -7,40 +7,54 @@
 //
 
 import FMDB
-
+public enum OrderByType : String {
+    case asc = "asc"
+    case desc = "desc"
+}
 public struct Select {
+    
+
+    
     
     fileprivate var tableClass : FFObject.Type?
     fileprivate var returnType : Decodable.Type?
     private var values = [Any]()
     var sqlStatement : String?
-    public  init() {
+    public init() {
         sqlStatement = ""
         sqlStatement?.append(" select " + " * ")
     }
-    public  init(_ columns:[String]) {
+    public init(_ columns:[String]) {
         sqlStatement = ""
         sqlStatement?.append(" select " + columns.stringToColumns())
     }
-    public    func from(_ table:FFObject.Type) -> Select {
+    public func from(_ table:FFObject.Type) -> Select {
         var select = self
         select.tableClass = table
         select.sqlStatement?.append(" from " + table.tableName())
         return select
     }
-    public   func whereFormat(_ condition:String) -> Select {
+    public func whereFormat(_ condition:String) -> Select {
         var select = self
         select.sqlStatement?.append(" where " + condition + " ")
         return select
     }
     
-    public   func returnType(_ type:Decodable.Type) -> Select {
+    public func order(by condition:String,_ type:OrderByType?) -> Select {
+        var select = self
+        select.sqlStatement?.append(" order by " + condition + " " + ( type?.rawValue ?? " "))
+        return select
+    }
+    
+    public func returnType(_ type:Decodable.Type) -> Select {
         var select = self
         select.returnType = type
         return select
     }
     
-    public  func execute<T:Decodable>(database db:FMDatabase? = nil,_ type:T.Type,values valuesArray:[Any]? = nil) throws -> Array<Decodable>? {
+    public func execute<T:Decodable>(database db:FMDatabase? = nil,
+                                     _ type:T.Type,
+                                     values valuesArray:[Any]? = nil) throws -> Array<Decodable>? {
         
         guard let sql = sqlStatement else {
             assertionFailure("sql can't nil")
@@ -48,14 +62,15 @@ public struct Select {
         }
         var select = self
         if let values = valuesArray {
+            select.values = [Any]()
             for value in values {
                 select.values.append(value)
             }
         }
         guard let db = db else{
-            return try FFDB.connect.executeDBQuery(return: type.self, sql: sql, values: values, shouldClose: true)
+            return try FFDB.connect.executeDBQuery(return: type.self, sql: sql, values: select.values, shouldClose: true)
         }
-        return try db.executeDBQuery(return: type.self, sql: sql, values: values, shouldClose: false)
+        return try db.executeDBQuery(return: type.self, sql: sql, values: select.values, shouldClose: false)
     }
 }
 
