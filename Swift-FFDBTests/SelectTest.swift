@@ -16,8 +16,18 @@ class SelectTest: XCTestCase {
         let sql2 = Select().from(TestStoreModel.self).whereFormat("name != ?").order(by: "date > 0", .asc).sqlStatement!
         print(sql2)
         do {
-            try Select().from(TestStoreModel.self).whereFormat("name != 'who'").order(by: "date > 0", .asc).execute(TestStoreModel.self)
-            try Select().from(TestStoreModel.self).whereFormat("name != ?").order(by: "date > 0", .asc).execute(database: nil, TestStoreModel.self, values: ["cccc"])
+            try Select()
+                .from(TestStoreModel.self)
+                .whereFormat("name != 'who'")
+                .order(by: "date > 0", .asc)
+                .execute(TestStoreModel.self)
+            
+            
+            try Select()
+                .from(TestStoreModel.self)
+                .whereFormat("name != ?")
+                .order(by: "date > 0", .asc)
+                .execute(database: nil, TestStoreModel.self, values: ["cccc"])
         } catch  {
             
         }

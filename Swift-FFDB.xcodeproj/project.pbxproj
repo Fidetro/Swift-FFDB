@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		94ABEEBEB97D13F346FF0B03 /* Pods_Swift_FFDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8684087375A66FC5F1B455 /* Pods_Swift_FFDBTests.framework */; };
+		9A034D1E2032D5AE002365C5 /* ReadmeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A034D1D2032D5AE002365C5 /* ReadmeTests.swift */; };
+		9A034D1F2032D5E1002365C5 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A034D1A2032D4C2002365C5 /* Person.swift */; };
 		9A35162D1F491C8600571621 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162C1F491C8600571621 /* AppDelegate.swift */; };
 		9A35162F1F491C8600571621 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162E1F491C8600571621 /* ViewController.swift */; };
 		9A3516341F491C8600571621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516331F491C8600571621 /* Assets.xcassets */; };
@@ -80,10 +82,11 @@
 /* Begin PBXFileReference section */
 		078F04E326FFF12E9A37FAA4 /* Pods-Swift-FFDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDB.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDB/Pods-Swift-FFDB.release.xcconfig"; sourceTree = "<group>"; };
 		29E42EB5C8B1C25D12BE6F5D /* Pods-Swift-FFDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDB/Pods-Swift-FFDB.debug.xcconfig"; sourceTree = "<group>"; };
-		3E23C1B543AAC50123BAF7BB /* Pods-SwiftFFDB.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFFDB.release.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFFDB/Pods-SwiftFFDB.release.xcconfig"; sourceTree = "<group>"; };
 		3F1A743F2F3BC30D2060E25C /* Pods_SwiftFFDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SwiftFFDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6AF947B98372906F14A79A9E /* Pods-Swift-FFDBTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDBTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8C7E824D04CB9B22B28DA8AD /* Pods-Swift-FFDBTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDBTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests.release.xcconfig"; sourceTree = "<group>"; };
+		9A034D1A2032D4C2002365C5 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
+		9A034D1D2032D5AE002365C5 /* ReadmeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmeTests.swift; sourceTree = "<group>"; };
 		9A3516291F491C8600571621 /* Swift-FFDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-FFDB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A35162C1F491C8600571621 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A35162E1F491C8600571621 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -122,7 +125,6 @@
 		9ADA708A1FC28B42008B58B0 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		AD8684087375A66FC5F1B455 /* Pods_Swift_FFDBTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_FFDBTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B6CC94E611D8BFA62D7DEC66 /* Pods_Swift_FFDB.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Swift_FFDB.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		E4224232E6F75B829F6DB32E /* Pods-SwiftFFDB.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SwiftFFDB.debug.xcconfig"; path = "Pods/Target Support Files/Pods-SwiftFFDB/Pods-SwiftFFDB.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -150,8 +152,6 @@
 			children = (
 				29E42EB5C8B1C25D12BE6F5D /* Pods-Swift-FFDB.debug.xcconfig */,
 				078F04E326FFF12E9A37FAA4 /* Pods-Swift-FFDB.release.xcconfig */,
-				E4224232E6F75B829F6DB32E /* Pods-SwiftFFDB.debug.xcconfig */,
-				3E23C1B543AAC50123BAF7BB /* Pods-SwiftFFDB.release.xcconfig */,
 				6AF947B98372906F14A79A9E /* Pods-Swift-FFDBTests.debug.xcconfig */,
 				8C7E824D04CB9B22B28DA8AD /* Pods-Swift-FFDBTests.release.xcconfig */,
 			);
@@ -215,6 +215,8 @@
 				9AD6145A1F9096BB009DB6FA /* SelectTest.swift */,
 				9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */,
 				9AAB28051F760D4D0043DCA7 /* TestStoreModel.swift */,
+				9A034D1A2032D4C2002365C5 /* Person.swift */,
+				9A034D1D2032D5AE002365C5 /* ReadmeTests.swift */,
 			);
 			path = "Swift-FFDBTests";
 			sourceTree = "<group>";
@@ -503,6 +505,7 @@
 				9AAB28061F760D4D0043DCA7 /* TestStoreModel.swift in Sources */,
 				9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */,
 				9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */,
+				9A034D1E2032D5AE002365C5 /* ReadmeTests.swift in Sources */,
 				9AD6145B1F9096BB009DB6FA /* SelectTest.swift in Sources */,
 				9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */,
 				9AE4B0C8202BDC0C00873973 /* FFDB+Extension.swift in Sources */,
@@ -515,6 +518,7 @@
 				9AE4B0C7202BDC0A00873973 /* FFDB.swift in Sources */,
 				9AE4B0CC202BDD4E00873973 /* FFDBTransaction.swift in Sources */,
 				9AE4B0C9202BDCB300873973 /* FMDBConnect.swift in Sources */,
+				9A034D1F2032D5E1002365C5 /* Person.swift in Sources */,
 				9AE4B0D2202BDD5D00873973 /* Delete.swift in Sources */,
 				9AE4B0CE202BDD5400873973 /* Select.swift in Sources */,
 			);
