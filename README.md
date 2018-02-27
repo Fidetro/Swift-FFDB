@@ -2,7 +2,7 @@
 # SwiftFFDB
 
 ![image](https://github.com/Fidetro/SwiftFFDB/blob/master/src/logo.png)  
-SwiftFFDB is a Object/Relational Mapping (ORM) support to iOS and Perfect-Server library.Since SwiftFFDB is build on top of FFDB.  
+SwiftFFDB is a Object/Relational Mapping (ORM) support to iOS and Perfect-Server library.Since SwiftFFDB is build on top of FMDB.  
 if you use Objective-C,you can use [FFDB](https://github.com/fidetro/ffdb)  
 
 # Requirements
