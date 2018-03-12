@@ -52,10 +52,18 @@ public protocol FFObject:FIDRuntime,Decodable {
     @discardableResult
     static func update(set setFormat:String,where condition:String?,values:[Any]?) throws -> Bool
     
-    @discardableResult func insert() -> Bool
-    @discardableResult func update() -> Bool
-    @discardableResult func update(set condition:String,values:[Any]?) -> Bool
-    @discardableResult func delete() -> Bool
+    @discardableResult
+    func insert() -> Bool
+    
+    @discardableResult
+    func update() -> Bool
+    
+    @discardableResult
+    func update(set condition:String,values:[Any]?) -> Bool
+    
+    @discardableResult
+    func delete() -> Bool
+    
     static func columnsType() -> [String:String]
     
     /// like Objective-C - (void)valueForKey: but alway return isn't nil

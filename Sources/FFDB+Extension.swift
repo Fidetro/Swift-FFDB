@@ -70,7 +70,8 @@ extension FFObject {
         }
     }
     
-    @discardableResult public func insert() -> Bool {
+    @discardableResult
+    public func insert() -> Bool {
         do {
             return try FFDBManager.insert(self)
         } catch {
@@ -79,7 +80,8 @@ extension FFObject {
         }
     }
     
-    @discardableResult  public  func update() -> Bool {
+    @discardableResult
+    public func update() -> Bool {
         do {
             return try FFDBManager.update(self)
         } catch {
@@ -88,7 +90,8 @@ extension FFObject {
         }
     }
     
-    @discardableResult  public func update(set condition:String,values:[Any]? = nil) -> Bool {
+    @discardableResult
+    public func update(set condition:String,values:[Any]? = nil) -> Bool {
         do {
             if let primaryID = self.primaryID  {
                 return try FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'", values: values)
@@ -102,7 +105,8 @@ extension FFObject {
         }
     }
     
-    @discardableResult public  func delete() -> Bool {
+    @discardableResult
+    public func delete() -> Bool {
         do {
             return try FFDBManager.delete(self)
         } catch {
