@@ -12,7 +12,7 @@ class InsertTest: XCTestCase {
     
     func testInsertTestStore() {
         
-       let sql1 = Insert().into(TestStoreModel.self).sqlStatement!
+        let sql1 = Insert().into(TestStoreModel.self).sqlStatement!
         print(sql1)
         let sql2 = Insert().into(TestStoreModel.self).columns(TestStoreModel.self).sqlStatement!
         print(sql2)
@@ -25,9 +25,9 @@ class InsertTest: XCTestCase {
         let sql6 = Insert().into(TestStoreModel.self).columns(["name"]).values([1234]).sqlStatement!
         print(sql6)
         do {
-            try Insert().into(TestStoreModel.self).columns(["name"]).values(["zccx"]).execute()
+            let _ = try Insert().into(TestStoreModel.self).columns(["name"]).values(["zccx"]).execute()
             
-           try Insert().into(TestStoreModel.self).columns(["name"]).values([1234]).execute()
+            let _ = try Insert().into(TestStoreModel.self).columns(["name"]).values([1234]).execute()
         } catch  {
             
         }
@@ -38,5 +38,5 @@ class InsertTest: XCTestCase {
     
     
     
-
+    
 }

@@ -16,17 +16,17 @@ class ReadmeTests: XCTestCase {
     }
     
     func testReadme() {
-        var person = Person()
+        let person = Person()
         person.name = "fidetro"
         person.insert()
         // find all Object
-        guard   let persons1 = Person.select(where: nil) as! [Person]? else {
+        guard   let _ = Person.select(where: nil) as! [Person]? else {
             // no object in database
             return
         }
         
         // find name is 'fidetro'
-        guard   let persons2 = Person.select(where: "name = 'fidetro'") as! [Person]? else {
+        guard   let _ = Person.select(where: "name = 'fidetro'") as! [Person]? else {
             // no object in database
             return
         }

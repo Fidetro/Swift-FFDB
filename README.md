@@ -1,9 +1,14 @@
 
-# SwiftFFDB
+# SwiftFFDB  
+### [中文文档](https://github.com/Fidetro/Swift-FFDB/blob/master/README_zh-cn.md)
+
 
 ![image](https://github.com/Fidetro/SwiftFFDB/blob/master/src/logo.png)  
-SwiftFFDB is a Object/Relational Mapping (ORM) support to iOS and Perfect-Server library.Since SwiftFFDB is build on top of FFDB.  
+SwiftFFDB is a Object/Relational Mapping (ORM) support to iOS and Perfect-Server library.Since SwiftFFDB is build on top of [FMDB](https://github.com/ccgus/fmdb).  
 if you use Objective-C,you can use [FFDB](https://github.com/fidetro/ffdb)  
+
+# Wiki
+More examples of usage in the [wiki](https://github.com/Fidetro/Swift-FFDB/wiki)(unfinished)
 
 # Requirements
 ## iOS
@@ -12,7 +17,7 @@ if you use Objective-C,you can use [FFDB](https://github.com/fidetro/ffdb)
 * depend [FMDB](https://github.com/ccgus/fmdb)
 
 ## Perfect-Swift-Server
-* Build  Swift4.0 releases toolchain   
+* Build  Swift4.0.3 releases toolchain   
 * Perfect-Server v3
 * depend [PerfectMySQL](https://github.com/PerfectlySoft/Perfect-MySQL)
 
@@ -20,7 +25,7 @@ if you use Objective-C,you can use [FFDB](https://github.com/fidetro/ffdb)
 ## CocoaPod
 SwiftFFDB can be installed using CocoaPod
 ```
-vim Podfile
+$ vim Podfile
 ```
 Then,edit the Podfile,add SwiftFFDB:
 ```

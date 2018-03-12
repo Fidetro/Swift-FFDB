@@ -17,7 +17,7 @@ class DeleteTest: XCTestCase {
        let sql2 = Delete().from(TestStoreModel.self).sqlStatement
         print(sql2!)
         do {
-            try  Delete().from(model.subType).whereFormat("name > ?").execute(database: nil, values: ["zxc"])
+         let _ =  try  Delete().from(model.subType).whereFormat("name > ?").execute(database: nil, values: ["zxc"])
         } catch  {
             
         }

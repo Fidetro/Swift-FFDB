@@ -10,7 +10,7 @@ import XCTest
 
 class UpdateTest: XCTestCase {
     
- 
+    
     func testUpdateObject() {
         var object = TestStoreModel()
         object.name = "zzcaa"
@@ -24,9 +24,9 @@ class UpdateTest: XCTestCase {
         print(sql4)
         
         do {
-            try Update(object).set().execute()
-            try Update(object).set(["name"]).execute()
-            try Update(object).set("name = 'zxccs'").execute()
+            let _ = try Update(object).set().execute()
+            let _ = try Update(object).set(["name"]).execute()
+            let _ = try Update(object).set("name = 'zxccs'").execute()
         } catch  {
             
         }
@@ -45,19 +45,19 @@ class UpdateTest: XCTestCase {
         let sql4 = Update(TestStoreModel.self).set("name = 'zxccs'").sqlStatement!
         print(sql4)
         do {
-            try Update(TestStoreModel.self).set().execute()
-            try Update(TestStoreModel.self).set(["name"]).execute()
-            try Update(TestStoreModel.self).set("name = 'zxccs'").execute()
+            let _ =  try Update(TestStoreModel.self).set().execute()
+            let _ =  try Update(TestStoreModel.self).set(["name"]).execute()
+            let _ =  try Update(TestStoreModel.self).set("name = 'zxccs'").execute()
         } catch  {
             
         }
     }
- 
+    
     func testUpdateUnfind() {
         var object = TestStoreModel()
         object.name = "zzcaa"
         let sql4 = Update(object).set(["unfind"]).sqlStatement!
         print(sql4)
     }
-
+    
 }
