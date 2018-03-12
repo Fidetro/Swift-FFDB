@@ -38,7 +38,20 @@ public protocol FFObject:FIDRuntime,Decodable {
     var primaryID : Int64? {get}
     
     static func registerTable()
-    static func select(where condition:String?,values:[Any]?) -> Array<FFObject>?
+    static func select(where condition:String?,
+                       values:[Any]?,
+                       orderBy orderCondition:String?,
+                       orderByType:OrderByType?) -> [FFObject]?
+    
+    @discardableResult
+    static func delete(where condition:String?,values:[Any]?) -> Bool
+    
+    @discardableResult
+    static func insert(_ columns:[String],values:[Any]) -> Bool
+    
+    @discardableResult
+    static func update(set setFormat:String,where condition:String?,values:[Any]?) throws -> Bool
+    
     @discardableResult func insert() -> Bool
     @discardableResult func update() -> Bool
     @discardableResult func update(set condition:String,values:[Any]?) -> Bool

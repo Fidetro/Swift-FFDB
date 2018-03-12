@@ -23,15 +23,54 @@ extension FFObject {
 
 // MARK: - sql
 extension FFObject {
-    public  static func select(where condition:String?,values:[Any]? = nil) -> Array<FFObject>? {
+    
+    public static func select(where condition:String?,
+                                   values:[Any]?,
+                                   orderBy orderCondition:String?=nil,
+                                   orderByType:OrderByType?=nil) -> [FFObject]?{
         do {
-            return try FFDBManager.select(self, nil, where: condition, values: values) as! Array<FFObject>?
+            return try FFDBManager.select(self, nil, where: condition, values: values, orderBy: orderCondition, orderByType: orderByType) as? [FFObject]
         } catch {
             printDebugLog("failed: \(error.localizedDescription)")
             return nil
         }
     }
-    @discardableResult  public func insert() -> Bool {
+    
+    @discardableResult
+    static func delete(where condition:String?,
+                       values:[Any]?) -> Bool {
+        do {
+            return try FFDBManager.delete(self, where: condition, values: values)
+        } catch  {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    @discardableResult
+    static func insert(_ columns:[String],
+                       values:[Any]) -> Bool {
+        do {
+            return try FFDBManager.insert(self, columns, values: values)
+        } catch {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    @discardableResult
+    static func update(set setFormat:String,
+                       where condition:String?,
+                       values:[Any]?=nil) throws -> Bool {
+        do {
+            return try FFDBManager.update(self, set: setFormat, where: condition, values: values)
+        } catch  {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
+    }
+    
+    @discardableResult public func insert() -> Bool {
         do {
             return try FFDBManager.insert(self)
         } catch {
@@ -49,7 +88,7 @@ extension FFObject {
         }
     }
     
-    @discardableResult  public  func update(set condition:String,values:[Any]? = nil) -> Bool {
+    @discardableResult  public func update(set condition:String,values:[Any]? = nil) -> Bool {
         do {
             if let primaryID = self.primaryID  {
                 return try FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'", values: values)
