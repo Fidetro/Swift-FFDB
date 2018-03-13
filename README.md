@@ -3,7 +3,9 @@
 ### [中文文档](https://github.com/Fidetro/Swift-FFDB/blob/master/README_zh-cn.md)
 
 
-![image](https://github.com/Fidetro/SwiftFFDB/blob/master/src/logo.png)  
+![](https://github.com/Fidetro/SwiftFFDB/blob/master/src/logo.png)  
+![](https://img.shields.io/github/license/Fidetro/Swift-FFDB.svg) ![](https://img.shields.io/badge/language-swift-orange.svg) [![](https://img.shields.io/cocoapods/v/SwiftFFDB.svg)](https://cocoapods.org/pods/SwiftFFDB) [![](https://img.shields.io/badge/weibo-@fidetro_师霖风-red.svg)](https://weibo.com/u/2095454814)  
+
 SwiftFFDB is a Object/Relational Mapping (ORM) support to iOS and Perfect-Server library.Since SwiftFFDB is build on top of [FMDB](https://github.com/ccgus/fmdb).  
 if you use Objective-C,you can use [FFDB](https://github.com/fidetro/ffdb)  
 

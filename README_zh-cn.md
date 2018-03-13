@@ -1,7 +1,8 @@
 
 # SwiftFFDB
 
-![image](https://github.com/Fidetro/SwiftFFDB/blob/master/src/logo.png)  
+![](https://github.com/Fidetro/SwiftFFDB/blob/master/src/logo.png)  
+![](https://img.shields.io/github/license/Fidetro/Swift-FFDB.svg) ![](https://img.shields.io/badge/language-swift-orange.svg) [![](https://img.shields.io/cocoapods/v/SwiftFFDB.svg)](https://cocoapods.org/pods/SwiftFFDB) [![](https://img.shields.io/badge/weibo-@fidetro_师霖风-red.svg)](https://weibo.com/u/2095454814)  
 
 SwiftFFDB是一个ORM数据库，它支持在iOS和Perfect-Server上使用，SwiftFFDB是基于`FMDB`构建的。  
 如果你使用的是`Objective-C`,你可以尝试使用[FFDB](https://github.com/fidetro/ffdb)    
