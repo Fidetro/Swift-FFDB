@@ -27,7 +27,7 @@ extension FFObject {
     public static func select(where condition:String?,
                                    values:[Any]?,
                                    orderBy orderCondition:String?=nil,
-                                   orderByType:OrderByType?=nil) -> [FFObject]?{
+                                   orderByType:OrderByType?=nil) -> [FFObject]? {
         do {
             return try FFDBManager.select(self, nil, where: condition, values: values, orderBy: orderCondition, orderByType: orderByType) as? [FFObject]
         } catch {
