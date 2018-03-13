@@ -24,8 +24,8 @@ extension FFObject {
 // MARK: - sql
 extension FFObject {
     
-    public static func select(where condition:String?,
-                                   values:[Any]?,
+    public static func select(where condition:String?=nil,
+                                   values:[Any]?=nil,
                                    orderBy orderCondition:String?=nil,
                                    orderByType:OrderByType?=nil) -> [FFObject]? {
         do {
@@ -37,8 +37,8 @@ extension FFObject {
     }
     
     @discardableResult
-    static func delete(where condition:String?,
-                       values:[Any]?) -> Bool {
+    static func delete(where condition:String?=nil,
+                       values:[Any]?=nil) -> Bool {
         do {
             return try FFDBManager.delete(self, where: condition, values: values)
         } catch  {
@@ -61,7 +61,7 @@ extension FFObject {
     @discardableResult
     static func update(set setFormat:String,
                        where condition:String?,
-                       values:[Any]?=nil) throws -> Bool {
+                       values:[Any]?=nil) -> Bool {
         do {
             return try FFDBManager.update(self, set: setFormat, where: condition, values: values)
         } catch  {

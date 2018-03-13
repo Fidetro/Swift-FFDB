@@ -10,6 +10,7 @@
 		94ABEEBEB97D13F346FF0B03 /* Pods_Swift_FFDBTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = AD8684087375A66FC5F1B455 /* Pods_Swift_FFDBTests.framework */; };
 		9A034D1E2032D5AE002365C5 /* ReadmeTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A034D1D2032D5AE002365C5 /* ReadmeTests.swift */; };
 		9A034D1F2032D5E1002365C5 /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A034D1A2032D4C2002365C5 /* Person.swift */; };
+		9A28D7892057CBCB005758B9 /* ProtocolTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A28D7882057CBCB005758B9 /* ProtocolTests.swift */; };
 		9A35162D1F491C8600571621 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162C1F491C8600571621 /* AppDelegate.swift */; };
 		9A35162F1F491C8600571621 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162E1F491C8600571621 /* ViewController.swift */; };
 		9A3516341F491C8600571621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516331F491C8600571621 /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		8C7E824D04CB9B22B28DA8AD /* Pods-Swift-FFDBTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Swift-FFDBTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests.release.xcconfig"; sourceTree = "<group>"; };
 		9A034D1A2032D4C2002365C5 /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		9A034D1D2032D5AE002365C5 /* ReadmeTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadmeTests.swift; sourceTree = "<group>"; };
+		9A28D7882057CBCB005758B9 /* ProtocolTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProtocolTests.swift; sourceTree = "<group>"; };
 		9A3516291F491C8600571621 /* Swift-FFDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-FFDB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A35162C1F491C8600571621 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A35162E1F491C8600571621 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -217,6 +219,7 @@
 				9AAB28051F760D4D0043DCA7 /* TestStoreModel.swift */,
 				9A034D1A2032D4C2002365C5 /* Person.swift */,
 				9A034D1D2032D5AE002365C5 /* ReadmeTests.swift */,
+				9A28D7882057CBCB005758B9 /* ProtocolTests.swift */,
 			);
 			path = "Swift-FFDBTests";
 			sourceTree = "<group>";
@@ -511,6 +514,7 @@
 				9AE4B0C8202BDC0C00873973 /* FFDB+Extension.swift in Sources */,
 				9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */,
 				9AE4B0D1202BDD5B00873973 /* Create.swift in Sources */,
+				9A28D7892057CBCB005758B9 /* ProtocolTests.swift in Sources */,
 				9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */,
 				9AE4B0CF202BDD5600873973 /* Update.swift in Sources */,
 				9AE4B0D0202BDD5800873973 /* Alter.swift in Sources */,

@@ -93,11 +93,14 @@ person.insert()
 ## Select  
 查询表中的数据：
 ```
-// find all Object
+// 查找所有数据
 Person.select(where: nil)
-// find name is 'fidetro' 
+// 查找name为 'fidetro' 
 Person.select(where: "name = 'fidetro'")
 ```
+## Update
+// 把name为'fidetro'改成'ffdb'
+Person.update(set: "name = ?", where: "name = ?", values: ["ffdb","fidetro"])
 ## Delete  
 删除表中的数据：
 ```

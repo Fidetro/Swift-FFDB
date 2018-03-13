@@ -6,12 +6,13 @@
 //  Copyright © 2018 Fidetro. All rights reserved.
 //
 
-
+import Foundation
 
 class Person: FFObject {
 
     var primaryID: Int64?
     var name : String?
+    var birthday : Date?
     
     required init() {
         

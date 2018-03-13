@@ -98,6 +98,9 @@ Person.select(where: nil)
 // find name is 'fidetro' 
 Person.select(where: "name = 'fidetro'")
 ```
+## Update
+// update name is 'fidetro' to 'ffdb'
+Person.update(set: "name = ?", where: "name = ?", values: ["ffdb","fidetro"])
 ## Delete
 ```
 // find name is 'fidetro' 
