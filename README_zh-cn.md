@@ -3,8 +3,8 @@
 
 ![image](https://github.com/Fidetro/SwiftFFDB/blob/master/src/logo.png)  
 
-SwiftFFDB是一个ORM数据库，它支持在iOS和Perfect-Server上使用，SwiftFFDB是基于`FMDB`构建的。  
-如果你使用的是`Objective-C`,你可以尝试使用[FFDB](https://github.com/fidetro/ffdb)    
+SwiftFFDB是一个ORM数据库，它支持在iOS和Perfect-Server上使用，SwiftFFDB是基于`FMDB`构建的。  
+如果你使用的是`Objective-C`,你可以尝试使用[FFDB](https://github.com/fidetro/ffdb)    
 
 # Wiki
 [Wiki](https://github.com/Fidetro/Swift-FFDB/wiki)中有更多使用的例子(还没完成)  
