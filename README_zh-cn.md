@@ -99,8 +99,10 @@ Person.select(where: nil)
 Person.select(where: "name = 'fidetro'")
 ```
 ## Update
+```
 // 把name为'fidetro'改成'ffdb'
 Person.update(set: "name = ?", where: "name = ?", values: ["ffdb","fidetro"])
+```
 ## Delete  
 删除表中的数据：
 ```
