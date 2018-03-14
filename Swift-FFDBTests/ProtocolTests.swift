@@ -22,16 +22,17 @@ class ProtocolTests: XCTestCase {
         person7.name = "7"
         person7.insert()
     }
+    
     func testProtocolSelectAll() {
-
         guard let modelList = Person.select() as? [Person]  else {
             XCTFail()
             return
         }
         for model in modelList {
-            print(model.name)
+            print(model.name ?? "null")
         }
     }
+    
     func testProtocolUpdate() {
         Person.update(set: "name = ?", where: "name = ?", values: ["4","2"])
         testProtocolSelectAll()
@@ -50,7 +51,7 @@ class ProtocolTests: XCTestCase {
             return
         }
         for model in modelList {
-            print(model.birthday)
+            print(model.birthday ?? "null")
         }
     }
     

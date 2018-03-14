@@ -115,7 +115,8 @@ also you can:
 ```
 FFDBManager.delete(Person.self, where: "name = 'fidetro'")
 ```  
-
+# Architecture
+![](https://github.com/Fidetro/Swift-FFDB/blob/master/src/architecture.png)
 
 # Support
 `SwiftFFDB` is a personal open source project,but I happy to answer questions in [Issues](https://github.com/Fidetro/SwiftFFDB/issues) or email to zykzzzz@hotmail.com

@@ -117,6 +117,8 @@ for (let person in personList){
 FFDBManager.delete(Person.self, where: "name = 'fidetro'")
 ```  
 
+# Architecture
+![](https://github.com/Fidetro/Swift-FFDB/blob/master/src/architecture.png)
 
 # Support
 `SwiftFFDB`是我个人的开源项目，如果有什么问题，可以在[Issues](https://github.com/Fidetro/SwiftFFDB/issues)提问或者邮件给我zykzzzz@hotmail.com

@@ -15,10 +15,16 @@ class ManagerTestModel: NSObject,Decodable {
     }
 }
 class FFDBManagerTest: XCTestCase {
+
     
- 
+    func testManager() {
+        insert()
+        select()
+        update()
+        delete()
+    }
     
-    func testInsert()  {
+    func insert()  {
         Person.registerTable()
         let person1 = Person.init()
         person1.name = "1"
@@ -36,7 +42,7 @@ class FFDBManagerTest: XCTestCase {
         }
     }
     
-    func testSelect() {
+    func select() {
         Person.registerTable()
         do{
             let totalCount = try FFDBManager.select(Person.self)?.count
@@ -57,13 +63,48 @@ class FFDBManagerTest: XCTestCase {
         }
     }
     
-    func testUpdate() {
-        
-        
+    func update() {
+        Person.registerTable()
+        do{
+        try FFDBManager.update(Person.self, set: "name = ?", where: "name == ?",values:["6","2"])
+            guard let list = try FFDBManager.select(Person.self) as? [Person] else {
+                XCTFail()
+                return
+            }
+            for model in list {
+                if model.name == "2" {
+                    XCTFail()
+                }
+            }
+        }catch{
+            print(error)
+            XCTFail()
+        }
     }
     
-    func testDelete() {
-        
+    func delete() {
+        Person.registerTable()
+        do{
+            guard let modelList = try FFDBManager.select(Person.self) as? [Person] else {
+                XCTFail()
+                return
+            }
+            print(modelList)
+            
+            try FFDBManager.delete(Person.self, where: "name = ?", values: ["6"])
+            guard let list = try FFDBManager.select(Person.self) as? [Person] else {
+                XCTFail()
+                return
+            }
+            for model in list {
+                if model.name == "6" {
+                    XCTFail()
+                }
+            }
+        }catch{
+            print(error)
+            XCTFail()
+        }
     }
     
 }

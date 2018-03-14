@@ -14,6 +14,7 @@ import Foundation
 
 
 extension FFObject {
+    
     public static  func tableName() -> String {
         let tableName = self.className().replacingOccurrences(of: ".Type", with: "")
         return tableName
