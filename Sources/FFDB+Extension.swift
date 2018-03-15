@@ -38,7 +38,7 @@ extension FFObject {
     }
     
     @discardableResult
-    static func delete(where condition:String?=nil,
+    public static func delete(where condition:String?=nil,
                        values:[Any]?=nil) -> Bool {
         do {
             return try FFDBManager.delete(self, where: condition, values: values)
@@ -49,7 +49,7 @@ extension FFObject {
     }
     
     @discardableResult
-    static func insert(_ columns:[String],
+    public static func insert(_ columns:[String],
                        values:[Any]) -> Bool {
         do {
             return try FFDBManager.insert(self, columns, values: values)
@@ -60,7 +60,7 @@ extension FFObject {
     }
     
     @discardableResult
-    static func update(set setFormat:String,
+    public static func update(set setFormat:String,
                        where condition:String?,
                        values:[Any]?=nil) -> Bool {
         do {

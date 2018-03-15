@@ -52,7 +52,7 @@ public protocol FFObject:FIDRuntime,Decodable {
     static func insert(_ columns:[String],values:[Any]) -> Bool
     
     @discardableResult
-    static func update(set setFormat:String,where condition:String?,values:[Any]?) throws -> Bool
+    static func update(set setFormat:String,where condition:String?,values:[Any]?) -> Bool
     
     @discardableResult
     func insert() -> Bool
