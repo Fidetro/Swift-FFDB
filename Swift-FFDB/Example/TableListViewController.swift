@@ -16,6 +16,7 @@ class TableListViewController: UIViewController,UITableViewDelegate,UITableViewD
         registerTable()
         tableView.delegate = self
         tableView.dataSource = self
+
     }
     
     func registerTable() {

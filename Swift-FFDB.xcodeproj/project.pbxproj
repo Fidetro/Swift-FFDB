@@ -15,6 +15,8 @@
 		9A35162F1F491C8600571621 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162E1F491C8600571621 /* ViewController.swift */; };
 		9A3516341F491C8600571621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516331F491C8600571621 /* Assets.xcassets */; };
 		9A3516371F491C8600571621 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516351F491C8600571621 /* LaunchScreen.storyboard */; };
+		9A44A7EA2068BEDD00FB7937 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44A7E92068BEDD00FB7937 /* DataModel.swift */; };
+		9A44A7EC2068BF5100FB7937 /* DataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44A7EB2068BF5100FB7937 /* DataTest.swift */; };
 		9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */; };
 		9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5ABE1F663B300084812C /* InsertTest.swift */; };
 		9A5056D21F9C317F0071DAF2 /* Alter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056C61F9C317F0071DAF2 /* Alter.swift */; };
@@ -95,6 +97,8 @@
 		9A3516331F491C8600571621 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A3516361F491C8600571621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A3516381F491C8600571621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A44A7E92068BEDD00FB7937 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
+		9A44A7EB2068BF5100FB7937 /* DataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTest.swift; sourceTree = "<group>"; };
 		9A4E5AAF1F663AEC0084812C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
 		9A4E5AB41F663B1E0084812C /* Swift-FFDBTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "Swift-FFDBTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Swift_FFDBTests.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				9A034D1A2032D4C2002365C5 /* Person.swift */,
 				9A034D1D2032D5AE002365C5 /* ReadmeTests.swift */,
 				9A28D7882057CBCB005758B9 /* ProtocolTests.swift */,
+				9A44A7EB2068BF5100FB7937 /* DataTest.swift */,
+				9A44A7E92068BEDD00FB7937 /* DataModel.swift */,
 			);
 			path = "Swift-FFDBTests";
 			sourceTree = "<group>";
@@ -522,9 +528,11 @@
 				9AE4B0C7202BDC0A00873973 /* FFDB.swift in Sources */,
 				9AE4B0CC202BDD4E00873973 /* FFDBTransaction.swift in Sources */,
 				9AE4B0C9202BDCB300873973 /* FMDBConnect.swift in Sources */,
+				9A44A7EC2068BF5100FB7937 /* DataTest.swift in Sources */,
 				9A034D1F2032D5E1002365C5 /* Person.swift in Sources */,
 				9AE4B0D2202BDD5D00873973 /* Delete.swift in Sources */,
 				9AE4B0CE202BDD5400873973 /* Select.swift in Sources */,
+				9A44A7EA2068BEDD00FB7937 /* DataModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
