@@ -139,50 +139,31 @@ extension FFObject {
         for case let (label?, value) in mirror.children {
             
             let valueMirror  = Mirror(reflecting: value)
-            #if os(Linux)
-                
-            #else
-                switch valueMirror.subjectType {
-                case is Date.Type:
-                    columnsType[label] = "double"
-                    continue
-                case is Optional<Date>.Type:
-                    columnsType[label] = "double"
-                    continue
-                default:
-                    break
-                }
-            #endif
             switch valueMirror.subjectType {
-                
-                
-                
+            case is Data.Type:
+                columnsType[label] = "blob"
+            case is Optional<Data>.Type:
+                columnsType[label] = "blob"
+            case is Date.Type:
+                columnsType[label] = "double"
+            case is Optional<Date>.Type:
+                columnsType[label] = "double"
             case is String.Type:
                 columnsType[label] = "text"
-                break
             case is Optional<String>.Type:
                 columnsType[label] = "text"
-                break
-                
             case is Float.Type:
                 columnsType[label] = "float"
-                break
             case is Optional<Float>.Type:
                 columnsType[label] = "float"
-                break
             case is Float32.Type:
                 columnsType[label] = "float"
-                break
             case is Optional<Float32>.Type:
                 columnsType[label] = "float"
-                break
             case is Float64.Type:
                 columnsType[label] = "float"
-                break
             case is Optional<Float64>.Type:
                 columnsType[label] = "float"
-                break
-                
                 // check https://forums.developer.apple.com/thread/5026
                 //            case is Float80.Type:
                 //                columnsType[label] = "float"
@@ -193,49 +174,34 @@ extension FFObject {
                 
             case is Double.Type:
                 columnsType[label] = "double"
-                break
             case is Optional<Double>.Type:
                 columnsType[label] = "double"
-                break
             case is Int.Type:
                 columnsType[label] = "integer"
-                break
             case is Optional<Int>.Type:
                 columnsType[label] = "integer"
-                break
             case is Int8.Type:
                 columnsType[label] = "integer"
-                break
             case is Optional<Int8>.Type:
                 columnsType[label] = "integer"
-                break
             case is Int16.Type:
                 columnsType[label] = "integer"
-                break
             case is Optional<Int16>.Type:
                 columnsType[label] = "integer"
-                break
             case is Int32.Type:
                 columnsType[label] = "integer"
-                break
             case is Optional<Int32>.Type:
                 columnsType[label] = "integer"
-                break
             case is Int64.Type:
                 columnsType[label] = "integer"
-                break
             case is Optional<Int64>.Type:
                 columnsType[label] = "integer"
-                break
             case is Bool.Type:
                 columnsType[label] = "integer"
-                break
             case is Optional<Bool>.Type:
                 columnsType[label] = "Bool"
-                break
             default:
                 columnsType[label] = "text"
-                break
             }
         }
         return columnsType

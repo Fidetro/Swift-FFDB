@@ -61,11 +61,28 @@ extension FMDatabase {
             return false
         }
         
-            try self.executeUpdate(sql, values: values)
+        guard var values = values else {
+            try self.executeUpdate(sql, values: nil)
             if shouldClose == true {
                 self.close()
             }
             return true
+            
+        }
+        
+        values = values.map { (ele) -> Any in
+            if let data = ele as? Data {
+                return data.base64EncodedString()
+            }
+            return ele
+        }
+        
+        try self.executeUpdate(sql, values: values)
+        if shouldClose == true {
+            self.close()
+        }
+        return true
+        
         
     }
 
@@ -80,10 +97,11 @@ extension FMDatabase {
             while result.next() {
                 if let dict =  result.resultDictionary {
                     
-                    let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .init(rawValue: 0))
-                    do{
+                    let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+                    do{                        
                         let decoder = JSONDecoder()
                         decoder.dateDecodingStrategy = .secondsSince1970
+                        decoder.dataDecodingStrategy = .base64
                         let model = try decoder.decode(type, from: jsonData)
                         modelArray.append(model)
                     }catch{
