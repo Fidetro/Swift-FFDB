@@ -1,0 +1,48 @@
+Last login: Tue Mar 27 20:31:42 on ttys000
+MacdeMacBook-Pro:~ Fidetro$ cd /Users/mac/Desktop/Obj/iOS-PetDay/
+MacdeMacBook-Pro:iOS-PetDay Fidetro$ ls
+Podfile.lock		file.sketch		iOS-PetDayTests
+Pods			iOS-PetDay		podfile
+TODO.md			iOS-PetDay.xcodeproj	src
+document		iOS-PetDay.xcworkspace
+MacdeMacBook-Pro:iOS-PetDay Fidetro$ vim .git
+.git/       .gitignore  
+MacdeMacBook-Pro:iOS-PetDay Fidetro$ vim .git
+.git/       .gitignore  
+MacdeMacBook-Pro:iOS-PetDay Fidetro$ vim .git
+.git/       .gitignore  
+MacdeMacBook-Pro:iOS-PetDay Fidetro$ vim .gitignore 
+
+
+
+
+
+
+
+
+
+
+
+# Xcode
+#
+# gitignore contributors: remember to update Global/Xcode.gitignore, Objective-C.gitignore & Swift.gitignore
+
+## Build generated
+build/
+DerivedData/
+
+## Various settings
+*.pbxuser
+!default.pbxuser
+*.mode1v3
+!default.mode1v3
+*.mode2v3
+!default.mode2v3
+*.perspectivev3
+!default.perspectivev3
+xcuserdata/
+
+## Other
+*.moved-aside
+".gitignore" 69L, 1468C
+
