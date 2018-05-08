@@ -10,28 +10,13 @@ import UIKit
 
 
 struct FFShop :FFObject {
+    
     var primaryID: Int64?
-    
-    static func memoryPropertys() -> [String]? {
-        return nil
-    }
-    
-    static func customColumnsType() -> [String : String]? {
-        return nil
-    }
-    
-    static func customColumns() -> [String : String]? {
-        return nil
-    }
-    
     var name : String?
     var creatTime : Date?
     var address = String()
     var  test: Float?
-}
-
-struct FFGood :FFObject {
-    var primaryID: Int64?
+    
     static func memoryPropertys() -> [String]? {
         return nil
     }
@@ -44,7 +29,33 @@ struct FFGood :FFObject {
         return nil
     }
     
+    static func autoincrementColumn() -> String? {
+        return "primaryID"
+    }
+    
+
+}
+
+struct FFGood :FFObject {
+    var primaryID: Int64?
     var goodName : String?
     var creatTime : Date?
     var price = Float()
+    
+    static func memoryPropertys() -> [String]? {
+        return nil
+    }
+    
+    static func autoincrementColumn() -> String? {
+        return "primaryID"
+    }
+    
+    static func customColumnsType() -> [String : String]? {
+        return nil
+    }
+    
+    static func customColumns() -> [String : String]? {
+        return nil
+    }
+    
 }

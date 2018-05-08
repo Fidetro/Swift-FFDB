@@ -44,7 +44,7 @@ public struct Insert {
     }
     
     public  func columns(_ table:FFObject.Type) -> Insert {
-        return self.columns(table.columnsOfSelf())
+        return columns(table.columnsOfSelf())
     }
     
     public   func values(_ valuesArray:[Any]) -> Insert {

@@ -51,6 +51,9 @@ class FFDBManagerTest: XCTestCase {
             XCTAssertTrue(2 == count2)
             let count4 = try FFDBManager.select(Person.self, nil, where: "name = ?", values: ["4"])?.count
             XCTAssertTrue(1 == count4)
+            
+//            let a = FFDBManager.select(Person.self, ["name"], where: "name = 3",return:ManagerTestModel.self)
+            
             guard let model = try FFDBManager.select(Person.self, ["name"], where: "name = 3",return:ManagerTestModel.self)?.first as! ManagerTestModel? else {
                 XCTFail()
                 return

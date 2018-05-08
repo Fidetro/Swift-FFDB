@@ -11,29 +11,25 @@ struct Create {
     var sqlStatement : String?
 
     init(_ table:FFObject.Type) {
-        tableClass = table
-        #if os(iOS)
+        tableClass = table        
             sqlStatement = (" create table if  not exists \(table.tableName()) (\(createTableSQL(table: table)))")
-        #else
-            sqlStatement = (" create table if  not exists \(table.tableName()) (primaryID integer PRIMARY KEY auto_increment\(createTableSQL(table: table)))")
-        #endif
     }
     
     func createTableSQL(table:FFObject.Type) -> String {
         var sql = String()
-        if let name = table.customColumns()?["primaryID"] {
-            sql.append(name+" ")
-        }else{
-            sql.append("primaryID ")
-        }
-        if let type = table.customColumnsType()?["primaryID"] {
-            sql.append(type)
-        }else{
-            sql.append("integer PRIMARY KEY AUTOINCREMENT")
+        
+        if let autoincrementColumn = table.autoincrementColumn() {
+            if let customAutoColumn = table.customColumns()?[autoincrementColumn] {
+                sql.append("\(customAutoColumn) integer PRIMARY KEY AUTOINCREMENT")
+                sql.append(",")
+            }else{
+                sql.append("\(autoincrementColumn) integer PRIMARY KEY AUTOINCREMENT")
+                sql.append(",")
+            }
         }
         
-        for column in table.columnsOfSelf() {
-            sql.append(",")
+        for (index,column) in table.columnsOfSelf().enumerated() {
+
             if let name = table.customColumns()?[column] {
                 sql.append(name)
             }else{
@@ -48,6 +44,9 @@ struct Create {
                 }else{
                 sql.append("TEXT")
                 }
+            }
+            if table.columnsOfSelf().count-1 != index {
+                sql.append(",")
             }
         }
         return sql

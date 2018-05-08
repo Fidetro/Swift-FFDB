@@ -182,38 +182,6 @@ extension FFDBManager {
 // MARK: - Update
 extension FFDBManager {
     
-    /// update value by columns,you can custom set columns to update
-    ///
-    /// - Parameters:
-    ///   - object: object
-    ///   - columns: set columns to update,if columns is nil,it will be update all property
-    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
-    /// - Returns: result
-    /// - Throws: FMDB error
-    @discardableResult
-    public static func update(_ object:FFObject,
-                                                 set columns:[String]? = nil,
-                                                 database db:FMDatabase? = nil) throws -> Bool {
-        if let primaryID = object.primaryID  {
-            if let col = columns {
-                return try Update(object)
-                    .set(col)
-                    .whereFormat("primaryID = '\(primaryID)'")
-                    .execute(database: db,values: nil)
-            }else{
-                return try Update(object)
-                    .set()
-                    .whereFormat("primaryID = '\(primaryID)'")
-                    .execute(database: db,values: nil)
-            }
-        }else{
-            assertionFailure("primaryID can't be nil")
-            return false
-        }
-        
-    }
-    
-    
     /// update value of the table
     ///
     /// - Parameters:
@@ -273,28 +241,6 @@ extension FFDBManager {
         }
     }
     
-    
-    
-    /// delete object of the table
-    ///
-    /// - Parameters:
-    ///   - object: object
-    ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
-    /// - Returns: result
-    /// - Throws: FMDB error
-    @discardableResult
-    public static func delete(_ object:FFObject,
-                                                 database db:FMDatabase? = nil) throws -> Bool {
-        if let primaryID = object.primaryID {
-            return try Delete()
-                .from(object.subType)
-                .whereFormat("primaryID = '\(primaryID)'")
-                .execute(database: db,values: nil)
-        }else{
-            assertionFailure("primaryID can't be nil")
-            return false
-        }
-    }
 }
 
 // MARK: - Create
@@ -321,3 +267,10 @@ extension FFDBManager {
     }
 }
 
+extension FFDBManager {
+    static func newUUID() -> String? {
+        let theUUID = CFUUIDCreate(kCFAllocatorDefault)
+        let UUID = CFUUIDCreateString(kCFAllocatorDefault, theUUID)        
+        return UUID as String?
+    }
+}

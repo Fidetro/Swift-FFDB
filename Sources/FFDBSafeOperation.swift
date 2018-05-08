@@ -120,23 +120,6 @@ extension FFDBSafeOperation {
 // MARK: Update
 extension FFDBSafeOperation {
     
-    /// update value by columns,you can custom set columns to update
-    ///
-    /// - Parameters:
-    ///   - object: object
-    ///   - columns: set columns to update,if columns is nil,it will be update all property
-    public static func update(_ object:FFObject,
-                              set columns:[String]? = nil) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
-        queue.inDatabase { (db) in
-            do{
-                try FFDBManager.update(object, set: columns, database: db)
-            }catch{
-                printDebugLog("failed: \(error.localizedDescription)")
-            }
-        }
-    }
-    
     
     /// update value of the table
     ///
@@ -182,18 +165,5 @@ extension FFDBSafeOperation {
         }
     }
     
-    
-    /// delete object of the table
-    ///
-    /// - Parameter object: object
-    public static func delete(_ object:FFObject) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
-        queue.inDatabase { (db) in
-            do{
-                try FFDBManager.delete(object, database: db)
-            }catch{
-                printDebugLog("failed: \(error.localizedDescription)")
-            }
-        }
-    }
+
 }

@@ -36,9 +36,7 @@ public protocol FIDRuntime {
 public protocol FFObject:FIDRuntime,Decodable {
     
     
-    /// Int64 when use Swift tool 4.0.0 in Ubuntu https://bugs.swift.org/browse/SR-5640?page=com.atlassian.jira.plugin.system.issuetabpanels%3Aall-tabpanel
-    var primaryID : Int64? {get}
-    
+
     static func registerTable()
     static func select(where condition:String?,
                        values:[Any]?,
@@ -56,15 +54,7 @@ public protocol FFObject:FIDRuntime,Decodable {
     
     @discardableResult
     func insert() -> Bool
-    
-    @discardableResult
-    func update() -> Bool
-    
-    @discardableResult
-    func update(set condition:String,values:[Any]?) -> Bool
-    
-    @discardableResult
-    func delete() -> Bool
+
     
     static func columnsType() -> [String:String]
     
@@ -77,7 +67,11 @@ public protocol FFObject:FIDRuntime,Decodable {
     static func memoryPropertys() -> [String]?
     static func customColumnsType() -> [String:String]?
     static func customColumns() -> [String:String]?
+    static func autoincrementColumn() -> String?
+    
+    
     static  func tableName() -> String
+    
 }
 
 

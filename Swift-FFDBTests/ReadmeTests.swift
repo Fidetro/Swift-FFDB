@@ -37,11 +37,12 @@ class ReadmeTests: XCTestCase {
    
         for  p1 in personList {
             // delete this person in database
-            p1.delete()
+             Person.delete(where: "primaryID = ?", values: [p1.primaryID!])
         }
         do{
-        try FFDBManager.delete(Person.self, where: "name = 'fidetro'")
+            try FFDBManager.delete(Person.self, where: "name = 'fidetro'")
         }catch{
+            XCTFail()
             print(error)
         }
     }

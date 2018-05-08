@@ -9,6 +9,8 @@
 import Foundation
 
 class Person: FFObject {
+    
+    
 
     var primaryID: Int64?
     var name : String?
@@ -28,5 +30,9 @@ class Person: FFObject {
     
     static func customColumns() -> [String : String]? {
         return nil
+    }
+    
+    static func autoincrementColumn() -> String? {
+        return "primaryID"
     }
 }

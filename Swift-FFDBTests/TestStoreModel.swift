@@ -9,6 +9,12 @@
 import UIKit
 
 struct TestStoreModel:FFObject {
+    
+    
+    var primaryID: Int64?
+    var date : Int?
+    var name : String?
+    
     static func memoryPropertys() -> [String]? {
         return nil
     }
@@ -20,10 +26,9 @@ struct TestStoreModel:FFObject {
     static func customColumns() -> [String : String]? {
         return nil
     }
-    
-    var primaryID: Int64?
-    var date : Int?
-    var name : String?
+    static func autoincrementColumn() -> String? {
+        return "primaryID"
+    }
 }
 
 

@@ -20,9 +20,13 @@ extension Data {
 }
 class DataTest: XCTestCase {
     
-    func testData() {
-        DataModel.registerTable()
+    func testData() {        
         
+        DataModel.registerTable()
+        let model = DataModel()
+        model.insert()
+        model.insert()
+        model.insert()
         let data = ["test":"123"]
 //        print(data)
 //        print(data.base64EncodedString())
@@ -34,7 +38,10 @@ class DataTest: XCTestCase {
            guard let list = try FFDBManager.select(DataModel.self) as? [DataModel] else {
             return
             }
-        
+            for mmm in list {
+                print(mmm.ROWID)
+            }
+//            print(list.last?.data)
         }catch{
             print(error)
         }

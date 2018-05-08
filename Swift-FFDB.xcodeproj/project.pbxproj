@@ -15,6 +15,9 @@
 		9A35162F1F491C8600571621 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162E1F491C8600571621 /* ViewController.swift */; };
 		9A3516341F491C8600571621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516331F491C8600571621 /* Assets.xcassets */; };
 		9A3516371F491C8600571621 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516351F491C8600571621 /* LaunchScreen.storyboard */; };
+		9A40D81020955BC90089D1F2 /* AnyDecodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A40D80D20955BC80089D1F2 /* AnyDecodable.swift */; };
+		9A40D81120955BC90089D1F2 /* AnyCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A40D80E20955BC90089D1F2 /* AnyCodable.swift */; };
+		9A40D81220955BC90089D1F2 /* AnyEncodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A40D80F20955BC90089D1F2 /* AnyEncodable.swift */; };
 		9A44A7EA2068BEDD00FB7937 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44A7E92068BEDD00FB7937 /* DataModel.swift */; };
 		9A44A7EC2068BF5100FB7937 /* DataTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44A7EB2068BF5100FB7937 /* DataTest.swift */; };
 		9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */; };
@@ -97,6 +100,9 @@
 		9A3516331F491C8600571621 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		9A3516361F491C8600571621 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		9A3516381F491C8600571621 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		9A40D80D20955BC80089D1F2 /* AnyDecodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyDecodable.swift; sourceTree = "<group>"; };
+		9A40D80E20955BC90089D1F2 /* AnyCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyCodable.swift; sourceTree = "<group>"; };
+		9A40D80F20955BC90089D1F2 /* AnyEncodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnyEncodable.swift; sourceTree = "<group>"; };
 		9A44A7E92068BEDD00FB7937 /* DataModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataModel.swift; sourceTree = "<group>"; };
 		9A44A7EB2068BF5100FB7937 /* DataTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTest.swift; sourceTree = "<group>"; };
 		9A4E5AAF1F663AEC0084812C /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Platforms/iPhoneOS.platform/Developer/Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -213,6 +219,9 @@
 		9A4E5AB51F663B1E0084812C /* Swift-FFDBTests */ = {
 			isa = PBXGroup;
 			children = (
+				9A40D80E20955BC90089D1F2 /* AnyCodable.swift */,
+				9A40D80D20955BC80089D1F2 /* AnyDecodable.swift */,
+				9A40D80F20955BC90089D1F2 /* AnyEncodable.swift */,
 				9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */,
 				9A4E5AB81F663B1E0084812C /* Info.plist */,
 				9AD614541F906DE8009DB6FA /* DeleteTest.swift */,
@@ -510,6 +519,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				9AE4B0CD202BDD5200873973 /* Insert.swift in Sources */,
+				9A40D81220955BC90089D1F2 /* AnyEncodable.swift in Sources */,
 				9AE4B0CB202BDD4D00873973 /* FFDBSafeOperation.swift in Sources */,
 				9AAB28061F760D4D0043DCA7 /* TestStoreModel.swift in Sources */,
 				9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */,
@@ -522,6 +532,7 @@
 				9AE4B0D1202BDD5B00873973 /* Create.swift in Sources */,
 				9A28D7892057CBCB005758B9 /* ProtocolTests.swift in Sources */,
 				9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */,
+				9A40D81120955BC90089D1F2 /* AnyCodable.swift in Sources */,
 				9AE4B0CF202BDD5600873973 /* Update.swift in Sources */,
 				9AE4B0D0202BDD5800873973 /* Alter.swift in Sources */,
 				9AE4B0CA202BDD3200873973 /* FFDBManager.swift in Sources */,
@@ -533,6 +544,7 @@
 				9AE4B0D2202BDD5D00873973 /* Delete.swift in Sources */,
 				9AE4B0CE202BDD5400873973 /* Select.swift in Sources */,
 				9A44A7EA2068BEDD00FB7937 /* DataModel.swift in Sources */,
+				9A40D81020955BC90089D1F2 /* AnyDecodable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

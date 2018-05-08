@@ -11,7 +11,6 @@ import FMDB
 public struct Update {
     
     fileprivate var tableClass : FFObject.Type?
-    fileprivate var updateObject : FFObject?
     private var values = [Any]()
     var sqlStatement : String?
     
@@ -22,40 +21,12 @@ public struct Update {
         sqlStatement?.append(" update " + table.tableName())
     }
     
-    public  init(_ object:FFObject) {
-        tableClass = object.subType
-        updateObject = object
-        sqlStatement = ""
-        if tableClass?.columnsOfSelf() != nil  {
-            if let tableName = tableClass?.tableName() {
-                sqlStatement?.append(" update " + tableName)
-            }
-        }else{
-            assertionFailure("columns is nil")
-        }
-    }
     
-    public func set() -> Update {
-        var update = self
-        var sqlFormat = String()
-        if let object = self.updateObject {
-            sqlFormat.append(columnsToSetSQLFormat(object, nil, update: &update))
-        }else{
-            assertionFailure("please use init(_ object:FFDataBaseModel)")
-        }
-        update.sqlStatement?.append(" set " + sqlFormat + " ")
-        
-        return update
-    }
     
     public func set(_ columns:[String]) -> Update {
         var update = self
         var sqlFormat = String()
-        if let object = self.updateObject {
-            sqlFormat.append(columnsToSetSQLFormat(object, columns, update: &update))
-        }else{
-            sqlFormat.append(columnsToSetSQLFormat(nil, columns, update: &update))
-        }
+        sqlFormat.append(columnsToSetSQLFormat(columns, update: &update))
         update.sqlStatement?.append(" set " + sqlFormat + " ")
         return update
     }
@@ -91,48 +62,15 @@ public struct Update {
         return try db.executeDBUpdate(sql: sql, values: update.values, shouldClose: false)
     }
     
-    private func columnsToSetSQLFormat(_ object:FFObject? ,_ columns:[String]?, update:inout Update) -> String {
+    private func columnsToSetSQLFormat(_ columns:[String]?, update:inout Update) -> String {
         
         var SQLFormat = String()
         
-        guard let obj = object else {
-            for (index,column) in columns!.enumerated() {
-                if index == 0 {
-                    SQLFormat.append(column + "=" + "?")
-                }else{
-                    SQLFormat.append("," + column + "=" + "?")
-                }
-            }
-            return SQLFormat
-        }
-        
-        let mirror = Mirror(reflecting: obj)
-        var index = 0
-        var columns = columns
-        if let _ = columns {
-        }else{
-            columns = tableClass!.columnsOfSelf()
-        }
-        for column in columns! {
-            var isContain = false
-            for case let (key?,value) in mirror.children {
-                if key == "primaryID" {
-                    continue;
-                }
-                if key == column {
-                    isContain = true
-                    if index == 0 {
-                        index += 1
-                        SQLFormat.append(key + "=" + "?")
-                        update.values.append(anyToString(value))
-                    }else{
-                        SQLFormat.append("," + key + "=" + "?")
-                        update.values.append(anyToString(value))
-                    }
-                }
-            }
-            if isContain == false {
-                assertionFailure("can't find \(column) property")
+        for (index,column) in columns!.enumerated() {
+            if index == 0 {
+                SQLFormat.append(column + "=" + "?")
+            }else{
+                SQLFormat.append("," + column + "=" + "?")
             }
         }
         return SQLFormat

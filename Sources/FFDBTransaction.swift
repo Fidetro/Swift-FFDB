@@ -143,29 +143,6 @@ extension FFDBTransaction {
 // MARK: Update
 extension FFDBTransaction {
     
-    /// update value by columns,you can custom set columns to update
-    ///
-    /// - Parameters:
-    ///   - object: object
-    ///   - columns: set columns to update,if columns is nil,it will be update all property
-    ///   - isRollback: need rollback when error
-    public static func update(_ object:FFObject,
-                              set columns:[String]? = nil,
-                              isRollback:ObjCBool? = false) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
-        queue.inTransaction { (db, rollback) in
-            do{
-                try FFDBManager.update(object, set: columns, database: db)
-            }catch{
-                if let isRollback = isRollback {
-                    rollback.pointee = isRollback
-                }
-                printDebugLog("failed: \(error.localizedDescription)")
-            }
-        }
-    }
-    
-    
     
     /// update value of the table
     ///
@@ -222,24 +199,4 @@ extension FFDBTransaction {
         }
     }
     
-    
-    /// delete object of the table
-    ///
-    /// - Parameters:
-    ///   - object: object
-    ///   - isRollback: need rollback when error
-    public static func delete(_ object:FFObject,
-                              isRollback:ObjCBool? = false) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
-        queue.inTransaction { (db, rollback) in
-            do{
-                try FFDBManager.delete(object, database: db)
-            }catch{
-                if let isRollback = isRollback {
-                    rollback.pointee = isRollback
-                }
-                printDebugLog("failed: \(error.localizedDescription)")
-            }
-        }
-    }
 }

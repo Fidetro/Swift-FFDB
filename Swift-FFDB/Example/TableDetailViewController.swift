@@ -74,7 +74,13 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
         }else{
             let object = dataSource![indexPath.section - 1]
             if indexPath.row == 1 {
-                cell.contentLabel.text = "\(object.primaryID!)"
+                if let object = object as? FFShop {
+                    cell.contentLabel.text = "\(object.primaryID!)"
+                }
+                if let object = object as? FFGood {
+                    cell.contentLabel.text = "\(object.primaryID!)"
+                }
+                
             }else{
                 let value = object.valueNotNullFrom(type!.columnsOfSelf()[indexPath.row - 2])
                 cell.contentLabel.text = value
@@ -96,7 +102,16 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
         case 0:
             showDeleteAlert(delete: { [weak self] in
                 let object = self?.dataSource![indexPath.section - 1]
-                object?.delete()
+                do{
+                if let object = object as? FFShop {
+                   try FFDBManager.delete(FFShop.self, where: "primaryID = ?", values: [object.primaryID!])
+                }
+                if let object = object as? FFGood {
+                   try FFDBManager.delete(FFShop.self, where: "primaryID = ?", values: [object.primaryID!])
+                }
+                }catch{
+                    print(error)
+                }
                 self?.refreshEvent()
             })
         case 2...type!.columnsOfSelf().count:
@@ -107,7 +122,17 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
                 
             }, update: {[weak self] (text)  in
                 let column = self?.type!.columnsOfSelf()[indexPath.row - 2]
-                object.update(set:"\(column!) = '\(text)'", values: nil)
+                do{
+                    if let object = object as? FFShop {
+                        try FFDBManager.update(FFShop.self, set: "\(column!) = ?", where: "primaryID = ?", values: [text,object.primaryID!])
+                    }
+                    if let object = object as? FFGood {
+                        try FFDBManager.update(FFGood.self, set: "\(column!) = ?", where: "primaryID = ?", values: [text,object.primaryID!])
+                    }
+                }catch{
+                    print(error)
+                }
+//                object.update(set:"\(column!) = '\(text)'", values: nil)
                 self?.refreshEvent()
             })
         default:

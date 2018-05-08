@@ -26,9 +26,9 @@ extension FFObject {
 extension FFObject {
     
     public static func select(where condition:String?=nil,
-                                   values:[Any]?=nil,
-                                   orderBy orderCondition:String?=nil,
-                                   orderByType:OrderByType?=nil) -> [FFObject]? {
+                              values:[Any]?=nil,
+                              orderBy orderCondition:String?=nil,
+                              orderByType:OrderByType?=nil) -> [FFObject]? {
         do {
             return try FFDBManager.select(self, nil, where: condition, values: values, orderBy: orderCondition, orderByType: orderByType) as? [FFObject]
         } catch {
@@ -39,7 +39,7 @@ extension FFObject {
     
     @discardableResult
     public static func delete(where condition:String?=nil,
-                       values:[Any]?=nil) -> Bool {
+                              values:[Any]?=nil) -> Bool {
         do {
             return try FFDBManager.delete(self, where: condition, values: values)
         } catch  {
@@ -50,7 +50,7 @@ extension FFObject {
     
     @discardableResult
     public static func insert(_ columns:[String],
-                       values:[Any]) -> Bool {
+                              values:[Any]) -> Bool {
         do {
             return try FFDBManager.insert(self, columns, values: values)
         } catch {
@@ -61,8 +61,8 @@ extension FFObject {
     
     @discardableResult
     public static func update(set setFormat:String,
-                       where condition:String?,
-                       values:[Any]?=nil) -> Bool {
+                              where condition:String?,
+                              values:[Any]?=nil) -> Bool {
         do {
             return try FFDBManager.update(self, set: setFormat, where: condition, values: values)
         } catch  {
@@ -81,40 +81,6 @@ extension FFObject {
         }
     }
     
-    @discardableResult
-    public func update() -> Bool {
-        do {
-            return try FFDBManager.update(self)
-        } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
-            return false
-        }
-    }
-    
-    @discardableResult
-    public func update(set condition:String,values:[Any]? = nil) -> Bool {
-        do {
-            if let primaryID = self.primaryID  {
-                return try FFDBManager.update(self.subType, set: condition, where: "primaryID = '\(primaryID)'", values: values)
-            }else{
-                assertionFailure("primaryID is nil")
-                return false
-            }
-        } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
-            return false
-        }
-    }
-    
-    @discardableResult
-    public func delete() -> Bool {
-        do {
-            return try FFDBManager.delete(self)
-        } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
-            return false
-        }
-    }
     
     public static func registerTable() {
         let createResult = FFDBManager.create(self)
@@ -203,15 +169,14 @@ extension FFObject {
             default:
                 columnsType[label] = "text"
             }
+            
         }
         return columnsType
     }
     public  static func columnsOfSelf() -> Array<String> {
         var columns = self.propertyOfSelf()
         var newColumns = [String]()
-        if let index = columns.index(of: "primaryID") {
-            columns.remove(at: index)
-        }
+        
         if let memoryPropertys = memoryPropertys() {
             for memoryProperty in memoryPropertys {
                 if let index = columns.index(of: memoryProperty) {
@@ -219,11 +184,16 @@ extension FFObject {
                 }
             }
         }
+        
+        columns = columns.filter{
+            $0 == autoincrementColumn() ? false : true
+        }
+        
         if let customColumns = customColumns()   {
             for column in columns {
                 let customColumn = customColumns[column]
-                if customColumn != nil {
-                    newColumns.append(customColumn!)
+                if let customColumn = customColumn {
+                    newColumns.append(customColumn)
                 }else{
                     newColumns.append(column)
                 }
@@ -234,6 +204,18 @@ extension FFObject {
         
         
         return newColumns
+    }
+    func allValue() -> Array<String> {
+        let mirror = Mirror(reflecting: self)
+        var values = Array<String>()
+        for case let (key?, value) in mirror.children {
+            if key == self.subType.autoincrementColumn() {
+                continue
+            }
+            values.append(anyToString(value))
+        }
+        
+        return values
     }
     
     public   func valueNotNullFrom(_ key: String) -> String {
@@ -249,7 +231,7 @@ extension FFObject {
 
 extension FIDRuntime {
     
-
+    
     public  var subType: Any.Type {
         let mirror  = Mirror(reflecting: self)
         return mirror.subjectType
@@ -282,11 +264,8 @@ extension FIDRuntime {
     }
     func allValue() -> Array<String> {
         let mirror = Mirror(reflecting: self)
-        var values = Array<String>();
-        for case let (key?, value) in mirror.children {
-            if key == "primaryID" {
-                continue;
-            }
+        var values = Array<String>()
+        for case let (_, value) in mirror.children {
             values.append(anyToString(value))
         }
         
@@ -370,14 +349,14 @@ func anyToString(_ describing:Any) -> String {
             return ""
         default :
             #if os(iOS)
-                let value : AnyObject? = (describing as AnyObject)
-                if value != nil {
-                    return String(describing: value!)
-                }else{
-                    return ""
-                }
+            let value : AnyObject? = (describing as AnyObject)
+            if value != nil {
+                return String(describing: value!)
+            }else{
+                return ""
+            }
             #else
-                return String(describing: describing)
+            return String(describing: describing)
             #endif
         }
     }

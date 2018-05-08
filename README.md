@@ -82,6 +82,10 @@ struct Person:FFObject {
     static func customColumns() -> [String : String]? {
         return nil
     }
+
+    static func autoincrementColumn() -> String? {
+        return "primaryID"
+    }
 }
 ```
 

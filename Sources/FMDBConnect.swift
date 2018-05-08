@@ -67,12 +67,19 @@ extension FMDatabase {
                 self.close()
             }
             return true
-            
         }
+        
         
         values = values.map { (ele) -> Any in
             if let data = ele as? Data {
                 return data.base64EncodedString()
+            }else if let json = ele as? [String:Any] {
+                do{
+               return try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted).base64EncodedString()
+                }catch{
+                    printDebugLog("\(error)")
+                    assertionFailure()
+                }
             }
             return ele
         }
