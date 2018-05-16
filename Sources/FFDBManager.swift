@@ -194,10 +194,10 @@ extension FFDBManager {
     /// - Throws: FMDB error
     @discardableResult
     public static func update(_ table:FFObject.Type,
-                                                 set setFormat:String,
-                                                 where condition:String?,
-                                                 values:[Any]? = nil,
-                                                 database db:FMDatabase? = nil) throws -> Bool {
+                              set setFormat:String,
+                              where condition:String?,
+                              values:[Any]? = nil,
+                              database db:FMDatabase? = nil) throws -> Bool {
         if let condition = condition  {
             return try Update(table)
                 .set(setFormat)
@@ -226,9 +226,9 @@ extension FFDBManager {
     /// - Throws: FMDB error
     @discardableResult
     public static func delete(_ table:FFObject.Type,
-                                                 where condition:String? = nil,
-                                                 values:[Any]? = nil,
-                                                 database db:FMDatabase? = nil) throws -> Bool {
+                              where condition:String? = nil,
+                              values:[Any]? = nil,
+                              database db:FMDatabase? = nil) throws -> Bool {
         if let format = condition {
             return try Delete()
                 .from(table)
@@ -257,13 +257,13 @@ extension FFDBManager {
 
 // MARK: - SQL excute
 extension FFDBManager {
-    static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?) throws -> Array<Decodable>? where T : Decodable {
+    public static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?) throws -> Array<Decodable>? where T : Decodable {
         
         return try FFDB.connect.executeDBQuery(return: type, sql: sql, values: values)
     }
     
     
-    static func executeDBUpdate(sql: String, values: [Any]?) throws -> Bool {
+    public static func executeDBUpdate(sql: String, values: [Any]?) throws -> Bool {
         return try FFDB.connect.executeDBUpdate(sql: sql, values: values)
     }
     
@@ -285,7 +285,7 @@ extension FFDBManager {
 
 
 extension FFDBManager {
-    static func newUUID() -> String? {
+    public static func newUUID() -> String? {
         let theUUID = CFUUIDCreate(kCFAllocatorDefault)
         let UUID = CFUUIDCreateString(kCFAllocatorDefault, theUUID)        
         return UUID as String?
