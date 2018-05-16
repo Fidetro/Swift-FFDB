@@ -186,7 +186,7 @@ extension FFObject {
         }
         
         columns = columns.filter{
-            $0 == autoincrementColumn() ? false : true
+            $0 == primaryKeyColumn() ? false : true
         }
         
         if let customColumns = customColumns()   {
@@ -209,7 +209,7 @@ extension FFObject {
         let mirror = Mirror(reflecting: self)
         var values = Array<String>()
         for case let (key?, value) in mirror.children {
-            if key == self.subType.autoincrementColumn() {
+            if key == self.subType.primaryKeyColumn() {
                 continue
             }
             values.append(anyToString(value))

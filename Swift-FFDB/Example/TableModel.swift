@@ -29,7 +29,7 @@ struct FFShop :FFObject {
         return nil
     }
     
-    static func autoincrementColumn() -> String? {
+    static func primaryKeyColumn() -> String? {
         return "primaryID"
     }
     
@@ -46,7 +46,7 @@ struct FFGood :FFObject {
         return nil
     }
     
-    static func autoincrementColumn() -> String? {
+    static func primaryKeyColumn() -> String? {
         return "primaryID"
     }
     

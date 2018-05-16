@@ -67,7 +67,7 @@ public protocol FFObject:FIDRuntime,Decodable {
     static func memoryPropertys() -> [String]?
     static func customColumnsType() -> [String:String]?
     static func customColumns() -> [String:String]?
-    static func autoincrementColumn() -> String?
+    static func primaryKeyColumn() -> String?
     
     
     static  func tableName() -> String

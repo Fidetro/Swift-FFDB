@@ -18,12 +18,13 @@ struct Create {
     func createTableSQL(table:FFObject.Type) -> String {
         var sql = String()
         
-        if let autoincrementColumn = table.autoincrementColumn() {
-            if let customAutoColumn = table.customColumns()?[autoincrementColumn] {
-                sql.append("\(customAutoColumn) integer PRIMARY KEY AUTOINCREMENT")
+        if let primaryKeyColumn = table.primaryKeyColumn() {
+            let type = table.customColumnsType()?[primaryKeyColumn] ?? "integer PRIMARY KEY AUTOINCREMENT"
+            if let customAutoColumn = table.customColumns()?[primaryKeyColumn] {
+                sql.append("\(customAutoColumn) \(type)")
                 sql.append(",")
             }else{
-                sql.append("\(autoincrementColumn) integer PRIMARY KEY AUTOINCREMENT")
+                sql.append("\(primaryKeyColumn) \(type)")
                 sql.append(",")
             }
         }
