@@ -13,12 +13,12 @@ struct FMDBConnect {
     
     init() {}
     
-    static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?, shouldClose: Bool) throws -> Array<Decodable>? where T : Decodable {
-          return try database().executeDBQuery(return: type, sql: sql, values: values)
+    static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?, shouldClose: Bool?=true) throws -> Array<Decodable>? where T : Decodable {
+          return try database().executeDBQuery(return: type, sql: sql, values: values, shouldClose: shouldClose)
     }
     
    
-    static func executeDBUpdate(sql: String, values: [Any]?, shouldClose: Bool = true) throws -> Bool {
+    static func executeDBUpdate(sql: String, values: [Any]?, shouldClose: Bool?=true) throws -> Bool {
         return try database().executeDBUpdate(sql: sql, values: values, shouldClose: shouldClose)
     }
         
@@ -55,7 +55,7 @@ struct FMDBConnect {
 
 extension FMDatabase {
     
-    func executeDBUpdate(sql:String,values:[Any]?,shouldClose: Bool) throws -> Bool {
+    func executeDBUpdate(sql:String,values:[Any]?,shouldClose: Bool?=true) throws -> Bool {
         guard self.open() else {
             printDebugLog("Unable to open database")
             return false

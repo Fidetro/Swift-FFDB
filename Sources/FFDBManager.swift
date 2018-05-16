@@ -255,6 +255,21 @@ extension FFDBManager {
     }
 }
 
+// MARK: - SQL excute
+extension FFDBManager {
+    static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?) throws -> Array<Decodable>? where T : Decodable {
+        
+        return try FFDB.connect.executeDBQuery(return: type, sql: sql, values: values)
+    }
+    
+    
+    static func executeDBUpdate(sql: String, values: [Any]?) throws -> Bool {
+        return try FFDB.connect.executeDBUpdate(sql: sql, values: values)
+    }
+    
+}
+
+
 // MARK: - Alter
 extension FFDBManager {
     static func alter(_ table:FFObject.Type) -> Bool {
@@ -266,6 +281,8 @@ extension FFDBManager {
         }
     }
 }
+
+
 
 extension FFDBManager {
     static func newUUID() -> String? {
