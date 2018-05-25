@@ -29,7 +29,8 @@ extension FFDBManager {
     ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
     /// - Returns: result
     /// - Throws: FMDB error
-    @discardableResult public static func insert(_ object:FFObject,
+    @discardableResult
+    public static func insert(_ object:FFObject,
                                                  _ columns:[String]? = nil,
                                                  database db:FMDatabase? = nil) throws -> Bool {
         
@@ -263,6 +264,7 @@ extension FFDBManager {
     }
     
     
+    @discardableResult
     public static func executeDBUpdate(sql: String, values: [Any]?) throws -> Bool {
         return try FFDB.connect.executeDBUpdate(sql: sql, values: values)
     }
