@@ -6,23 +6,57 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
+func printDebugLog<T>(_ message: T,
+                      file: String = #file,
+                      method: String = #function,
+                      line: Int = #line)
+{
+    #if DEBUG
+    print("\(file)[\(line)], \(method): \(message)")
+    #endif
+}
+public class FFDB {
+    public static var share = FFDB()
+    enum FFDBType {
+        case FMDB
+    }
+    var type : FFDBType!
+    
+    func setup(_ type:FFDBType) {
+        switch type {
+        case .FMDB:
+            self.type = type
+        }
+    }
+    
+    
+}
 
 
 import FMDB
-struct FMDBConnect {
+
+protocol FFDBConnection {
+    associatedtype T
+    static func database() -> T
+}
+
+struct FMDBConnection:FFDBConnection {
+    
+    typealias T = FMDatabase
+    
     
     init() {}
     
     static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?, shouldClose: Bool?=true) throws -> Array<Decodable>? where T : Decodable {
-          return try database().executeDBQuery(return: type, sql: sql, values: values, shouldClose: shouldClose)
+        return try database().executeDBQuery(return: type, sql: sql, values: values, shouldClose: shouldClose)
     }
     
-   
+    
     static func executeDBUpdate(sql: String, values: [Any]?, shouldClose: Bool?=true) throws -> Bool {
         return try database().executeDBUpdate(sql: sql, values: values, shouldClose: shouldClose)
     }
-        
-
+    
+    
     /// Get databaseContentFileURL
     ///
     /// - Returns: databaseURL
@@ -40,7 +74,7 @@ struct FMDBConnect {
         let database = FMDatabase(url: databasePath())
         return database
     }
-        
+    
     static func columnExists(_ columnName: String, inTableWithName: String) -> Bool {
         let database = self.database()
         guard database.open() else {
@@ -75,7 +109,7 @@ extension FMDatabase {
                 return data.base64EncodedString()
             }else if let json = ele as? [String:Any] {
                 do{
-               return try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted).base64EncodedString()
+                    return try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted).base64EncodedString()
                 }catch{
                     printDebugLog("\(error)")
                     assertionFailure()
@@ -92,42 +126,42 @@ extension FMDatabase {
         
         
     }
-
+    
     func executeDBQuery<T:Decodable>(return type:T.Type, sql:String, values:[Any]?,shouldClose: Bool? = true) throws -> Array<Decodable>? {
         guard self.open() else {
             printDebugLog("Unable to open database")
             return nil
         }
         
-            let result = try self.executeQuery(sql, values: values)
-            var modelArray = Array<Decodable>()
-            while result.next() {
-                if let dict =  result.resultDictionary {
-                    
-                    let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
-                    do{                        
-                        let decoder = JSONDecoder()
-                        decoder.dateDecodingStrategy = .secondsSince1970
-                        decoder.dataDecodingStrategy = .base64
-                        let model = try decoder.decode(type, from: jsonData)
-                        modelArray.append(model)
-                    }catch{
-                        self.close()
-                        printDebugLog(error)
-                        assertionFailure("check you func columntype,func customColumnsType,property type")
-                    }
-                    
+        let result = try self.executeQuery(sql, values: values)
+        var modelArray = Array<Decodable>()
+        while result.next() {
+            if let dict =  result.resultDictionary {
+                
+                let jsonData = try JSONSerialization.data(withJSONObject: dict, options: .prettyPrinted)
+                do{
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .secondsSince1970
+                    decoder.dataDecodingStrategy = .base64
+                    let model = try decoder.decode(type, from: jsonData)
+                    modelArray.append(model)
+                }catch{
+                    self.close()
+                    printDebugLog(error)
+                    assertionFailure("check you func columntype,func customColumnsType,property type")
                 }
+                
             }
-            
-            if shouldClose == true {
-                self.close()
-            }
+        }
         
-            guard modelArray.count != 0 else {
-                return nil
-            }
-            return modelArray
+        if shouldClose == true {
+            self.close()
+        }
+        
+        guard modelArray.count != 0 else {
+            return nil
+        }
+        return modelArray
     }
     
 }

@@ -5,18 +5,6 @@
 //  Created by Fidetro on 2017/8/20.
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
-func printDebugLog<T>(_ message: T,
-                      file: String = #file,
-                      method: String = #function,
-                      line: Int = #line)
-{
-    #if DEBUG
-        print("\(file)[\(line)], \(method): \(message)")
-    #endif
-}
-public struct FFDB {
-    static var connect = FMDBConnect.self
-}
 
 
 
