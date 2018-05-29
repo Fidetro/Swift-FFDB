@@ -17,35 +17,39 @@ func printDebugLog<T>(_ message: T,
 }
 public class FFDB {
     public static var share = FFDB()
-    enum FFDBType {
+    public enum FFDBType {
         case FMDB
     }
-    var type : FFDBType!
+    private var type : FFDBType!
     
-    func setup(_ type:FFDBType) {
+    public func setup(_ type:FFDBType) {
         switch type {
         case .FMDB:
             self.type = type
         }
     }
     
+    public static func connection() -> FFDBConnection {
+        return FMDBConnection.share
+    }
     
 }
 
 
 import FMDB
 
-protocol FFDBConnection {
+public protocol FFDBConnection {
+    
     associatedtype T
     static func database() -> T
 }
 
 struct FMDBConnection:FFDBConnection {
-    
+    static let share = FMDBConnection()
     typealias T = FMDatabase
     
     
-    init() {}
+     init() {}
     
     static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?, shouldClose: Bool?=true) throws -> Array<Decodable>? where T : Decodable {
         return try database().executeDBQuery(return: type, sql: sql, values: values, shouldClose: shouldClose)

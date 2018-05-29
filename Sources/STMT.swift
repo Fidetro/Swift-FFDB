@@ -9,7 +9,7 @@
 import Foundation
 protocol STMT {
     var str : String{get}
-    
+    init(_ str : String)
     
 }
 

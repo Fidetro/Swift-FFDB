@@ -10,7 +10,9 @@ import Foundation
 struct Where:STMT {
     let str : String
     init(_ str : String) {
-        self.str = "orderby"+" "+str
+        self.str = "where" +
+                    " "  +
+                    str
         
     }
 }

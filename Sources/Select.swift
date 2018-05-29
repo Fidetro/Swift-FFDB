@@ -10,14 +10,18 @@ import Foundation
 struct Select:STMT {
     let str : String
     init(_ str : String) {
-        self.str = "select"+" "+str
+        self.str = "select" +
+                    " " +
+                    str
     }
     
     func from(_ from:String) -> From {
-        return From(str+" "+from+" ")
+        return From(str +
+                    " " +
+                    from +
+                    " ")
     }
     
-
     
     
 }

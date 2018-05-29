@@ -10,6 +10,20 @@ import Foundation
 struct OrderBy:STMT {
     let str : String
     init(_ str : String) {
-        self.str = str
+        self.str = "orderby" +
+                   " "  +
+                   str
+    }
+    
+    func limit(_ limit:String) -> Limit {
+        return Limit(str +
+            " " +
+            limit)
+    }
+    
+    func offset(_ offset:String) -> Offset {
+        return Offset(str +
+            " " +
+            offset)
     }
 }

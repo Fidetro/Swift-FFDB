@@ -14,10 +14,25 @@ struct From:STMT {
         self.str = str
     }
     func `where`(_ where:String) -> Where {
-        return Where(str+" "+`where`)
+        return Where(str +
+                    " " +
+                    `where`)
     }
     
     func orderBy(_ orderBy:String) -> OrderBy {
-        return OrderBy(str+" "+orderBy)
+        return OrderBy(str +
+                       " " +
+                        orderBy)
+    }
+    
+    func limit(_ limit:String) -> Limit {
+        return Limit(str +
+                    " " +
+                    limit)
+    }
+    func offset(_ offset:String) -> Offset {
+        return Offset(str +
+                    " " +
+                    offset)
     }
 }
