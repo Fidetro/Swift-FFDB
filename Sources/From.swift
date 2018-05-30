@@ -8,30 +8,33 @@
 
 import Foundation
 
-struct From:STMT {
-    let str : String
-    init(_ str : String) {
-        self.str = str
+public struct From:STMT {
+    let stmt : String
+    public init(_ stmt : String) {
+        self.stmt = " " +
+                    "from" +
+                    " " +
+                    stmt
     }
-    func `where`(_ where:String) -> Where {
-        return Where(str +
+    public func `where`(_ where:String) -> Where {
+        return Where(stmt +
                     " " +
                     `where`)
     }
     
-    func orderBy(_ orderBy:String) -> OrderBy {
-        return OrderBy(str +
+    public func orderBy(_ orderBy:String) -> OrderBy {
+        return OrderBy(stmt +
                        " " +
                         orderBy)
     }
     
-    func limit(_ limit:String) -> Limit {
-        return Limit(str +
+    public func limit(_ limit:String) -> Limit {
+        return Limit(stmt +
                     " " +
                     limit)
     }
-    func offset(_ offset:String) -> Offset {
-        return Offset(str +
+    public func offset(_ offset:String) -> Offset {
+        return Offset(stmt +
                     " " +
                     offset)
     }

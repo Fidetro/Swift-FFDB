@@ -1,17 +1,18 @@
 //
-//  Select.swift
+//  Delete.swift
 //  Swift-FFDB
 //
-//  Created by Fidetro on 2018/5/25.
+//  Created by Fidetro on 2018/5/30.
 //  Copyright © 2018年 Fidetro. All rights reserved.
 //
 
 import Foundation
-public struct Select:STMT {
-    let stmt : String
-    public init(_ stmt : String) {
+public struct Delete:STMT {
+    let stmt: String
+    
+    public init(_ stmt: String) {
         self.stmt = " " +
-                    "select" +
+                    "delete" +
                     " " +
                     stmt
     }
@@ -22,7 +23,5 @@ public struct Select:STMT {
                     from +
                     " ")
     }
-    
-    
     
 }

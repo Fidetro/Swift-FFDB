@@ -7,23 +7,24 @@
 //
 
 import Foundation
-struct OrderBy:STMT {
-    let str : String
-    init(_ str : String) {
-        self.str = "orderby" +
-                   " "  +
-                   str
+public struct OrderBy:STMT {
+    let stmt : String
+    public init(_ stmt : String) {
+        self.stmt = " "  +
+                    "orderby" +
+                    " "  +
+                    stmt
     }
     
-    func limit(_ limit:String) -> Limit {
-        return Limit(str +
-            " " +
-            limit)
+    public func limit(_ limit:String) -> Limit {
+        return Limit(stmt +
+                     " " +
+                    limit)
     }
     
-    func offset(_ offset:String) -> Offset {
-        return Offset(str +
-            " " +
-            offset)
+    public func offset(_ offset:String) -> Offset {
+        return Offset(stmt +
+                    " " +
+                    offset)
     }
 }

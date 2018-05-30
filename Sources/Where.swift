@@ -7,12 +7,13 @@
 //
 
 import Foundation
-struct Where:STMT {
-    let str : String
-    init(_ str : String) {
-        self.str = "where" +
+public struct Where:STMT {
+    let stmt : String
+    public init(_ stmt : String) {
+        self.stmt = " " +
+                    "where" +
                     " "  +
-                    str
+                    stmt
         
     }
 }

@@ -5,7 +5,57 @@
 //  Created by Fidetro on 2017/8/20.
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
+import Foundation
+func printDebugLog<T>(_ message: T,
+                      file: String = #file,
+                      method: String = #function,
+                      line: Int = #line)
+{
+    #if DEBUG
+    print("\(file)[\(line)], \(method): \(message)")
+    #endif
+}
 
+
+public class FFDB {
+    public static var share = FFDB()
+    /*
+    public enum FFDBType {
+        case FMDB
+        case SQLiteSwift
+    }
+    private var type : FFDBType!
+    public func setup(_ type:FFDBType) {
+        switch type {
+        case .FMDB:
+            self.type = type
+        case .SQLiteSwift:
+            self.type = type
+        }
+    }
+    */
+    public func connection() -> FMDBConnection {
+        return FMDBConnection.share
+    }
+    
+    
+}
+public typealias QueryResult = (_ result:Array<Decodable>?)->()
+public typealias UpdateResult = (_ result:Bool)->()
+public protocol FFDBConnection {
+    
+    associatedtype T
+    static func database() -> T
+    var databasePath : String? {get set}
+    func executeDBQuery<R:Decodable>(return type: R.Type,
+                                     sql: String,
+                                     values: [Any]?,
+                                     completion:QueryResult?) throws
+    
+    func executeDBUpdate(sql: String,
+                         values: [Any]?,
+                         completion:UpdateResult?) throws
+}
 
 
 public protocol FIDRuntime {
@@ -20,7 +70,8 @@ public protocol FIDRuntime {
     /// - Returns: value
     func valueFrom(_ key: String) -> Any?
 }
-
+/*
+ 
 public protocol FFObject:FIDRuntime,Decodable {
     
     
@@ -63,7 +114,7 @@ public protocol FFObject:FIDRuntime,Decodable {
 }
 
 
-
+*/
 
 
 

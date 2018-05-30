@@ -18,6 +18,13 @@
 		9A28E61720B80FC000BC449C /* OrderBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A28E61620B80FC000BC449C /* OrderBy.swift */; };
 		9A2CB05920BD4D82005DDD98 /* Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB05820BD4D82005DDD98 /* Offset.swift */; };
 		9A2CB05B20BD4D98005DDD98 /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB05A20BD4D98005DDD98 /* Limit.swift */; };
+		9A2CB05D20BE40CA005DDD98 /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CA1F9C317F0071DAF2 /* FFDB.swift */; };
+		9A2CB05F20BEA293005DDD98 /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB05E20BEA293005DDD98 /* Insert.swift */; };
+		9A2CB06120BEA29C005DDD98 /* Into.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06020BEA29C005DDD98 /* Into.swift */; };
+		9A2CB06320BEA2FD005DDD98 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06220BEA2FD005DDD98 /* Values.swift */; };
+		9A2CB06520BEA4D0005DDD98 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06420BEA4D0005DDD98 /* Update.swift */; };
+		9A2CB06720BEA4EB005DDD98 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06620BEA4EB005DDD98 /* Set.swift */; };
+		9A2CB06920BEAA2B005DDD98 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06820BEAA2B005DDD98 /* Delete.swift */; };
 		9A35162D1F491C8600571621 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162C1F491C8600571621 /* AppDelegate.swift */; };
 		9A35162F1F491C8600571621 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A35162E1F491C8600571621 /* ViewController.swift */; };
 		9A3516341F491C8600571621 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9A3516331F491C8600571621 /* Assets.xcassets */; };
@@ -80,6 +87,12 @@
 		9A28E61620B80FC000BC449C /* OrderBy.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderBy.swift; sourceTree = "<group>"; };
 		9A2CB05820BD4D82005DDD98 /* Offset.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Offset.swift; sourceTree = "<group>"; };
 		9A2CB05A20BD4D98005DDD98 /* Limit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Limit.swift; sourceTree = "<group>"; };
+		9A2CB05E20BEA293005DDD98 /* Insert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Insert.swift; sourceTree = "<group>"; };
+		9A2CB06020BEA29C005DDD98 /* Into.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Into.swift; sourceTree = "<group>"; };
+		9A2CB06220BEA2FD005DDD98 /* Values.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Values.swift; sourceTree = "<group>"; };
+		9A2CB06420BEA4D0005DDD98 /* Update.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Update.swift; sourceTree = "<group>"; };
+		9A2CB06620BEA4EB005DDD98 /* Set.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Set.swift; sourceTree = "<group>"; };
+		9A2CB06820BEAA2B005DDD98 /* Delete.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delete.swift; sourceTree = "<group>"; };
 		9A3516291F491C8600571621 /* Swift-FFDB.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Swift-FFDB.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		9A35162C1F491C8600571621 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		9A35162E1F491C8600571621 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -223,11 +236,11 @@
 			isa = PBXGroup;
 			children = (
 				9A5056CA1F9C317F0071DAF2 /* FFDB.swift */,
+				9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */,
 				9A5056C91F9C317F0071DAF2 /* FFDB+Extension.swift */,
 				9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */,
 				9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */,
 				9A6031DA1FDF64380085A5BB /* FFDBTransaction.swift */,
-				9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */,
 				9A28E60E20B8084A00BC449C /* Select.swift */,
 				9A28E61020B8085800BC449C /* From.swift */,
 				9A28E61220B8088B00BC449C /* Where.swift */,
@@ -235,6 +248,12 @@
 				9A2CB05A20BD4D98005DDD98 /* Limit.swift */,
 				9A2CB05820BD4D82005DDD98 /* Offset.swift */,
 				9A28E61420B8089D00BC449C /* STMT.swift */,
+				9A2CB05E20BEA293005DDD98 /* Insert.swift */,
+				9A2CB06020BEA29C005DDD98 /* Into.swift */,
+				9A2CB06220BEA2FD005DDD98 /* Values.swift */,
+				9A2CB06420BEA4D0005DDD98 /* Update.swift */,
+				9A2CB06620BEA4EB005DDD98 /* Set.swift */,
+				9A2CB06820BEAA2B005DDD98 /* Delete.swift */,
 			);
 			path = Sources;
 			sourceTree = SOURCE_ROOT;
@@ -472,14 +491,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A2CB06720BEA4EB005DDD98 /* Set.swift in Sources */,
+				9A2CB05F20BEA293005DDD98 /* Insert.swift in Sources */,
+				9A2CB06120BEA29C005DDD98 /* Into.swift in Sources */,
+				9A2CB06920BEAA2B005DDD98 /* Delete.swift in Sources */,
+				9A2CB05D20BE40CA005DDD98 /* FFDB.swift in Sources */,
 				9A28E61520B8089D00BC449C /* STMT.swift in Sources */,
 				9A35162F1F491C8600571621 /* ViewController.swift in Sources */,
 				9A28E61320B8088B00BC449C /* Where.swift in Sources */,
 				9A35162D1F491C8600571621 /* AppDelegate.swift in Sources */,
+				9A2CB06320BEA2FD005DDD98 /* Values.swift in Sources */,
 				9A5056D91F9C317F0071DAF2 /* FMDBConnect.swift in Sources */,
 				9A2CB05920BD4D82005DDD98 /* Offset.swift in Sources */,
 				9A28E61120B8085800BC449C /* From.swift in Sources */,
 				9A28E60F20B8084B00BC449C /* Select.swift in Sources */,
+				9A2CB06520BEA4D0005DDD98 /* Update.swift in Sources */,
 				9A28E61720B80FC000BC449C /* OrderBy.swift in Sources */,
 				9A2CB05B20BD4D98005DDD98 /* Limit.swift in Sources */,
 			);
