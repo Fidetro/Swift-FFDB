@@ -8,14 +8,18 @@
 
 import Foundation
 public struct Offset:STMT {
-    var stmt: String
+   public let stmt: String
     
-    public init(_ stmt: String) {
+}
+
+// MARK: - internal
+extension Offset {
+    init(_ stmt : String,format:String?=nil) {
         self.stmt = " " +
+                    stmt +
                     "offset" +
                     " " +
-                    stmt
+                    (format ?? "") +
+                    " "
     }
-    
-    
 }

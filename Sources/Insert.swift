@@ -10,7 +10,9 @@ import Foundation
 
 public struct Insert:STMT {
     var stmt: String
-    
+    public init() {
+        self.init("")
+    }
     public init(_ stmt: String) {
         self.stmt = " " +
                     "insert" +
@@ -18,10 +20,17 @@ public struct Insert:STMT {
                     stmt
     }
     
+
+}
+
+
+// MARK: - Into
+extension Insert {
     public func into(_ into:String) -> Into {
-        return Into(stmt +
-                    " " +
-                    into +
-                    " ")
+        return Into(into, format: stmt)
+    }
+    
+    public func into(_ table:FFObject.Type) -> Into {
+        return Into(stmt, table: table)
     }
 }

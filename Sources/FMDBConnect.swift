@@ -43,10 +43,10 @@ public struct FMDBConnection:FFDBConnection {
     ///
     /// - Returns: databaseURL
     public static func databasePath() -> URL {
-        let executableFile = share.databasePath ?? Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String)
+        let executableFile = share.databasePath ?? (Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String)  as! String)
         let fileURL = try! FileManager.default
-            .url(for: .applicationSupportDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            .appendingPathComponent(executableFile as! String)
+            .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
+            .appendingPathComponent(executableFile)
         return fileURL
     }
     
@@ -70,7 +70,7 @@ public struct FMDBConnection:FFDBConnection {
 extension FMDatabase {
     
     func executeDBUpdate(sql:String,values:[Any]?,completion:UpdateResult?) throws {
-        guard self.open() else {
+        guard open() else {
             printDebugLog("Unable to open database")
             if let completion = completion { completion(false) }
             return

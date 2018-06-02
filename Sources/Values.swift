@@ -8,13 +8,31 @@
 
 import Foundation
 public struct Values:STMT {
-    var stmt: String
+    let stmt: String
     
-    public init(_ str: String) {
+}
+
+// MARK: - internal
+extension Values {
+    init(_ stmt : String,format:String?=nil) {
         self.stmt = " " +
+                    stmt +
                     "values" +
                     " " +
-                    str
+                    (format ?? "") +
+                    " "
     }
-    
+    init(_ stmt : String,count:Int?=0) {
+        var columnsString = "("
+        
+        for index in 0..<( count ?? 0) {
+            if index == 0 {
+                columnsString.append("?")
+            }else{
+                columnsString.append(",?")
+            }
+        }
+        columnsString.append(")")
+        self.init(stmt, format: columnsString)
+    }
 }

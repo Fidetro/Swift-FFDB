@@ -30,7 +30,7 @@ extension FFObject {
                               orderBy orderCondition:String?=nil,
                               orderByType:OrderByType?=nil) -> [FFObject]? {
         do {
-            return try FFDBManager.select(self, nil, where: condition, values: values, orderBy: orderCondition, orderByType: orderByType) as? [FFObject]
+            return try FFDBManager.select(self, nil, where: condition, values: values, order: nil) as? [FFObject]
         } catch {
             printDebugLog("failed: \(error.localizedDescription)")
             return nil
@@ -84,7 +84,7 @@ extension FFObject {
     
     public static func registerTable() {
         let createResult = FFDBManager.create(self)
-        let alterResult = FFDBManager.alter(self)
+        let alterResult = true
         if createResult == true,alterResult == true {
         }else{
             assertionFailure("register fail")

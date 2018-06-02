@@ -8,19 +8,26 @@
 
 import Foundation
 public struct Limit:STMT {
-    var stmt: String
+   public let stmt: String
     
-    public init(_ stmt: String) {
+
+}
+
+// MARK: - internal
+extension Limit {
+    init(_ stmt : String,format:String?=nil) {
         self.stmt = " " +
+                    stmt +
                     "limit" +
                     " " +
-                    stmt
+                    (format ?? "") +
+                    " "
     }
-    
-    
+}
+
+// MARK: - Offset
+extension Limit {
     public func offset(_ offset:String) -> Offset {
-        return Offset(stmt +
-                    " " +
-                    offset)
+        return Offset(stmt, format: offset)
     }
 }

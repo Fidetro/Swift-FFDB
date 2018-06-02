@@ -18,7 +18,7 @@ import UIKit
         super.viewDidLoad()
 //        FFDB.setup(.FMDB)
         
-        Select("").from("").orderBy("")
+        
     }
 
     

@@ -10,29 +10,24 @@ import Foundation
 protocol STMT {
     var stmt : String{get}
     
-    init(_ stmt : String)
+    
     
     func executeDBQuery<R:Decodable>(return type: R.Type,
-                                     sql: String,
                                      values: [Any]?,
                                      completion:QueryResult?) throws
     
-    func executeDBUpdate(sql: String,
-                         values: [Any]?,
+    func executeDBUpdate(values: [Any]?,
                          completion:UpdateResult?) throws
 }
 
 extension STMT {
-    public func executeDBQuery<R:Decodable>(return type: R.Type,
-                                     sql: String,
-                                     values: [Any]?,
+    public func executeDBQuery<R:Decodable>(return type: R.Type,values: [Any]?,
                                      completion:QueryResult?) throws {
-        try FFDB.share.connection().executeDBQuery(return: type, sql: sql, values: values, completion: completion)
+        try FFDB.share.connection().executeDBQuery(return: type, sql: stmt, values: values, completion: completion)
     }
     
-    public func executeDBUpdate(sql: String,
-                         values: [Any]?,
-                         completion:UpdateResult?) throws {
-        try FFDB.share.connection().executeDBUpdate(sql: sql, values: values, completion: completion)
+    public func executeDBUpdate(values: [Any]?,
+                                completion:UpdateResult?) throws {
+        try FFDB.share.connection().executeDBUpdate(sql: stmt, values: values, completion: completion)
     }
 }

@@ -10,18 +10,23 @@ import Foundation
 public struct Update:STMT {
     let stmt: String
     
+
+    public init(_ table:FFObject.Type) {
+        self.init(table.tableName())
+    }
     public init(_ stmt: String) {
         self.stmt = " " +
                     "update" +
                     " " +
-                    stmt
+                    stmt +
+                    " "
     }
     
+}
+
+// MARK: - Set
+extension Update {
     public func set(_ set:String) -> Set {
-        return Set(stmt +
-                    " " +
-                    set +
-                    " ")
+        return Set(stmt, format: set)
     }
-    
 }

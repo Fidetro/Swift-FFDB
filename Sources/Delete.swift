@@ -10,6 +10,10 @@ import Foundation
 public struct Delete:STMT {
     let stmt: String
     
+    public init() {
+        self.init("")
+    }
+    
     public init(_ stmt: String) {
         self.stmt = " " +
                     "delete" +
@@ -17,11 +21,18 @@ public struct Delete:STMT {
                     stmt
     }
     
-    public func from(_ from:String) -> From {
-        return From(stmt +
-                    " " +
-                    from +
-                    " ")
+
+    
+}
+
+//MARK: - From
+extension Delete {
+    
+    public func from(_ table:FFObject.Type) -> From {
+        return From(stmt, table: table)
     }
     
+    public func from(_ from:String) -> From {
+        return From(stmt, format: from)
+    }
 }

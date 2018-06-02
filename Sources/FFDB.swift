@@ -70,7 +70,7 @@ public protocol FIDRuntime {
     /// - Returns: value
     func valueFrom(_ key: String) -> Any?
 }
-/*
+
  
 public protocol FFObject:FIDRuntime,Decodable {
     
@@ -81,16 +81,16 @@ public protocol FFObject:FIDRuntime,Decodable {
                        values:[Any]?,
                        orderBy orderCondition:String?,
                        orderByType:OrderByType?) -> [FFObject]?
-    
+
     @discardableResult
     static func delete(where condition:String?,values:[Any]?) -> Bool
-    
+
     @discardableResult
     static func insert(_ columns:[String],values:[Any]) -> Bool
-    
+
     @discardableResult
     static func update(set setFormat:String,where condition:String?,values:[Any]?) -> Bool
-    
+
     @discardableResult
     func insert() -> Bool
 
@@ -114,7 +114,7 @@ public protocol FFObject:FIDRuntime,Decodable {
 }
 
 
-*/
+
 
 
 

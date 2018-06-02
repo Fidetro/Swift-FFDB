@@ -9,33 +9,52 @@
 import Foundation
 
 public struct From:STMT {
-    let stmt : String
-    public init(_ stmt : String) {
+   public let stmt : String
+    
+}
+// MARK: - internal
+extension From {
+    init(_ stmt : String,format:String?=nil) {
         self.stmt = " " +
+                    stmt +
                     "from" +
                     " " +
-                    stmt
+                    (format ?? "") +
+                    " "
     }
+    
+    init(_ stmt : String,table:FFObject.Type?=nil) {
+        self.init(stmt, format: table?.tableName())
+    }
+}
+
+// MARK: - Where
+extension From {
     public func `where`(_ where:String) -> Where {
-        return Where(stmt +
-                    " " +
-                    `where`)
+        return Where(stmt, format: `where`)
     }
-    
+}
+// MARK: - Order
+extension From {
     public func orderBy(_ orderBy:String) -> OrderBy {
-        return OrderBy(stmt +
-                       " " +
-                        orderBy)
+        return OrderBy(stmt, format: orderBy)
     }
     
-    public func limit(_ limit:String) -> Limit {
-        return Limit(stmt +
-                    " " +
-                    limit)
+    public func orderBy(_ orderConditions:[(column:String,orderByType:OrderByType)]) -> OrderBy {
+        return OrderBy(stmt, orderConditions)
     }
+}
+
+// MARK: - Limit
+extension From {
+    public func limit(_ limit:String) -> Limit {
+        return Limit(stmt, format: limit)
+    }
+}
+
+// MARK: - Offset
+extension From {
     public func offset(_ offset:String) -> Offset {
-        return Offset(stmt +
-                    " " +
-                    offset)
+        return Offset(stmt, format: offset)
     }
 }
