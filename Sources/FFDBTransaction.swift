@@ -30,7 +30,7 @@ extension FFDBTransaction {
     public static func insert(_ object:FFObject,
                               _ columns:[String]? = nil,
                               isRollback:ObjCBool? = false)  {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inTransaction { (db, rollback) in
             do{
                 try FFDBManager.insert(object, columns, database: db)
@@ -56,7 +56,7 @@ extension FFDBTransaction {
                               _ columns:[String],
                               values:[Any],
                               isRollback:ObjCBool? = false) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inTransaction { (db, rollback) in
             do{
                 try FFDBManager.insert(table, columns, values: values, database: db)
@@ -90,11 +90,16 @@ extension FFDBTransaction {
                                                       values:[Any]? = nil,
                                                       return type:U.Type,
                                                       isRollback:ObjCBool? = false,
-                                                      callBack:ObjectsCallBack? = nil) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+                                                      callBack:QueryResult? = nil) {
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inTransaction { (db, rollback) in
             do{
-                let objects = try FFDBManager.select(table, columns, where: condition, values: values, return: type, database: db)
+                let objects = try FFDBManager.select(table, columns,
+                                                     where: condition,
+                                                     values: values,
+                                                     order: nil,
+                                                     return: type,
+                                                     database: db)
                 if let callback = callBack {
                     callback(objects)
                 }
@@ -122,11 +127,15 @@ extension FFDBTransaction {
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
                                           isRollback:ObjCBool? = false,
-                                          callBack:ObjectsCallBack? = nil)  {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+                                          callBack:QueryResult? = nil)  {
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inTransaction { (db, rollback) in
             do{
-                let objects = try FFDBManager.select(table, columns, where: condition, values: values,database: db)
+                let objects = try FFDBManager.select(table, columns,
+                                                     where: condition,
+                                                     values: values,
+                                                     order: nil,
+                                                     database: db)
                 if let callback = callBack {
                     callback(objects)
                 }
@@ -157,7 +166,7 @@ extension FFDBTransaction {
                               where condition:String?,
                               values:[Any]? = nil,
                               isRollback:ObjCBool? = false) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inTransaction { (db, rollback) in
             do{
                 try FFDBManager.update(table, set: setFormat, where: condition, values: values, database: db)
@@ -186,7 +195,7 @@ extension FFDBTransaction {
                               where condition:String? = nil,
                               values:[Any]? = nil,
                               isRollback:ObjCBool? = false) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inTransaction { (db, rollback) in
             do{
                 try FFDBManager.delete(table, where: condition, values: values, database: db)

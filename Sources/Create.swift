@@ -2,63 +2,65 @@
 //  Create.swift
 //  Swift-FFDB
 //
-//  Created by Fidetro on 2017/10/14.
-//  Copyright © 2017年 Fidetro. All rights reserved.
+//  Created by Fidetro on 2018/6/1.
+//  Copyright © 2018年 Fidetro. All rights reserved.
 //
 
-struct Create {
-    fileprivate var tableClass : FFObject.Type?
-    var sqlStatement : String?
+import Foundation
 
-    init(_ table:FFObject.Type) {
-        tableClass = table        
-            sqlStatement = (" create table if  not exists \(table.tableName()) (\(createTableSQL(table: table)))")
+
+
+public struct Create :STMT {
+    var stmt: String
+    
+    public init(_ stmt: String) {
+        self.stmt = " " +
+                    "create" +
+                    " " +
+                    stmt
     }
     
-    func createTableSQL(table:FFObject.Type) -> String {
-        var sql = String()
-        
-        if let primaryKeyColumn = table.primaryKeyColumn() {
-            let type = table.customColumnsType()?[primaryKeyColumn] ?? "integer PRIMARY KEY AUTOINCREMENT"
-            if let customAutoColumn = table.customColumns()?[primaryKeyColumn] {
-                sql.append("\(customAutoColumn) \(type)")
-                sql.append(",")
-            }else{
-                sql.append("\(primaryKeyColumn) \(type)")
-                sql.append(",")
-            }
-        }
-        
-        for (index,column) in table.columnsOfSelf().enumerated() {
-
-            if let name = table.customColumns()?[column] {
-                sql.append(name)
-            }else{
-                sql.append(column)
-            }
-            sql.append(" ")
-            if let type = table.customColumnsType()?[column] {
-                sql.append(type)
-            }else{
-                if let type = table.columnsType()[column]{
-                    sql.append(type)
-                }else{
-                sql.append("TEXT")
-                }
-            }
-            if table.columnsOfSelf().count-1 != index {
-                sql.append(",")
-            }
-        }
-        return sql
+    public init(_ table:FFObject.Type) {
+        stmt = (" create table if  not exists \(table.tableName()) (\(createTableSQL(table: table)))")
     }
-    func execute() throws -> Bool {
- 
-        guard let sql = sqlStatement else {
-            assertionFailure("sql can't nil")
-            return false
-        }
-        return try FFDB.connect.executeDBUpdate(sql: sql, values: nil, shouldClose: true)
-    }
+    
+    
 }
 
+fileprivate func createTableSQL(table:FFObject.Type) -> String {
+    var sql = String()
+    
+    if let primaryKeyColumn = table.primaryKeyColumn() {
+        let type = table.customColumnsType()?[primaryKeyColumn] ?? "integer PRIMARY KEY AUTOINCREMENT"
+        if let customAutoColumn = table.customColumns()?[primaryKeyColumn] {
+            sql.append("\(customAutoColumn) \(type)")
+            sql.append(",")
+        }else{
+            sql.append("\(primaryKeyColumn) \(type)")
+            sql.append(",")
+        }
+    }
+    
+    for (index,column) in table.columnsOfSelf().enumerated() {
+        
+        if let name = table.customColumns()?[column] {
+            sql.append(name)
+        }else{
+            sql.append(column)
+        }
+        sql.append(" ")
+        if let type = table.customColumnsType()?[column] {
+            sql.append(type)
+        }else{
+            if let type = table.columnsType()[column]{
+                sql.append(type)
+            }else{
+                sql.append("TEXT")
+            }
+        }
+        if table.columnsOfSelf().count-1 != index {
+            sql.append(",")
+        }
+    }
+    return sql
+}

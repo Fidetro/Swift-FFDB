@@ -2,69 +2,37 @@
 //  Alter.swift
 //  Swift-FFDB
 //
-//  Created by Fidetro on 2017/10/17.
-//  Copyright © 2017年 Fidetro. All rights reserved.
+//  Created by Fidetro on 2018/6/1.
+//  Copyright © 2018年 Fidetro. All rights reserved.
 //
 
-
-
-struct Alter {
-    fileprivate var tableClass : FFObject.Type?
-//    var sqlStatement : String?
-    init(_ table:FFObject.Type) {
-        tableClass = table
-        
-    }
-    func execute() throws -> Bool {
-
-        guard let table = tableClass else {
-            assertionFailure("tableClass can't nil,use init(_ table:FFObject.Type)")
-            return false
-        }
-        guard let newColumns = findNewColumns(table) else {
-            return true
-        }
-
-        var result = true
-        for newColumn in newColumns {
-            var sql =  "alter table `\(table.tableName())` add "
-            sql.append(alterColumnsInTableSQL(newColumn))
-            let alterResult = try FFDB.connect.executeDBUpdate(sql: sql, values: nil, shouldClose: true)
-            if alterResult == false {
-                result = false
-            }
-        }
-        
-        return result
-    }
-    func alterColumnsInTableSQL(_ newColumn:String) -> String {
-        var sql = String()
+import Foundation
+struct Alter:STMT {
     
-  
-            sql.append(" \(newColumn) ")
-            if let type = tableClass?.customColumnsType()?[newColumn] {
-                sql.append(type)
-            }else{
-                if let type = tableClass?.columnsType()[newColumn]{
-                    sql.append(type)
-                }else{
-                    sql.append("TEXT")
-                }
-            }
-        return sql
+    var stmt: String
+    
+    init(_ stmt: String) {
+        self.stmt = " " +
+                    "alter table" +
+                    " " +
+                    stmt
     }
-    func findNewColumns(_ table:FFObject.Type) -> [String]? {
-        var newColumns = [String]()
-        for column in table.columnsOfSelf() {
+    
+    
+    
+    init(_ table: FFObject.Type) {
+        self.init(table.tableName())
+        
+    }
 
-            let result = FFDB.connect.columnExists(column, inTableWithName: table.tableName())
-            if result == false {
-                newColumns.append(column)
-            }
-        }
-        guard newColumns.count != 0 else {
-            return nil
-        }
-        return newColumns
+}
+
+// MARK: - Add
+extension Alter {
+    func add(column:String,def columnDef:String) -> Add {
+        return Add(stmt, column: column, def: columnDef)
+    }
+    func add(column:String,table:FFObject.Type) -> Add {
+        return Add(stmt, column: column, table: table)
     }
 }

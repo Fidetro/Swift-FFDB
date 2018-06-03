@@ -33,24 +33,19 @@ extension FFDBManager {
     public static func insert(_ object:FFObject,
                                                  _ columns:[String]? = nil,
                                                  database db:FMDatabase? = nil) throws -> Bool {
-        
-        if let columnsArray = columns {
-            var values = Array<Any>()
-            for key in columnsArray {
-                values.append(object.valueNotNullFrom(key))
-            }
-            return try Insert()
-                .into(object.subType)
-                .columns(columnsArray)
-                .values(values)
-                .execute(database: db)
-        }else{
-            return try Insert()
-                .into(object.subType)
-                .columns(object.subType)
-                .values(object)
-                .execute(database: db)
+        var _result = false
+        var values = Array<Any>()
+        for key in columns ?? object.subType.columnsOfSelf() {
+            values.append(object.valueNotNullFrom(key))
         }
+        try Insert()
+            .into(object.subType)
+            .columns(columns ?? object.subType.columnsOfSelf())
+            .values(values.count)
+            .executeDBUpdate(values: values, completion: { (result) in
+                _result = result
+            })
+        return _result
     }
     
     
@@ -63,15 +58,20 @@ extension FFDBManager {
     ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
     /// - Returns: result
     /// - Throws: FMDB error
-    @discardableResult public static func insert(_ table:FFObject.Type,
+    @discardableResult
+    public static func insert(_ table:FFObject.Type,
                                                  _ columns:[String],
                                                  values:[Any],
                                                  database db:FMDatabase? = nil) throws -> Bool {
-        return try Insert()
+        var _result = false
+         try Insert()
             .into(table)
             .columns(columns)
-            .values(values)
-            .execute(database: db)
+            .values(columns.count)
+            .executeDBUpdate(values: values, completion: { (result) in
+                _result = result
+            })
+        return _result
     }
 }
 
@@ -94,62 +94,81 @@ extension FFDBManager {
                                                       _ columns:[String]? = nil,
                                                       where condition:String? = nil,
                                                       values:[Any]? = nil,
-                                                      orderBy orderCondition:String? = nil,
-                                                      orderByType:OrderByType? = nil,
+                                                      order orderConditions:[(column:String,orderByType:OrderByType)]?,
                                                       return type:U.Type,
-                                                      database db:FMDatabase? = nil) throws -> Array<Decodable>? {
-        guard let orderCondition = orderCondition, let orderByType = orderByType else {
+                                                      database db:FMDatabase? = nil) throws -> [Decodable]? {
+        var _result : [Decodable]?
+
+        guard let orderConditions = orderConditions else {
             if let format = condition {
                 if let col = columns {
-                    return try Select(col)
+                     try Select(col)
                         .from(table)
-                        .whereFormat(format)
-                        .execute(database: db,type, values: values)
+                        .where(format)
+                        .executeDBQuery(return: type, values: values, completion: { (result) in
+                            _result = result
+                        })
                 }else{
-                    return try Select()
+                     try Select("*")
                         .from(table)
-                        .whereFormat(format)
-                        .execute(database: db,type, values: values)
+                        .where(format)
+                        .executeDBQuery(return: type, values: values, completion: { (result) in
+                            _result = result
+                        })
                 }
             }else{
                 if let col = columns {
-                    return try Select(col)
+                     try Select(col)
                         .from(table)
-                        .execute(database: db,type, values: values)
+                        .executeDBQuery(return: type, values: values, completion: { (result) in
+                            _result = result
+                        })
                 }else{
-                    return try Select()
+                     try Select("*")
                         .from(table)
-                        .execute(database: db,type, values: values)
+                        .executeDBQuery(return: type, values: values, completion: { (result) in
+                            _result = result
+                        })
                 }
             }
+            return _result
         }
         if let format = condition {
             if let col = columns {
-                return try Select(col)
+                 try Select(col)
                     .from(table)
-                    .whereFormat(format)
-                    .order(by: orderCondition, orderByType)
-                    .execute(database: db,type, values: values)
+                    .where(format)
+                    .orderBy(orderConditions)
+                    .executeDBQuery(return: type, values: values, completion: { (result) in
+                        _result = result
+                    })
             }else{
-                return try Select()
+                 try Select("*")
                     .from(table)
-                    .whereFormat(format)
-                    .order(by: orderCondition, orderByType)
-                    .execute(database: db,type, values: values)
+                    .where(format)
+                    .orderBy(orderConditions)
+                    .executeDBQuery(return: type, values: values, completion: { (result) in
+                        _result = result
+                    })
             }
         }else{
             if let col = columns {
-                return try Select(col)
+                 try Select(col)
                     .from(table)
-                    .order(by: orderCondition, orderByType)
-                    .execute(database: db,type, values: values)
+                    .orderBy(orderConditions)
+                    .executeDBQuery(return: type, values: values, completion: { (result) in
+                        _result = result
+                    })
             }else{
-                return try Select()
+                 try Select("*")
                     .from(table)
-                    .order(by: orderCondition, orderByType)
-                    .execute(database: db,type, values: values)
+                    .orderBy(orderConditions)
+                    .executeDBQuery(return: type, values: values, completion: { (result) in
+                        _result = result
+                    })
             }
         }
+        return _result
     }
     
     /// select column from table
@@ -166,15 +185,13 @@ extension FFDBManager {
                                           _ columns:[String]? = nil,
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
-                                          orderBy orderCondition:String? = nil,
-                                          orderByType:OrderByType? = nil,
+                                          order orderConditions:[(column:String,orderByType:OrderByType)]?,
                                           database db:FMDatabase? = nil) throws -> Array<Decodable>? {
         
         return try select(table, columns,
                           where: condition,
                           values: values,
-                          orderBy: orderCondition,
-                          orderByType: orderByType,
+                          order: orderConditions,
                           return: table,
                           database: db)
     }
@@ -199,15 +216,22 @@ extension FFDBManager {
                               where condition:String?,
                               values:[Any]? = nil,
                               database db:FMDatabase? = nil) throws -> Bool {
+        var _result = false
         if let condition = condition  {
-            return try Update(table)
+             try Update(table)
                 .set(setFormat)
-                .whereFormat(condition)
-                .execute(database: db,values: values)
+                .where(condition)
+                .executeDBUpdate(values: values, completion: { (result) in
+                    _result = result
+                })
+            return _result
         }else{
-            return try Update(table)
+             try Update(table)
                 .set(setFormat)
-                .execute(database: db,values: values)
+                .executeDBUpdate(values: values, completion: { (result) in
+                    _result = result
+                })
+            return _result
         }
     }
 }
@@ -230,16 +254,22 @@ extension FFDBManager {
                               where condition:String? = nil,
                               values:[Any]? = nil,
                               database db:FMDatabase? = nil) throws -> Bool {
+        var _result = false
         if let format = condition {
-            return try Delete()
+             try Delete()
                 .from(table)
-                .whereFormat(format)
-                .execute(database: db,values: values)
+                .where(format)
+                .executeDBUpdate(values: values, completion: { (result) in
+                    _result = result
+                })
         }else{
-            return try Delete()
+             try Delete()
                 .from(table)
-                .execute(database: db,values: values)
+                .executeDBUpdate(values: values, completion: { (result) in
+                    _result = result
+                })
         }
+        return _result
     }
     
 }
@@ -248,7 +278,11 @@ extension FFDBManager {
 extension FFDBManager {
     static func create(_ table:FFObject.Type) -> Bool {
         do {
-            return try Create(table).execute()
+            var _result = false
+             try Create(table).executeDBUpdate(values: nil, completion: { (result) in
+                _result = result
+            })
+            return _result
         } catch  {
             printDebugLog("failed: \(error.localizedDescription)")
             return false
@@ -258,15 +292,22 @@ extension FFDBManager {
 
 // MARK: - SQL excute
 extension FFDBManager {
-    public static func executeDBQuery<T>(return type: T.Type, sql: String, values: [Any]?) throws -> Array<Decodable>? where T : Decodable {
-        
-        return try FFDB.connect.executeDBQuery(return: type, sql: sql, values: values)
+    public static func executeDBQuery<T:Decodable>(return type: T.Type, sql: String, values: [Any]?) throws -> [Decodable]?  {
+        var _result : [Decodable]?
+         try FFDB.share.connection().executeDBQuery(return: type, sql: sql, values: values, completion: { (result) in
+            _result = result
+        })
+        return _result
     }
     
     
     @discardableResult
     public static func executeDBUpdate(sql: String, values: [Any]?) throws -> Bool {
-        return try FFDB.connect.executeDBUpdate(sql: sql, values: values)
+        var _result = false
+        try FFDB.share.connection().executeDBUpdate(sql: sql, values: values, completion: { (result) in
+            _result = result
+        })        
+        return _result
     }
     
 }
@@ -276,7 +317,22 @@ extension FFDBManager {
 extension FFDBManager {
     static func alter(_ table:FFObject.Type) -> Bool {
         do {
-            return try Alter(table).execute()
+            var _result = false
+            guard let newColumns = FFDB.share.connection().findNewColumns(table) else {
+                _result = true
+                return _result
+            }
+            for newColumn in newColumns {
+                try Alter(table).add(column: newColumn, table: table).executeDBUpdate(values: nil, completion: { (result) in
+                    _result = result
+                })
+                if _result == false {
+                    return _result
+                }
+                
+            }
+            
+            return _result
         } catch  {
             printDebugLog("failed: \(error.localizedDescription)")
             return false

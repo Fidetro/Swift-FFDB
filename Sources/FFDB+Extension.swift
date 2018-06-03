@@ -30,7 +30,7 @@ extension FFObject {
                               orderBy orderCondition:String?=nil,
                               orderByType:OrderByType?=nil) -> [FFObject]? {
         do {
-            return try FFDBManager.select(self, nil, where: condition, values: values, orderBy: orderCondition, orderByType: orderByType) as? [FFObject]
+            return try FFDBManager.select(self, nil, where: condition, values: values, order: nil) as? [FFObject]
         } catch {
             printDebugLog("failed: \(error.localizedDescription)")
             return nil
