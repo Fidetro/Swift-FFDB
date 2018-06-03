@@ -8,7 +8,7 @@
 
 import FMDB
 public struct FFDBSafeOperation {}
-public typealias ObjectsCallBack = ((_ objects:[Decodable]?)->())
+
 
 // MARK: Insert
 extension FFDBSafeOperation {
@@ -27,7 +27,9 @@ extension FFDBSafeOperation {
     ///   - columns: column name
     public static func insert(_ object:FFObject,
                               _ columns:[String]? = nil)  {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+        
+        
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inDatabase { (db) in
             do{
                 try FFDBManager.insert(object, columns, database: db)
@@ -46,7 +48,7 @@ extension FFDBSafeOperation {
     public static func insert(_ table:FFObject.Type,
                               _ columns:[String],
                               values:[Any]) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inDatabase { (db) in
             do{
                 try FFDBManager.insert(table, columns, values: values, database: db)
@@ -76,11 +78,16 @@ extension FFDBSafeOperation {
                                                       where condition:String? = nil,
                                                       values:[Any]? = nil,
                                                       return type:U.Type,
-                                                      callBack:ObjectsCallBack? = nil) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+                                                      callBack:QueryResult? = nil) {
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inDatabase { (db) in
             do{
-                let objects = try FFDBManager.select(table, columns, where: condition, values: values, return: type, database: db)
+                let objects = try FFDBManager.select(table, columns,
+                                                     where: condition,
+                                                     values: values,
+                                                     order: nil,
+                                                     return: type,
+                                                     database: db)
                 if let callback = callBack {
                     callback(objects)
                 }
@@ -102,11 +109,15 @@ extension FFDBSafeOperation {
                                           columns:[String]? = nil,
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
-                                          callBack:ObjectsCallBack? = nil) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+                                          callBack:QueryResult? = nil) {
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inDatabase { (db) in
             do{
-                let objects = try FFDBManager.select(table, columns, where: condition, values: values,database: db)
+                let objects = try FFDBManager.select(table, columns,
+                                                     where: condition,
+                                                     values: values,
+                                                     order: nil,
+                                                     database: db)
                 if let callback = callBack {
                     callback(objects)
                 }
@@ -132,7 +143,7 @@ extension FFDBSafeOperation {
                               set setFormat:String,
                               where condition:String?,
                               values:[Any]? = nil) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inDatabase { (db) in
             do{
                 try FFDBManager.update(table, set: setFormat, where: condition, values: values, database: db)
@@ -155,7 +166,7 @@ extension FFDBSafeOperation {
     public static func delete(_ table:FFObject.Type,
                               where condition:String? = nil,
                               values:[Any]? = nil) {
-        let queue = FMDatabaseQueue.init(url: FMDBConnect.databasePath())
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
         queue.inDatabase { (db) in
             do{
                 try FFDBManager.delete(table, where: condition, values: values, database: db)

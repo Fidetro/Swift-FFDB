@@ -19,13 +19,34 @@ extension Add {
     init(_ stmt : String,format:String?=nil) {
         self.stmt = " " +
                     stmt +
-                    "add column" +
+                    " " +
+                    "add" +
                     " " +
                     (format ?? "") +
                     " "
     }
+    
     init(_ stmt : String,column:String,def columnDef:String) {
         self.init(stmt, format: column + " " + columnDef)
     }
     
+    init(_ stmt : String,column:String,table:FFObject.Type) {
+        self.init(stmt, format: alterColumnsInTableSQL(column, table: table))
+    }
+}
+
+fileprivate func alterColumnsInTableSQL(_ newColumn:String,table:FFObject.Type) -> String {
+    var sql = String()
+    
+    sql.append(" \(newColumn) ")
+    if let type = table.customColumnsType()?[newColumn] {
+        sql.append(type)
+    }else{
+        if let type = table.columnsType()[newColumn]{
+            sql.append(type)
+        }else{
+            sql.append("TEXT")
+        }
+    }
+    return sql
 }

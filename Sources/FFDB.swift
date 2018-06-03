@@ -15,7 +15,8 @@ func printDebugLog<T>(_ message: T,
     print("\(file)[\(line)], \(method): \(message)")
     #endif
 }
-
+public typealias QueryResult = (_ result:[Decodable]?)->()
+public typealias UpdateResult = (_ result:Bool)->()
 
 public class FFDB {
     public static var share = FFDB()
@@ -40,13 +41,17 @@ public class FFDB {
     
     
 }
-public typealias QueryResult = (_ result:Array<Decodable>?)->()
-public typealias UpdateResult = (_ result:Bool)->()
+
 public protocol FFDBConnection {
     
     associatedtype T
-    static func database() -> T
+    
     var databasePath : String? {get set}
+    
+    func database() -> T
+    
+     func findNewColumns(_ table:FFObject.Type) -> [String]?
+    
     func executeDBQuery<R:Decodable>(return type: R.Type,
                                      sql: String,
                                      values: [Any]?,

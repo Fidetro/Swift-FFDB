@@ -13,7 +13,7 @@ struct Alter:STMT {
     
     init(_ stmt: String) {
         self.stmt = " " +
-                    "alter" +
+                    "alter table" +
                     " " +
                     stmt
     }
@@ -21,13 +21,18 @@ struct Alter:STMT {
     
     
     init(_ table: FFObject.Type) {
-        self.stmt = " " +
-                    "alter" +
-                    " " +
-                    table.tableName()
+        self.init(table.tableName())
+        
     }
+
+}
+
+// MARK: - Add
+extension Alter {
     func add(column:String,def columnDef:String) -> Add {
-        return Add.init(stmt, column: column, def: columnDef)
+        return Add(stmt, column: column, def: columnDef)
     }
-    
+    func add(column:String,table:FFObject.Type) -> Add {
+        return Add(stmt, column: column, table: table)
+    }
 }

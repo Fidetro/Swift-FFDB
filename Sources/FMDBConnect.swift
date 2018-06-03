@@ -13,6 +13,7 @@ import FMDB
 
 
 public struct FMDBConnection:FFDBConnection {
+    
     public typealias T = FMDatabase
     
     public static let share = FMDBConnection()
@@ -27,13 +28,13 @@ public struct FMDBConnection:FFDBConnection {
                                             sql: String,
                                             values: [Any]?,
                                             completion: QueryResult?) throws {
-        try FMDBConnection.database().executeDBQuery(return: type, sql: sql, values: values, completion: completion)
+        try database().executeDBQuery(return: type, sql: sql, values: values, completion: completion)
     }
     
     public func executeDBUpdate(sql: String,
                                 values: [Any]?,
                                 completion: UpdateResult?) throws {
-        try FMDBConnection.database().executeDBUpdate(sql: sql, values: values, completion: completion)
+        try database().executeDBUpdate(sql: sql, values: values, completion: completion)
     }
     
     
@@ -42,21 +43,35 @@ public struct FMDBConnection:FFDBConnection {
     /// Get databaseContentFileURL
     ///
     /// - Returns: databaseURL
-    public static func databasePath() -> URL {
-        let executableFile = share.databasePath ?? (Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String)  as! String)
+    public func databasePathURL() -> URL {
+        let executableFile = databasePath ?? (Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String)  as! String)
         let fileURL = try! FileManager.default
             .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(executableFile)
         return fileURL
     }
     
-    public static func database() -> T {
+    public func database() -> T {
         
-        let database = FMDatabase(url: databasePath())
+        let database = FMDatabase(url: databasePathURL())
         return database
     }
+    public func findNewColumns(_ table:FFObject.Type) -> [String]? {
+        var newColumns = [String]()
+        for column in table.columnsOfSelf() {
+            
+            let result = columnExists(column, inTableWithName: table.tableName())
+            if result == false {
+                newColumns.append(column)
+            }
+        }
+        guard newColumns.count != 0 else {
+            return nil
+        }
+        return newColumns
+    }
     
-    static func columnExists(_ columnName: String, inTableWithName: String) -> Bool {
+    private func columnExists(_ columnName: String, inTableWithName: String) -> Bool {
         let database = self.database()
         guard database.open() else {
             printDebugLog("Unable to open database")

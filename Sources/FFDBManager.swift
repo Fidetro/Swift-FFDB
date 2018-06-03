@@ -29,6 +29,7 @@ extension FFDBManager {
     ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
     /// - Returns: result
     /// - Throws: FMDB error
+    @discardableResult
     public static func insert(_ object:FFObject,
                                                  _ columns:[String]? = nil,
                                                  database db:FMDatabase? = nil) throws -> Bool {
@@ -57,7 +58,8 @@ extension FFDBManager {
     ///   - db: set database when use SafeOperation or Transaction,it should be alway nil
     /// - Returns: result
     /// - Throws: FMDB error
-    @discardableResult public static func insert(_ table:FFObject.Type,
+    @discardableResult
+    public static func insert(_ table:FFObject.Type,
                                                  _ columns:[String],
                                                  values:[Any],
                                                  database db:FMDatabase? = nil) throws -> Bool {
@@ -313,7 +315,29 @@ extension FFDBManager {
 
 // MARK: - Alter
 extension FFDBManager {
-
+    static func alter(_ table:FFObject.Type) -> Bool {
+        do {
+            var _result = false
+            guard let newColumns = FFDB.share.connection().findNewColumns(table) else {
+                _result = true
+                return _result
+            }
+            for newColumn in newColumns {
+                try Alter(table).add(column: newColumn, table: table).executeDBUpdate(values: nil, completion: { (result) in
+                    _result = result
+                })
+                if _result == false {
+                    return _result
+                }
+                
+            }
+            
+            return _result
+        } catch  {
+            printDebugLog("failed: \(error.localizedDescription)")
+            return false
+        }
+    }
 }
 
 
