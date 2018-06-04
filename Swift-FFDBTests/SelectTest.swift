@@ -10,30 +10,24 @@ import XCTest
 
 class SelectTest: XCTestCase {
     
-    func testSelect() {
-        let sql1 = Select().from(TestStoreModel.self).whereFormat("name != 'who'").order(by: "date > 0", .asc).sqlStatement!
-        print(sql1)
-        let sql2 = Select().from(TestStoreModel.self).whereFormat("name != ?").order(by: "date > 0", .asc).sqlStatement!
-        print(sql2)
-        do {
-            let _ = try Select()
-                .from(TestStoreModel.self)
-                .whereFormat("name != 'who'")
-                .order(by: "date > 0", .asc)
-                .execute(TestStoreModel.self)
-            
-            
-            let _ = try Select()
-                .from(TestStoreModel.self)
-                .whereFormat("name != ?")
-                .order(by: "date > 0", .asc)
-                .execute(database: nil, TestStoreModel.self, values: ["cccc"])
-        } catch  {
-            
+    func testSelect1() {
+        let stmt1 = Select("*").from(Person.self).stmt
+        let stmt2 = "select * from Person "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
         }
-        
     }
     
-   
+    func testSelect2() {
+        let stmt1 = Select("*").from(Person.self).where("name = ?").stmt
+        let stmt2 = "select * from Person where name = ? "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
+    }
     
 }

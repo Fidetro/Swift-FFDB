@@ -9,6 +9,10 @@
 import UIKit
 
 struct TestStoreModel:FFObject {
+    static func primaryKeyColumn() -> String? {
+        return "primaryID"
+    }
+    
     
     
     var primaryID: Int64?

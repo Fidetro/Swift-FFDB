@@ -14,13 +14,27 @@ public struct Set:STMT {
 
 // MARK: - internal
 extension Set {
+
     init(_ stmt : String,format:String?=nil) {
-        self.stmt = " " +
-                    stmt +
+        self.stmt = stmt +
                     "set" +
                     " " +
                     (format ?? "") +
                     " "
+    }
+    
+    init(_ stmt : String,columns:[String]?=nil) {
+        var columnsString = ""
+        if let columns = columns {
+            for (index,column) in columns.enumerated() {
+                if index == 0 {
+                    columnsString.append(column+"="+"?")
+                }else{
+                    columnsString.append(","+column+"="+"?")
+                }
+            }
+        }
+        self.init(stmt, format: columnsString)
     }
 }
 

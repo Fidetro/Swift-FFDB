@@ -20,17 +20,17 @@ class ReadmeTests: XCTestCase {
         person.name = "fidetro"
         person.insert()
         // find all Object
-        guard   let _ = Person.select(where: nil) as! [Person]? else {
+        guard   let _ = Person.select(where: nil) as? [Person] else {
             // no object in database
             return
         }
         
         // find name is 'fidetro'
-        guard   let _ = Person.select(where: "name = 'fidetro'") as! [Person]? else {
+        guard   let _ = Person.select(where: "name = 'fidetro'") as? [Person] else {
             // no object in database
             return
         }
-        guard   let personList = Person.select(where: "name = 'fidetro'") as! [Person]? else {
+        guard   let personList = Person.select(where: "name = 'fidetro'") as? [Person] else {
             // no object in database
             return
         }

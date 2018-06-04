@@ -20,14 +20,14 @@ public struct Select:STMT {
             }
         }
         
-        self.init(columns)
+        self.init(columnString)
     }
     
     public init(_ stmt : String) {
-        self.stmt = " " +
-                    "select" +
+        self.stmt = "select" +
                     " " +
-                    stmt
+                    stmt +
+                    " "
     }
     
 

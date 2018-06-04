@@ -94,7 +94,7 @@ extension FFDBManager {
                                                       _ columns:[String]? = nil,
                                                       where condition:String? = nil,
                                                       values:[Any]? = nil,
-                                                      order orderConditions:[(column:String,orderByType:OrderByType)]?,
+                                                      order orderConditions:[(column:String,orderByType:OrderByType)]?=nil,
                                                       return type:U.Type,
                                                       database db:FMDatabase? = nil) throws -> [Decodable]? {
         var _result : [Decodable]?
@@ -185,7 +185,7 @@ extension FFDBManager {
                                           _ columns:[String]? = nil,
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
-                                          order orderConditions:[(column:String,orderByType:OrderByType)]?,
+                                          order orderConditions:[(column:String,orderByType:OrderByType)]?=nil,
                                           database db:FMDatabase? = nil) throws -> Array<Decodable>? {
         
         return try select(table, columns,

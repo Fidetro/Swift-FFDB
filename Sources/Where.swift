@@ -15,8 +15,7 @@ public struct Where:STMT {
 // MARK: - internal
 extension Where {
     init(_ stmt : String,format:String?=nil) {
-        self.stmt = " " +
-                    stmt +
+        self.stmt = stmt +
                     "where" +
                     " " +
                     (format ?? "") +

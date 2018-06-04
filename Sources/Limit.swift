@@ -16,8 +16,7 @@ public struct Limit:STMT {
 // MARK: - internal
 extension Limit {
     init(_ stmt : String,format:String?=nil) {
-        self.stmt = " " +
-                    stmt +
+        self.stmt = stmt +
                     "limit" +
                     " " +
                     (format ?? "") +

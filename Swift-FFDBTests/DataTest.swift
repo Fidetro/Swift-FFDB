@@ -35,12 +35,10 @@ class DataTest: XCTestCase {
 //        DataModel.insert(["data","name"], values: [data,"你好"])
         do{
    
-           guard let list = try FFDBManager.select(DataModel.self) as? [DataModel] else {
+            guard let list = try FFDBManager.select(DataModel.self, order: nil) as? [DataModel] else {
             return
             }
-            for mmm in list {
-                print(mmm.ROWID)
-            }
+  
 //            print(list.last?.data)
         }catch{
             print(error)

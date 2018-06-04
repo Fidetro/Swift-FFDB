@@ -15,8 +15,7 @@ public struct From:STMT {
 // MARK: - internal
 extension From {
     init(_ stmt : String,format:String?=nil) {
-        self.stmt = " " +
-                    stmt +
+        self.stmt = stmt +
                     "from" +
                     " " +
                     (format ?? "") +

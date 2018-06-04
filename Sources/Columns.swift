@@ -18,9 +18,7 @@ public struct Columns:STMT {
 // MARK: - internal
 extension Columns {
     init(_ stmt : String,format:String?=nil) {
-        self.stmt = " " +
-                    stmt +
-                    " " +
+        self.stmt = stmt +
                     (format ?? "") +
                     " "
     }

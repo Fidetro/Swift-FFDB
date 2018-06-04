@@ -11,29 +11,43 @@ import XCTest
 class UpdateTest: XCTestCase {
     
     
-    func testUpdateTable() {
-        TestStoreModel.registerTable()
-        var object = TestStoreModel()
-        object.name = "zzcaa"
-        let sql1 = Update(TestStoreModel.self).sqlStatement!
-        print(sql1)
-        let sql2 = Update(TestStoreModel.self).set(["name"]).sqlStatement!
-        print(sql2)
-        let sql3 = Update(TestStoreModel.self).set("name = 'zxccs'").sqlStatement!
-        print(sql3)
-        do {
-            let _ =  try Update(TestStoreModel.self).set(["name"]).execute()
-            let _ =  try Update(TestStoreModel.self).set("name = 'zxccs'").execute()
-        } catch  {
-            
+    func testUpdate1() {
+        let stmt1 = Update(Person.self).set("name = ?").where("name = ?").stmt
+        let stmt2 = "update Person set name = ? where name = ? "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
         }
     }
     
-    func testUpdateUnfind() {
-        var object = TestStoreModel()
-        object.name = "zzcaa"
-        let sql4 = Update(TestStoreModel.self).set(["unfind"]).sqlStatement!
-        print(sql4)
+    func testUpdate2() {
+        let stmt1 = Update(Person.self).set(["name"]).where("name = ?").stmt
+        let stmt2 = "update Person set name=? where name = ? "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
     }
     
+    func testUpdate3() {
+        let stmt1 = Update(Person.self).set(["name","age"]).where("name = ?").stmt
+        let stmt2 = "update Person set name=?,age=? where name = ? "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
+    }
+    
+    func testUpdate4() {
+        let stmt1 = Update(Person.self).set(["name","age"]).stmt
+        let stmt2 = "update Person set name=?,age=? "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
+    }
 }

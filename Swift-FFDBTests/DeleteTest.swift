@@ -10,19 +10,33 @@ import XCTest
 
 class DeleteTest: XCTestCase {
 
-    func testDeleteObject() {
-        let model = TestStoreModel()
-       let sql1 = Delete().from(model.subType).whereFormat("name > \'50\'").sqlStatement
-        print(sql1!)
-       let sql2 = Delete().from(TestStoreModel.self).sqlStatement
-        print(sql2!)
-        do {
-         let _ =  try  Delete().from(model.subType).whereFormat("name > ?").execute(database: nil, values: ["zxc"])
-        } catch  {
-            
+    func testDelete1() {
+        let stmt1 = Delete().from(Person.self).stmt
+        let stmt2 = "delete from Person "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
         }
     }
     
-
+    func testDelete2() {
+        let stmt1 = Delete().from(Person.self).where("name = zhang").stmt
+        let stmt2 = "delete from Person where name = zhang "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
+    }
     
+    func testDelete3() {
+        let stmt1 = Delete().from("Person").where("name = zhang").stmt        
+        let stmt2 = "delete from Person where name = zhang "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
+    }
 }

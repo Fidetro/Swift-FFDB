@@ -15,8 +15,7 @@ public struct Offset:STMT {
 // MARK: - internal
 extension Offset {
     init(_ stmt : String,format:String?=nil) {
-        self.stmt = " " +
-                    stmt +
+        self.stmt = stmt +
                     "offset" +
                     " " +
                     (format ?? "") +

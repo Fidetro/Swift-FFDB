@@ -45,16 +45,15 @@ class FFDBManagerTest: XCTestCase {
     func select() {
         Person.registerTable()
         do{
-            let totalCount = try FFDBManager.select(Person.self)?.count
+            let totalCount = try FFDBManager.select(Person.self, order: nil)?.count
             XCTAssertTrue(5 == totalCount)
-            let count2 = try FFDBManager.select(Person.self, nil, where: "name = ?", values: ["2"])?.count
+            let count2 = try FFDBManager.select(Person.self, nil, where: "name = ?", values: ["2"], order: nil)?.count
             XCTAssertTrue(2 == count2)
-            let count4 = try FFDBManager.select(Person.self, nil, where: "name = ?", values: ["4"])?.count
+            let count4 = try FFDBManager.select(Person.self, nil, where: "name = ?", values: ["4"], order: nil)?.count
             XCTAssertTrue(1 == count4)
             
-//            let a = FFDBManager.select(Person.self, ["name"], where: "name = 3",return:ManagerTestModel.self)
-            
-            guard let model = try FFDBManager.select(Person.self, ["name"], where: "name = 3",return:ManagerTestModel.self)?.first as! ManagerTestModel? else {
+
+            guard let model = try FFDBManager.select(Person.self, ["name"], where: "name = 3", order: nil,return:ManagerTestModel.self)?.first as? ManagerTestModel else {
                 XCTFail()
                 return
             }
@@ -70,7 +69,7 @@ class FFDBManagerTest: XCTestCase {
         Person.registerTable()
         do{
         try FFDBManager.update(Person.self, set: "name = ?", where: "name == ?",values:["6","2"])
-            guard let list = try FFDBManager.select(Person.self) as? [Person] else {
+            guard let list = try FFDBManager.select(Person.self, order: nil) as? [Person] else {
                 XCTFail()
                 return
             }

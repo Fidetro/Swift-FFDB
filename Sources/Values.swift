@@ -15,8 +15,7 @@ public struct Values:STMT {
 // MARK: - internal
 extension Values {
     init(_ stmt : String,format:String?=nil) {
-        self.stmt = " " +
-                    stmt +
+        self.stmt = stmt +
                     "values" +
                     " " +
                     (format ?? "") +

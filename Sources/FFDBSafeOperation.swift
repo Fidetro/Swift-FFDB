@@ -26,14 +26,14 @@ extension FFDBSafeOperation {
     ///   - object:  object
     ///   - columns: column name
     public static func insert(_ object:FFObject,
-                              _ columns:[String]? = nil)  {
-        
-        
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inDatabase { (db) in
+                              _ columns:[String]? = nil,
+                              completion: UpdateResult?)  {
+        executeDBUpdate { (db) in
             do{
                 try FFDBManager.insert(object, columns, database: db)
+                if let completion = completion { completion(true) }
             }catch{
+                if let completion = completion { completion(false) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
@@ -47,15 +47,17 @@ extension FFDBSafeOperation {
     ///   - values: the value of column
     public static func insert(_ table:FFObject.Type,
                               _ columns:[String],
-                              values:[Any]) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inDatabase { (db) in
+                              values:[Any],
+                              completion: UpdateResult?) {
+        
+        executeDBUpdate { (db) in
             do{
                 try FFDBManager.insert(table, columns, values: values, database: db)
+                if let completion = completion { completion(true) }
             }catch{
+                if let completion = completion { completion(false) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
-            
         }
     }
 }
@@ -78,9 +80,8 @@ extension FFDBSafeOperation {
                                                       where condition:String? = nil,
                                                       values:[Any]? = nil,
                                                       return type:U.Type,
-                                                      callBack:QueryResult? = nil) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inDatabase { (db) in
+                                                      completion: QueryResult?) {
+        executeDBQuery { (db) in
             do{
                 let objects = try FFDBManager.select(table, columns,
                                                      where: condition,
@@ -88,13 +89,15 @@ extension FFDBSafeOperation {
                                                      order: nil,
                                                      return: type,
                                                      database: db)
-                if let callback = callBack {
-                    callback(objects)
-                }
+                
+                if let completion = completion { completion(objects) }
             }catch{
+                if let completion = completion { completion(nil) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
+        
+
     }
     
     /// select column from table
@@ -109,19 +112,18 @@ extension FFDBSafeOperation {
                                           columns:[String]? = nil,
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
-                                          callBack:QueryResult? = nil) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inDatabase { (db) in
+                                          completion:QueryResult? = nil) {
+        executeDBQuery { (db) in
             do{
                 let objects = try FFDBManager.select(table, columns,
                                                      where: condition,
                                                      values: values,
                                                      order: nil,
                                                      database: db)
-                if let callback = callBack {
-                    callback(objects)
-                }
+                
+                if let completion = completion { completion(objects) }
             }catch{
+                if let completion = completion { completion(nil) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
@@ -142,12 +144,14 @@ extension FFDBSafeOperation {
     public static func update(_ table:FFObject.Type,
                               set setFormat:String,
                               where condition:String?,
-                              values:[Any]? = nil) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inDatabase { (db) in
+                              values:[Any]? = nil,
+                              completion: UpdateResult?) {
+        executeDBUpdate { (db) in
             do{
                 try FFDBManager.update(table, set: setFormat, where: condition, values: values, database: db)
+                if let completion = completion { completion(true) }
             }catch{
+                if let completion = completion { completion(false) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
@@ -165,16 +169,31 @@ extension FFDBSafeOperation {
     ///   - values: use params query
     public static func delete(_ table:FFObject.Type,
                               where condition:String? = nil,
-                              values:[Any]? = nil) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inDatabase { (db) in
+                              values:[Any]? = nil,
+                              completion: UpdateResult?) {
+        executeDBUpdate { (db) in
             do{
                 try FFDBManager.delete(table, where: condition, values: values, database: db)
+                if let completion = completion { completion(true) }
             }catch{
+                if let completion = completion { completion(false) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
     }
     
 
+}
+
+extension FFDBSafeOperation {
+    public static func executeDBQuery(block:((FMDatabase)->()))  {
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
+            queue.inDatabase(block)
+    }
+    
+    
+    public static func executeDBUpdate(block:((FMDatabase)->())) {
+        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
+        queue.inDatabase(block)
+    }
 }

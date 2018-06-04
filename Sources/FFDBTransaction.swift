@@ -29,18 +29,17 @@ extension FFDBTransaction {
     ///   - isRollback: need rollback when error
     public static func insert(_ object:FFObject,
                               _ columns:[String]? = nil,
-                              isRollback:ObjCBool? = false)  {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inTransaction { (db, rollback) in
+                              isRollback:ObjCBool? = false,
+                              completion: UpdateResult?)  {
+        executeDBUpdate { (db, rollback) in
             do{
                 try FFDBManager.insert(object, columns, database: db)
+                if let completion = completion { completion(true) }
             }catch{
-                if let isRollback = isRollback {
-                    rollback.pointee = isRollback
-                }
+                if let isRollback = isRollback { rollback.pointee = isRollback }
+                if let completion = completion { completion(false) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
-            
         }
     }
     
@@ -55,15 +54,15 @@ extension FFDBTransaction {
     public static func insert(_ table:FFObject.Type,
                               _ columns:[String],
                               values:[Any],
-                              isRollback:ObjCBool? = false) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inTransaction { (db, rollback) in
+                              isRollback:ObjCBool? = false,
+                              completion: UpdateResult?) {
+        executeDBUpdate { (db, rollback) in
             do{
                 try FFDBManager.insert(table, columns, values: values, database: db)
+                if let completion = completion { completion(true) }
             }catch{
-                if let isRollback = isRollback {
-                    rollback.pointee = isRollback
-                }
+                if let isRollback = isRollback { rollback.pointee = isRollback }
+                if let completion = completion { completion(false) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
@@ -90,9 +89,8 @@ extension FFDBTransaction {
                                                       values:[Any]? = nil,
                                                       return type:U.Type,
                                                       isRollback:ObjCBool? = false,
-                                                      callBack:QueryResult? = nil) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inTransaction { (db, rollback) in
+                                                      completion:QueryResult? = nil) {
+        executeDBQuery { (db, rollback) in
             do{
                 let objects = try FFDBManager.select(table, columns,
                                                      where: condition,
@@ -100,13 +98,10 @@ extension FFDBTransaction {
                                                      order: nil,
                                                      return: type,
                                                      database: db)
-                if let callback = callBack {
-                    callback(objects)
-                }
+                if let completion = completion { completion(objects) }
             }catch{
-                if let isRollback = isRollback {
-                    rollback.pointee = isRollback
-                }
+                if let isRollback = isRollback { rollback.pointee = isRollback }
+                if let completion = completion { completion(nil) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
@@ -127,22 +122,19 @@ extension FFDBTransaction {
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
                                           isRollback:ObjCBool? = false,
-                                          callBack:QueryResult? = nil)  {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inTransaction { (db, rollback) in
+                                          completion:QueryResult? = nil)  {
+        
+        executeDBQuery { (db, rollback) in
             do{
                 let objects = try FFDBManager.select(table, columns,
                                                      where: condition,
                                                      values: values,
                                                      order: nil,
                                                      database: db)
-                if let callback = callBack {
-                    callback(objects)
-                }
+                if let completion = completion { completion(objects) }
             }catch{
-                if let isRollback = isRollback {
-                    rollback.pointee = isRollback
-                }
+                if let isRollback = isRollback { rollback.pointee = isRollback }
+                if let completion = completion { completion(nil) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
@@ -165,15 +157,15 @@ extension FFDBTransaction {
                               set setFormat:String,
                               where condition:String?,
                               values:[Any]? = nil,
-                              isRollback:ObjCBool? = false) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inTransaction { (db, rollback) in
+                              isRollback:ObjCBool? = false,
+                              completion: UpdateResult?) {
+        executeDBUpdate { (db, rollback) in
             do{
                 try FFDBManager.update(table, set: setFormat, where: condition, values: values, database: db)
+                if let completion = completion { completion(true) }
             }catch{
-                if let isRollback = isRollback {
-                    rollback.pointee = isRollback
-                }
+                if let isRollback = isRollback { rollback.pointee = isRollback }
+                if let completion = completion { completion(false) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
@@ -194,18 +186,31 @@ extension FFDBTransaction {
     public static func delete(_ table:FFObject.Type,
                               where condition:String? = nil,
                               values:[Any]? = nil,
-                              isRollback:ObjCBool? = false) {
-        let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inTransaction { (db, rollback) in
+                              isRollback:ObjCBool? = false,
+                              completion: UpdateResult?) {
+        executeDBUpdate { (db, rollback) in
             do{
                 try FFDBManager.delete(table, where: condition, values: values, database: db)
+                if let completion = completion { completion(true) }
             }catch{
-                if let isRollback = isRollback {
-                    rollback.pointee = isRollback
-                }
+                if let isRollback = isRollback { rollback.pointee = isRollback }
+                if let completion = completion { completion(false) }
                 printDebugLog("failed: \(error.localizedDescription)")
             }
         }
     }
     
+}
+
+extension FFDBTransaction {
+    public static func executeDBQuery(block:((FMDatabase,UnsafeMutablePointer<ObjCBool>)->()))  {
+        let queue = FMDatabaseQueue(url: FFDB.share.connection().databasePathURL())
+        queue.inTransaction(block)
+    }
+    
+    
+    public static func executeDBUpdate(block:((FMDatabase,UnsafeMutablePointer<ObjCBool>)->())) {
+        let queue = FMDatabaseQueue(url: FFDB.share.connection().databasePathURL())
+        queue.inTransaction(block)
+    }
 }

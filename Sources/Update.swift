@@ -10,16 +10,20 @@ import Foundation
 public struct Update:STMT {
     let stmt: String
     
-
     public init(_ table:FFObject.Type) {
         self.init(table.tableName())
     }
-    public init(_ stmt: String) {
-        self.stmt = " " +
-                    "update" +
-                    " " +
-                    stmt +
-                    " "
+    
+    public init(_ stmt: String?=nil) {
+        if let stmt = stmt {
+            self.stmt = "update" +
+                        " " +
+                        stmt +
+                        " "
+        }else{
+            self.stmt = "update" +
+                        " "
+        }
     }
     
 }
@@ -28,5 +32,9 @@ public struct Update:STMT {
 extension Update {
     public func set(_ set:String) -> Set {
         return Set(stmt, format: set)
+    }
+    
+    public func set(_ columns:[String]?=nil) -> Set {
+        return Set.init(stmt, columns: columns)
     }
 }

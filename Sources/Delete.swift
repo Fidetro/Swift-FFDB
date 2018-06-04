@@ -10,15 +10,18 @@ import Foundation
 public struct Delete:STMT {
     let stmt: String
     
-    public init() {
-        self.init("")
-    }
+
     
-    public init(_ stmt: String) {
-        self.stmt = " " +
-                    "delete" +
-                    " " +
-                    stmt
+    public init(_ stmt: String?=nil) {
+        if let stmt = stmt {
+            self.stmt = "delete" +
+                        " " +
+                        stmt +
+                        " "
+        }else{
+            self.stmt = "delete" +
+                        " "
+        }
     }
     
 

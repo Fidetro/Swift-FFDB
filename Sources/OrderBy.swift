@@ -20,8 +20,7 @@ public struct OrderBy:STMT {
 // MARK: - internal
 extension OrderBy {
     init(_ stmt : String,format:String?=nil) {
-        self.stmt = " " +
-                    stmt +
+        self.stmt = stmt +
                     "orderby" +
                     " " +
                     (format ?? "") +

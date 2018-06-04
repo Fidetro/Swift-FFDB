@@ -40,6 +40,28 @@
 		9A4DC4CD20C37FB1004D9CB0 /* FFDBSafeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */; };
 		9A4DC4CE20C3839A004D9CB0 /* FFDBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6031DA1FDF64380085A5BB /* FFDBTransaction.swift */; };
 		9A4DC4CF20C38B6C004D9CB0 /* DataModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A44A7E92068BEDD00FB7937 /* DataModel.swift */; };
+		9A4DC4F320C5210B004D9CB0 /* FFDB.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CA1F9C317F0071DAF2 /* FFDB.swift */; };
+		9A4DC4F420C52115004D9CB0 /* FFDB+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056C91F9C317F0071DAF2 /* FFDB+Extension.swift */; };
+		9A4DC4F520C52118004D9CB0 /* FFDBManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */; };
+		9A4DC4F620C5211A004D9CB0 /* FFDBSafeOperation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */; };
+		9A4DC4F720C5211C004D9CB0 /* FFDBTransaction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A6031DA1FDF64380085A5BB /* FFDBTransaction.swift */; };
+		9A4DC4F820C52120004D9CB0 /* Select.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A28E60E20B8084A00BC449C /* Select.swift */; };
+		9A4DC4F920C52120004D9CB0 /* From.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A28E61020B8085800BC449C /* From.swift */; };
+		9A4DC4FA20C52120004D9CB0 /* Where.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A28E61220B8088B00BC449C /* Where.swift */; };
+		9A4DC4FB20C52120004D9CB0 /* OrderBy.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A28E61620B80FC000BC449C /* OrderBy.swift */; };
+		9A4DC4FC20C52120004D9CB0 /* Limit.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB05A20BD4D98005DDD98 /* Limit.swift */; };
+		9A4DC4FD20C52120004D9CB0 /* Offset.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB05820BD4D82005DDD98 /* Offset.swift */; };
+		9A4DC4FE20C52120004D9CB0 /* STMT.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A28E61420B8089D00BC449C /* STMT.swift */; };
+		9A4DC4FF20C52120004D9CB0 /* Insert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB05E20BEA293005DDD98 /* Insert.swift */; };
+		9A4DC50020C52120004D9CB0 /* Into.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06020BEA29C005DDD98 /* Into.swift */; };
+		9A4DC50120C52120004D9CB0 /* Columns.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06D20BEB335005DDD98 /* Columns.swift */; };
+		9A4DC50220C52120004D9CB0 /* Values.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06220BEA2FD005DDD98 /* Values.swift */; };
+		9A4DC50320C52120004D9CB0 /* Update.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06420BEA4D0005DDD98 /* Update.swift */; };
+		9A4DC50420C52120004D9CB0 /* Set.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06620BEA4EB005DDD98 /* Set.swift */; };
+		9A4DC50520C52120004D9CB0 /* Delete.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A2CB06820BEAA2B005DDD98 /* Delete.swift */; };
+		9A4DC50620C52120004D9CB0 /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884C1220C146BF00AE3345 /* Create.swift */; };
+		9A4DC50720C52120004D9CB0 /* Alter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884C1420C1486F00AE3345 /* Alter.swift */; };
+		9A4DC50820C52120004D9CB0 /* Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884C1620C14D2200AE3345 /* Add.swift */; };
 		9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */; };
 		9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5ABE1F663B300084812C /* InsertTest.swift */; };
 		9A5056D91F9C317F0071DAF2 /* FMDBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */; };
@@ -553,17 +575,39 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9A4DC50320C52120004D9CB0 /* Update.swift in Sources */,
+				9A4DC50720C52120004D9CB0 /* Alter.swift in Sources */,
 				9A40D81220955BC90089D1F2 /* AnyEncodable.swift in Sources */,
+				9A4DC50820C52120004D9CB0 /* Add.swift in Sources */,
+				9A4DC4FD20C52120004D9CB0 /* Offset.swift in Sources */,
+				9A4DC4FA20C52120004D9CB0 /* Where.swift in Sources */,
 				9AAB28061F760D4D0043DCA7 /* TestStoreModel.swift in Sources */,
+				9A4DC4F720C5211C004D9CB0 /* FFDBTransaction.swift in Sources */,
+				9A4DC4F820C52120004D9CB0 /* Select.swift in Sources */,
 				9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */,
+				9A4DC50420C52120004D9CB0 /* Set.swift in Sources */,
 				9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */,
 				9A034D1E2032D5AE002365C5 /* ReadmeTests.swift in Sources */,
+				9A4DC4F420C52115004D9CB0 /* FFDB+Extension.swift in Sources */,
 				9AD6145B1F9096BB009DB6FA /* SelectTest.swift in Sources */,
+				9A4DC50120C52120004D9CB0 /* Columns.swift in Sources */,
 				9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */,
+				9A4DC4F620C5211A004D9CB0 /* FFDBSafeOperation.swift in Sources */,
 				9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */,
 				9A28D7892057CBCB005758B9 /* ProtocolTests.swift in Sources */,
+				9A4DC4F520C52118004D9CB0 /* FFDBManager.swift in Sources */,
+				9A4DC4F320C5210B004D9CB0 /* FFDB.swift in Sources */,
+				9A4DC50520C52120004D9CB0 /* Delete.swift in Sources */,
+				9A4DC50020C52120004D9CB0 /* Into.swift in Sources */,
 				9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */,
+				9A4DC4FC20C52120004D9CB0 /* Limit.swift in Sources */,
 				9A40D81120955BC90089D1F2 /* AnyCodable.swift in Sources */,
+				9A4DC4F920C52120004D9CB0 /* From.swift in Sources */,
+				9A4DC50220C52120004D9CB0 /* Values.swift in Sources */,
+				9A4DC50620C52120004D9CB0 /* Create.swift in Sources */,
+				9A4DC4FE20C52120004D9CB0 /* STMT.swift in Sources */,
+				9A4DC4FF20C52120004D9CB0 /* Insert.swift in Sources */,
+				9A4DC4FB20C52120004D9CB0 /* OrderBy.swift in Sources */,
 				9AE4B0C9202BDCB300873973 /* FMDBConnect.swift in Sources */,
 				9A44A7EC2068BF5100FB7937 /* DataTest.swift in Sources */,
 				9A034D1F2032D5E1002365C5 /* Person.swift in Sources */,

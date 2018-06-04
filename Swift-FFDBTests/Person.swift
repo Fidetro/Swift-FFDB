@@ -9,6 +9,10 @@
 import Foundation
 
 class Person: FFObject {
+    static func primaryKeyColumn() -> String? {
+        return "primaryID"
+    }
+    
     
     
 
