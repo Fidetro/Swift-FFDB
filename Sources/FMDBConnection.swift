@@ -1,5 +1,5 @@
 //
-//  FMDBConnect.swift
+//  FMDBConnection.swift
 //  Swift-FFDB
 //
 //  Created by Fidetro on 2017/10/14.
@@ -20,7 +20,7 @@ public struct FMDBConnection:FFDBConnection {
     
     public var databasePath : String?
     
-
+    
     
     private init() {}
     
@@ -38,7 +38,7 @@ public struct FMDBConnection:FFDBConnection {
     }
     
     
-
+    
     
     /// Get databaseContentFileURL
     ///
@@ -93,7 +93,7 @@ extension FMDatabase {
         
         guard var values = values else {
             try self.executeUpdate(sql, values: nil)
-
+            
             if let completion = completion { completion(true) }
             return
         }
@@ -115,7 +115,7 @@ extension FMDatabase {
         
         try self.executeUpdate(sql, values: values)
         if let completion = completion { completion(true) }
-
+        
         
     }
     

@@ -64,7 +64,6 @@
 		9A4DC50820C52120004D9CB0 /* Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884C1620C14D2200AE3345 /* Add.swift */; };
 		9A4E5AB71F663B1E0084812C /* Swift_FFDBTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */; };
 		9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A4E5ABE1F663B300084812C /* InsertTest.swift */; };
-		9A5056D91F9C317F0071DAF2 /* FMDBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */; };
 		9A884C1320C146BF00AE3345 /* Create.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884C1220C146BF00AE3345 /* Create.swift */; };
 		9A884C1520C1486F00AE3345 /* Alter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884C1420C1486F00AE3345 /* Alter.swift */; };
 		9A884C1720C14D2200AE3345 /* Add.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A884C1620C14D2200AE3345 /* Add.swift */; };
@@ -74,6 +73,7 @@
 		9A884C1B20C1513A00AE3345 /* TableListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA707A1FC28ACD008B58B0 /* TableListViewController.swift */; };
 		9A884C1C20C1513B00AE3345 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA707C1FC28ACD008B58B0 /* TableModel.swift */; };
 		9A884C1D20C1513D00AE3345 /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA706E1FC28ACD008B58B0 /* CustomCollectionViewLayout.swift */; };
+		9A8BE7D820C6D3050026855F /* FMDBConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE7D720C6D3050026855F /* FMDBConnection.swift */; };
 		9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */; };
 		9AAB28061F760D4D0043DCA7 /* TestStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28051F760D4D0043DCA7 /* TestStoreModel.swift */; };
 		9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28091F7648740043DCA7 /* UpdateTest.swift */; };
@@ -81,7 +81,6 @@
 		9AD6145B1F9096BB009DB6FA /* SelectTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AD6145A1F9096BB009DB6FA /* SelectTest.swift */; };
 		9ADA70801FC28ACD008B58B0 /* ContentCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9ADA70711FC28ACD008B58B0 /* ContentCollectionViewCell.xib */; };
 		9ADA708B1FC28B42008B58B0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 9ADA708A1FC28B42008B58B0 /* Main.storyboard */; };
-		9AE4B0C9202BDCB300873973 /* FMDBConnect.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */; };
 		D1B82F9DE3DF724B7D5E3E80 /* Pods_Swift_FFDB.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B6CC94E611D8BFA62D7DEC66 /* Pods_Swift_FFDB.framework */; };
 /* End PBXBuildFile section */
 
@@ -150,12 +149,12 @@
 		9A5056C91F9C317F0071DAF2 /* FFDB+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "FFDB+Extension.swift"; sourceTree = "<group>"; };
 		9A5056CA1F9C317F0071DAF2 /* FFDB.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFDB.swift; sourceTree = "<group>"; };
 		9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FFDBManager.swift; sourceTree = "<group>"; };
-		9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FMDBConnect.swift; sourceTree = "<group>"; };
 		9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBSafeOperation.swift; sourceTree = "<group>"; };
 		9A6031DA1FDF64380085A5BB /* FFDBTransaction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBTransaction.swift; sourceTree = "<group>"; };
 		9A884C1220C146BF00AE3345 /* Create.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Create.swift; sourceTree = "<group>"; };
 		9A884C1420C1486F00AE3345 /* Alter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alter.swift; sourceTree = "<group>"; };
 		9A884C1620C14D2200AE3345 /* Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add.swift; sourceTree = "<group>"; };
+		9A8BE7D720C6D3050026855F /* FMDBConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMDBConnection.swift; sourceTree = "<group>"; };
 		9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBManagerTest.swift; sourceTree = "<group>"; };
 		9AAB28051F760D4D0043DCA7 /* TestStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStoreModel.swift; sourceTree = "<group>"; };
 		9AAB28091F7648740043DCA7 /* UpdateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTest.swift; sourceTree = "<group>"; };
@@ -277,7 +276,7 @@
 			isa = PBXGroup;
 			children = (
 				9A5056CA1F9C317F0071DAF2 /* FFDB.swift */,
-				9A5056CD1F9C317F0071DAF2 /* FMDBConnect.swift */,
+				9A8BE7D720C6D3050026855F /* FMDBConnection.swift */,
 				9A5056C91F9C317F0071DAF2 /* FFDB+Extension.swift */,
 				9A5056CC1F9C317F0071DAF2 /* FFDBManager.swift */,
 				9A6031D51FDE2F2D0085A5BB /* FFDBSafeOperation.swift */,
@@ -556,7 +555,6 @@
 				9A884C1320C146BF00AE3345 /* Create.swift in Sources */,
 				9A4DC4CD20C37FB1004D9CB0 /* FFDBSafeOperation.swift in Sources */,
 				9A4DC4CE20C3839A004D9CB0 /* FFDBTransaction.swift in Sources */,
-				9A5056D91F9C317F0071DAF2 /* FMDBConnect.swift in Sources */,
 				9A4DC4CF20C38B6C004D9CB0 /* DataModel.swift in Sources */,
 				9A2CB06E20BEB335005DDD98 /* Columns.swift in Sources */,
 				9A884C1C20C1513B00AE3345 /* TableModel.swift in Sources */,
@@ -567,6 +565,7 @@
 				9A884C1D20C1513D00AE3345 /* CustomCollectionViewLayout.swift in Sources */,
 				9A2CB06520BEA4D0005DDD98 /* Update.swift in Sources */,
 				9A28E61720B80FC000BC449C /* OrderBy.swift in Sources */,
+				9A8BE7D820C6D3050026855F /* FMDBConnection.swift in Sources */,
 				9A2CB05B20BD4D98005DDD98 /* Limit.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -608,7 +607,6 @@
 				9A4DC4FE20C52120004D9CB0 /* STMT.swift in Sources */,
 				9A4DC4FF20C52120004D9CB0 /* Insert.swift in Sources */,
 				9A4DC4FB20C52120004D9CB0 /* OrderBy.swift in Sources */,
-				9AE4B0C9202BDCB300873973 /* FMDBConnect.swift in Sources */,
 				9A44A7EC2068BF5100FB7937 /* DataTest.swift in Sources */,
 				9A034D1F2032D5E1002365C5 /* Person.swift in Sources */,
 				9A44A7EA2068BEDD00FB7937 /* DataModel.swift in Sources */,

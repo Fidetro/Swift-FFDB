@@ -30,4 +30,24 @@ class SelectTest: XCTestCase {
         }
     }
     
+    func testSelect3() {
+        let stmt1 = Select("*").from(Person.self).where("name = ?").limit("1").stmt
+        let stmt2 = "select * from Person where name = ? limit 1 "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
+    }
+    
+    func testSelect4() {
+        let stmt1 = Select("*").from(Person.self).where("name = ?").limit("1").offset("0").stmt
+        let stmt2 = "select * from Person where name = ? limit 1 offset 0 "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
+    }
+    
 }
