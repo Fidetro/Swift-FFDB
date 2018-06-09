@@ -23,7 +23,7 @@ extension Columns {
                     " "
     }
       init(_ stmt : String,columns:[String]) {
-        self.init(stmt, format: columns.stringToColumns())
+        self.init(stmt, format: columns.columnsToString())
     }
 }
 
@@ -39,7 +39,7 @@ extension Columns {
 }
 
 fileprivate extension Array {
-    fileprivate func stringToColumns() -> String {
+    fileprivate func columnsToString() -> String {
         var columnsString = String()
         columnsString.append("(")
         for (index,element) in self.enumerated() {
