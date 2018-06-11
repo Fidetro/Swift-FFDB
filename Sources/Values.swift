@@ -22,16 +22,16 @@ extension Values {
                     " "
     }
     init(_ stmt : String,count:Int?=0) {
-        var columnsString = "("
+        var valuesString = "("
         
         for index in 0..<( count ?? 0) {
             if index == 0 {
-                columnsString.append("?")
+                valuesString.append("?")
             }else{
-                columnsString.append(",?")
+                valuesString.append(",?")
             }
         }
-        columnsString.append(")")
-        self.init(stmt, format: columnsString)
+        valuesString.append(")")
+        self.init(stmt, format: valuesString)
     }
 }

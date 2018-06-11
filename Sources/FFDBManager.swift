@@ -31,8 +31,8 @@ extension FFDBManager {
     /// - Throws: FMDB error
     @discardableResult
     public static func insert(_ object:FFObject,
-                                                 _ columns:[String]? = nil,
-                                                 database db:FMDatabase? = nil) throws -> Bool {
+                              _ columns:[String]? = nil,
+                              database db:FMDatabase? = nil) throws -> Bool {
         var _result = false
         var values = Array<Any>()
         for key in columns ?? object.subType.columnsOfSelf() {
@@ -60,9 +60,9 @@ extension FFDBManager {
     /// - Throws: FMDB error
     @discardableResult
     public static func insert(_ table:FFObject.Type,
-                                                 _ columns:[String],
-                                                 values:[Any],
-                                                 database db:FMDatabase? = nil) throws -> Bool {
+                              _ columns:[String],
+                              values:[Any],
+                              database db:FMDatabase? = nil) throws -> Bool {
         var _result = false
          try Insert()
             .into(table)
@@ -228,6 +228,31 @@ extension FFDBManager {
         }else{
              try Update(table)
                 .set(setFormat)
+                .executeDBUpdate(values: values, completion: { (result) in
+                    _result = result
+                })
+            return _result
+        }
+    }
+    
+    @discardableResult
+    public static func update(_ table:FFObject.Type,
+                              set setColumns:[String],
+                              where condition:String?,
+                              values:[Any]? = nil,
+                              database db:FMDatabase? = nil) throws -> Bool {
+        var _result = false
+        if let condition = condition  {
+            try Update(table)
+                .set(setColumns)
+                .where(condition)
+                .executeDBUpdate(values: values, completion: { (result) in
+                    _result = result
+                })
+            return _result
+        }else{
+            try Update(table)
+                .set(setColumns)
                 .executeDBUpdate(values: values, completion: { (result) in
                     _result = result
                 })

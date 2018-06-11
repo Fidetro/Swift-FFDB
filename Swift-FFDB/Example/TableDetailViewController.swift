@@ -102,16 +102,15 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
         case 0:
             showDeleteAlert(delete: { [weak self] in
                 let object = self?.dataSource![indexPath.section - 1]
-                do{
                 if let object = object as? FFShop {
-                   try FFDBManager.delete(FFShop.self, where: "primaryID = ?", values: [object.primaryID!])
+                    object.delete()
+//                   try FFDBManager.delete(FFShop.self, where: "primaryID = ?", values: [object.primaryID!])
                 }
                 if let object = object as? FFGood {
-                   try FFDBManager.delete(FFShop.self, where: "primaryID = ?", values: [object.primaryID!])
+                    object.delete()
+//                   try FFDBManager.delete(FFShop.self, where: "primaryID = ?", values: [object.primaryID!])
                 }
-                }catch{
-                    print(error)
-                }
+
                 self?.refreshEvent()
             })
         case 2...type!.columnsOfSelf().count:
@@ -121,18 +120,17 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
                 textField.text = value
                 
             }, update: {[weak self] (text)  in
-                let column = self?.type!.columnsOfSelf()[indexPath.row - 2]
-                do{
-                    if let object = object as? FFShop {
-                        try FFDBManager.update(FFShop.self, set: "\(column!) = ?", where: "primaryID = ?", values: [text,object.primaryID!])
+                
+                    if var object = object as? FFShop {
+                        object.name = text
+                        object.update()
                     }
-                    if let object = object as? FFGood {
-                        try FFDBManager.update(FFGood.self, set: "\(column!) = ?", where: "primaryID = ?", values: [text,object.primaryID!])
+                    if var object = object as? FFGood {
+                        object.goodName = text
+                        object.update()
                     }
-                }catch{
-                    print(error)
-                }
-//                object.update(set:"\(column!) = '\(text)'", values: nil)
+
+
                 self?.refreshEvent()
             })
         default:

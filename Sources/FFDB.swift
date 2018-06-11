@@ -99,6 +99,11 @@ public protocol FFObject:FIDRuntime,Decodable {
     @discardableResult
     func insert() -> Bool
 
+    @discardableResult
+    func update() -> Bool
+    
+    @discardableResult
+    func delete() -> Bool
     
     static func columnsType() -> [String:String]
     

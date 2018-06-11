@@ -21,7 +21,7 @@ public struct Create :STMT {
     }
     
     public init(_ table:FFObject.Type) {
-        stmt = (" create table if  not exists \(table.tableName()) (\(createTableSQL(table: table)))")
+        self.init("table if  not exists \(table.tableName()) (\(createTableSQL(table: table)))")
     }
     
     

@@ -24,25 +24,12 @@ class DataTest: XCTestCase {
         
         DataModel.registerTable()
         let model = DataModel()
-        model.insert()
-        model.insert()
-        model.insert()
-        let data = ["test":"123"]
-//        print(data)
-//        print(data.base64EncodedString())
-//        Data(bytes: 0x111)
         
-//        DataModel.insert(["data","name"], values: [data,"你好"])
-        do{
-   
-            guard let list = try FFDBManager.select(DataModel.self, order: nil) as? [DataModel] else {
-            return
-            }
-  
-//            print(list.last?.data)
-        }catch{
-            print(error)
-        }
+        
+        model.insert()
+        model.insert()
+        model.insert()
+
         
         
     }

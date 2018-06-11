@@ -81,6 +81,34 @@ extension FFObject {
         }
     }
     
+    @discardableResult
+    func update() -> Bool {
+        do {
+            var values = [Any]()
+            for column in subType.columnsOfSelf() {
+                let value = valueNotNullFrom(column)
+                values.append(value)
+            }
+            
+            values.append(valueNotNullFrom(subType.primaryKeyColumn()!))
+            return try FFDBManager.update(subType, set: subType.columnsOfSelf(), where: "\(subType.primaryKeyColumn()!) = ?",values:values)
+        } catch {
+            printDebugLog("failed: \(error.localizedDescription)")
+        }
+        return false
+    }
+    
+    @discardableResult
+    
+    func delete() -> Bool {
+        do{
+            return try FFDBManager.delete(subType, where: "\(subType.primaryKeyColumn()!) = ?", values: [valueNotNullFrom(subType.primaryKeyColumn()!)])
+        }catch{
+            printDebugLog("failed: \(error.localizedDescription)")
+        }
+        return false
+    }
+    
     
     public static func registerTable() {
         let createResult = FFDBManager.create(self)
@@ -218,7 +246,7 @@ extension FFObject {
         return values
     }
     
-    public   func valueNotNullFrom(_ key: String) -> String {
+    public func valueNotNullFrom(_ key: String) -> String {
         if let value = valueFrom(key) {
             return anyToString(value)
         }else{

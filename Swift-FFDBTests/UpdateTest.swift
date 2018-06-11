@@ -32,6 +32,16 @@ class UpdateTest: XCTestCase {
     }
     
     func testUpdate3() {
+        let stmt1 = Update(Person.self).set(["name","age"]).stmt
+        let stmt2 = "update Person set name=?,age=? "
+        if stmt1 != stmt2  {
+            print(stmt1)
+            print(stmt2)
+            assertionFailure()
+        }
+    }
+    
+    func testUpdate4() {
         let stmt1 = Update(Person.self).set(["name","age"]).where("name = ?").stmt
         let stmt2 = "update Person set name=?,age=? where name = ? "
         if stmt1 != stmt2  {
@@ -41,13 +51,5 @@ class UpdateTest: XCTestCase {
         }
     }
     
-    func testUpdate4() {
-        let stmt1 = Update(Person.self).set(["name","age"]).stmt
-        let stmt2 = "update Person set name=?,age=? "
-        if stmt1 != stmt2  {
-            print(stmt1)
-            print(stmt2)
-            assertionFailure()
-        }
-    }
+
 }
