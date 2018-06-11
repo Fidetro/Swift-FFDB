@@ -82,7 +82,7 @@ extension FFObject {
     }
     
     @discardableResult
-    func update() -> Bool {
+    public func update() -> Bool {
         do {
             var values = [Any]()
             for column in subType.columnsOfSelf() {
@@ -99,8 +99,7 @@ extension FFObject {
     }
     
     @discardableResult
-    
-    func delete() -> Bool {
+    public func delete() -> Bool {
         do{
             return try FFDBManager.delete(subType, where: "\(subType.primaryKeyColumn()!) = ?", values: [valueNotNullFrom(subType.primaryKeyColumn()!)])
         }catch{
