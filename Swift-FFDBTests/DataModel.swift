@@ -11,6 +11,8 @@ import UIKit
 
 
 class DataModel: FFObject {
+
+    
     
     var primaryID: Int64?
     
@@ -21,7 +23,7 @@ class DataModel: FFObject {
         
     }
     
-    static func primaryKeyColumn() -> String? {
+    static func primaryKeyColumn() -> String {
         return "primaryID"
     }
     
@@ -37,9 +39,7 @@ class DataModel: FFObject {
         return nil
     }
     
-    static func autoincrementColumn() -> String? {
-        return "primaryID"
-    }
+
     
     
 }

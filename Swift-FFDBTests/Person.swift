@@ -9,7 +9,7 @@
 import Foundation
 
 class Person: FFObject {
-    static func primaryKeyColumn() -> String? {
+    static func primaryKeyColumn() -> String {
         return "primaryID"
     }
     
@@ -36,7 +36,5 @@ class Person: FFObject {
         return nil
     }
     
-    static func autoincrementColumn() -> String? {
-        return "primaryID"
-    }
+
 }

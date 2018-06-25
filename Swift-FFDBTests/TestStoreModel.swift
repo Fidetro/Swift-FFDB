@@ -9,7 +9,7 @@
 import UIKit
 
 struct TestStoreModel:FFObject {
-    static func primaryKeyColumn() -> String? {
+    static func primaryKeyColumn() -> String {
         return "primaryID"
     }
     
@@ -30,9 +30,7 @@ struct TestStoreModel:FFObject {
     static func customColumns() -> [String : String]? {
         return nil
     }
-    static func autoincrementColumn() -> String? {
-        return "primaryID"
-    }
+
 }
 
 

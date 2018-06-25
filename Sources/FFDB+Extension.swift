@@ -90,8 +90,8 @@ extension FFObject {
                 values.append(value)
             }
             
-            values.append(valueNotNullFrom(subType.primaryKeyColumn()!))
-            return try FFDBManager.update(subType, set: subType.columnsOfSelf(), where: "\(subType.primaryKeyColumn()!) = ?",values:values)
+            values.append(valueNotNullFrom(subType.primaryKeyColumn()))
+            return try FFDBManager.update(subType, set: subType.columnsOfSelf(), where: "\(subType.primaryKeyColumn()) = ?",values:values)
         } catch {
             printDebugLog("failed: \(error.localizedDescription)")
         }
@@ -101,7 +101,7 @@ extension FFObject {
     @discardableResult
     public func delete() -> Bool {
         do{
-            return try FFDBManager.delete(subType, where: "\(subType.primaryKeyColumn()!) = ?", values: [valueNotNullFrom(subType.primaryKeyColumn()!)])
+            return try FFDBManager.delete(subType, where: "\(subType.primaryKeyColumn()) = ?", values: [valueNotNullFrom(subType.primaryKeyColumn())])
         }catch{
             printDebugLog("failed: \(error.localizedDescription)")
         }

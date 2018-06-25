@@ -30,15 +30,14 @@ public struct Create :STMT {
 fileprivate func createTableSQL(table:FFObject.Type) -> String {
     var sql = String()
     
-    if let primaryKeyColumn = table.primaryKeyColumn() {
-        let type = table.customColumnsType()?[primaryKeyColumn] ?? "integer PRIMARY KEY AUTOINCREMENT"
-        if let customAutoColumn = table.customColumns()?[primaryKeyColumn] {
-            sql.append("\(customAutoColumn) \(type)")
-            sql.append(",")
-        }else{
-            sql.append("\(primaryKeyColumn) \(type)")
-            sql.append(",")
-        }
+    let primaryKeyColumn = table.primaryKeyColumn()
+    let type = table.customColumnsType()?[primaryKeyColumn] ?? "integer PRIMARY KEY AUTOINCREMENT"
+    if let customAutoColumn = table.customColumns()?[primaryKeyColumn] {
+        sql.append("\(customAutoColumn) \(type)")
+        sql.append(",")
+    }else{
+        sql.append("\(primaryKeyColumn) \(type)")
+        sql.append(",")
     }
     
     for (index,column) in table.columnsOfSelf().enumerated() {
