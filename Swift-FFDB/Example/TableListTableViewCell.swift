@@ -9,7 +9,7 @@
 import UIKit
 class TableListTableViewCell: UITableViewCell {
     
-    static func dequeueReusableWithTableView(tableView:UITableView,style: UITableViewCellStyle) -> TableListTableViewCell {
+    static func dequeueReusableWithTableView(tableView:UITableView,style: UITableViewCell.CellStyle) -> TableListTableViewCell {
        let cell = tableView.dequeueReusableCell(withIdentifier: TableListTableViewCell.identifier())
         if let listCell = cell {
             return listCell as! TableListTableViewCell
@@ -19,7 +19,7 @@ class TableListTableViewCell: UITableViewCell {
         }
     }
     
-    override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         selectionStyle = .none
     }
