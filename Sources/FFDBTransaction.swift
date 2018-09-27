@@ -205,12 +205,12 @@ extension FFDBTransaction {
 extension FFDBTransaction {
     public static func executeDBQuery(block:((FMDatabase,UnsafeMutablePointer<ObjCBool>)->()))  {
         let queue = FMDatabaseQueue(url: FFDB.share.connection().databasePathURL())
-        queue.inTransaction(block)
+        queue?.inTransaction(block)
     }
     
     
     public static func executeDBUpdate(block:((FMDatabase,UnsafeMutablePointer<ObjCBool>)->())) {
         let queue = FMDatabaseQueue(url: FFDB.share.connection().databasePathURL())
-        queue.inTransaction(block)
+        queue?.inTransaction(block)
     }
 }

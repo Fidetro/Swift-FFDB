@@ -18,11 +18,6 @@ More examples of usage in the [wiki](https://github.com/Fidetro/Swift-FFDB/wiki)
 * Deployment on iOS 8 or above  
 * depend [FMDB](https://github.com/ccgus/fmdb)
 
-## Perfect-Swift-Server
-* Build  Swift4.0.3 releases toolchain   
-* Perfect-Server v3
-* depend [PerfectMySQL](https://github.com/PerfectlySoft/Perfect-MySQL)
-
 # Installing
 ## CocoaPod
 SwiftFFDB can be installed using CocoaPod
@@ -37,17 +32,6 @@ use_frameworks!
 pod 'SwiftFFDB'
 end
 ```
-## Swift Package Manager
-```
-import PackageDescription
-
-let package = Package(
-    name: "PatchServer",
-    dependencies: [
-          .Package(url: "https://github.com/Fidetro/PerfectFFDB.git",versions: Version(0, 0, 0)..<Version(1, .max, .max))]
-)
-
-```
 # Useage
 
 ## Setting
@@ -55,12 +39,6 @@ You can check out the [example project](https://github.com/Fidetro/SwiftFFDB)
 if you use in iOS:
 ```
 Person.registerTable() //create table
-```
-or Perfect-server:
-```
-    PerfectMySQLConnect(host: "", user: "", password: "", db: "").setup(complete: { (mysql) in
-        Person.registerTable() //create table
-    })
 ```
 
 ## Create

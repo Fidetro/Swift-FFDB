@@ -329,7 +329,6 @@
 				9A3516261F491C8600571621 /* Frameworks */,
 				9A3516271F491C8600571621 /* Resources */,
 				CFB28CD1F51FACBAFC9C6565 /* [CP] Embed Pods Frameworks */,
-				D5A08E7B582D905E66C5E7CB /* [CP] Copy Pods Resources */,
 				9AA1AE7C1F96F0600005946C /* Embed Frameworks */,
 			);
 			buildRules = (
@@ -350,7 +349,6 @@
 				9A4E5AB11F663B1E0084812C /* Frameworks */,
 				9A4E5AB21F663B1E0084812C /* Resources */,
 				6833DDD4F388BBD932E5917D /* [CP] Embed Pods Frameworks */,
-				098973127C18C5A9F45AB8E2 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -428,21 +426,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		098973127C18C5A9F45AB8E2 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swift-FFDBTests/Pods-Swift-FFDBTests-resources.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		6833DDD4F388BBD932E5917D /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -513,21 +496,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swift-FFDB/Pods-Swift-FFDB-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		D5A08E7B582D905E66C5E7CB /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Swift-FFDB/Pods-Swift-FFDB-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */

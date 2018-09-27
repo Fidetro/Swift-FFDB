@@ -188,12 +188,12 @@ extension FFDBSafeOperation {
 extension FFDBSafeOperation {
     public static func executeDBQuery(block:((FMDatabase)->()))  {
         let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-            queue.inDatabase(block)
+        queue?.inDatabase(block)
     }
     
     
     public static func executeDBUpdate(block:((FMDatabase)->())) {
         let queue = FMDatabaseQueue.init(url: FFDB.share.connection().databasePathURL())
-        queue.inDatabase(block)
+        queue?.inDatabase(block)
     }
 }
