@@ -39,14 +39,11 @@ fileprivate func alterColumnsInTableSQL(_ newColumn:String,table:FFObject.Type) 
     var sql = String()
     
     sql.append(" \(newColumn) ")
-    if let type = table.customColumnsType()?[newColumn] {
+    
+    if let type = table.columnsType()[newColumn]{
         sql.append(type)
     }else{
-        if let type = table.columnsType()[newColumn]{
-            sql.append(type)
-        }else{
-            sql.append("TEXT")
-        }
+        sql.append("TEXT")
     }
     return sql
 }

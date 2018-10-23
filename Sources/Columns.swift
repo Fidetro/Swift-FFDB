@@ -7,11 +7,9 @@
 //
 
 import Foundation
+import UIKit
 public struct Columns:STMT {
     let stmt: String
-    
-    
-
     
 }
 
@@ -23,7 +21,22 @@ extension Columns {
                     " "
     }
       init(_ stmt : String,columns:[String]) {
-        self.init(stmt, format: columns.columnsToString())
+        
+         func columnsToString(_ columns:[String]) -> String {
+            var columnsString = String()
+            columnsString.append("(")
+            for (index,element) in columns.enumerated() {
+                if index == 0 {
+                    columnsString.append(element)
+                }else{
+                    columnsString.append(","+element)
+                }
+            }
+            columnsString.append(")")
+            return columnsString
+        }
+        
+        self.init(stmt, format: columnsToString(columns))
     }
 }
 
@@ -38,19 +51,3 @@ extension Columns {
     }
 }
 
-fileprivate extension Array {
-    fileprivate func columnsToString() -> String {
-        var columnsString = String()
-        columnsString.append("(")
-        for (index,element) in self.enumerated() {
-            if index == 0 {
-                columnsString.append(anyToString(element))
-            }else{
-                columnsString.append(","+anyToString(element))
-            }
-        }
-        columnsString.append(")")
-        return columnsString
-    }
-    
-}

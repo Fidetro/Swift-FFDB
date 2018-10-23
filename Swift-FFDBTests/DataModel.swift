@@ -17,7 +17,7 @@ class DataModel: FFObject {
     var primaryID: Int64?
     
     var name : String?
-    var test : String?
+    var data : Data?
 
     required init() {
         

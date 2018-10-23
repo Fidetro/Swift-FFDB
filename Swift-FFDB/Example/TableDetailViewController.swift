@@ -83,7 +83,7 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
                 
             }else{
                 let value = object.valueNotNullFrom(type!.columnsOfSelf()[indexPath.row - 2])
-                cell.contentLabel.text = value
+                cell.contentLabel.text = value as? String ?? ""
             }
         }
         
@@ -117,7 +117,7 @@ class TableDetailViewController: UIViewController,UICollectionViewDelegate,UICol
             let object = self.dataSource![indexPath.section - 1]
             showEditAlert(eidt: { [weak self] (textField) in
                 let value = object.valueNotNullFrom((self?.type!.columnsOfSelf()[indexPath.row - 2])!)
-                textField.text = value
+                textField.text = value as? String ?? ""
                 
             }, update: {[weak self] (text)  in
                 

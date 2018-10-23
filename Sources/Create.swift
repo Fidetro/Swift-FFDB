@@ -15,9 +15,9 @@ public struct Create :STMT {
     
     public init(_ stmt: String) {
         self.stmt = " " +
-                    "create" +
-                    " " +
-                    stmt
+            "create" +
+            " " +
+        stmt
     }
     
     public init(_ table:FFObject.Type) {
@@ -31,7 +31,7 @@ fileprivate func createTableSQL(table:FFObject.Type) -> String {
     var sql = String()
     
     let primaryKeyColumn = table.primaryKeyColumn()
-    let type = table.customColumnsType()?[primaryKeyColumn] ?? "integer PRIMARY KEY AUTOINCREMENT"
+    let type = table.columnsType()[primaryKeyColumn] ?? "integer PRIMARY KEY AUTOINCREMENT"
     if let customAutoColumn = table.customColumns()?[primaryKeyColumn] {
         sql.append("\(customAutoColumn) \(type)")
         sql.append(",")
@@ -48,14 +48,10 @@ fileprivate func createTableSQL(table:FFObject.Type) -> String {
             sql.append(column)
         }
         sql.append(" ")
-        if let type = table.customColumnsType()?[column] {
+        if let type = table.columnsType()[column]{
             sql.append(type)
         }else{
-            if let type = table.columnsType()[column]{
-                sql.append(type)
-            }else{
-                sql.append("TEXT")
-            }
+            sql.append("TEXT")
         }
         if table.columnsOfSelf().count-1 != index {
             sql.append(",")

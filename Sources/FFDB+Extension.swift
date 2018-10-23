@@ -127,10 +127,13 @@ extension FFObject {
     }
     public static func columnsType() -> [String:String] {
         var columnsType = [String:String]()
-        let selfProtocol = self.init();
+        let selfProtocol = self.init()
         let mirror  = Mirror(reflecting: selfProtocol)
         for case let (label?, value) in mirror.children {
-            
+            if let type = customColumnsType()?[label] {
+                columnsType[label] = type
+                continue
+            }
             let valueMirror  = Mirror(reflecting: value)
             switch valueMirror.subjectType {
             case is Data.Type:
@@ -201,7 +204,7 @@ extension FFObject {
         return columnsType
     }
     public  static func columnsOfSelf() -> Array<String> {
-        var columns = self.propertyOfSelf()
+        var columns = propertyOfSelf()
         var newColumns = [String]()
         
         if let memoryPropertys = memoryPropertys() {
@@ -232,22 +235,22 @@ extension FFObject {
         
         return newColumns
     }
-    func allValue() -> Array<String> {
+    func allValue() -> Array<Any> {
         let mirror = Mirror(reflecting: self)
-        var values = Array<String>()
+        var values = [Any]()
         for case let (key?, value) in mirror.children {
             if key == self.subType.primaryKeyColumn() {
                 continue
             }
-            values.append(anyToString(value))
+            values.append(anyToDBValue(value))
         }
         
         return values
     }
     
-    public func valueNotNullFrom(_ key: String) -> String {
+    public func valueNotNullFrom(_ key: String) -> Any {
         if let value = valueFrom(key) {
-            return anyToString(value)
+            return value
         }else{
             return ""
         }
@@ -265,7 +268,7 @@ extension FIDRuntime {
     }
     
     fileprivate static func propertyOfSelf() -> Array<String> {
-        let selfProtocol = self.init();
+        let selfProtocol = self.init()
         let mirror  = Mirror(reflecting: selfProtocol)
         var propertys = Array<String>()
         
@@ -289,17 +292,26 @@ extension FIDRuntime {
         }
         return nil
     }
-    func allValue() -> Array<String> {
+    func allValue() -> Array<Any> {
         let mirror = Mirror(reflecting: self)
-        var values = Array<String>()
+        var values = [Any]()
         for case let (_, value) in mirror.children {
-            values.append(anyToString(value))
+            values.append(anyToDBValue(value))
         }
         
         return values
     }
 }
 
+
+func anyToDBValue(_ describing:Any) -> Any {
+    switch describing {
+    case let value as Date:
+        return "\(value.timeIntervalSince1970)"
+    default:
+        return describing
+    }
+}
 
 func anyToString(_ describing:Any) -> String {
     let mirror  = Mirror(reflecting: describing)
