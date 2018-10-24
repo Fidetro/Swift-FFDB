@@ -9,9 +9,7 @@
 import Foundation
 
 class Person: FFObject {
-    static func primaryKeyColumn() -> String {
-        return "primaryID"
-    }
+
     
     
     
@@ -22,6 +20,10 @@ class Person: FFObject {
     
     required init() {
         
+    }
+    
+    static func primaryKeyColumn() -> String {
+        return "primaryID"
     }
     
     static func memoryPropertys() -> [String]? {

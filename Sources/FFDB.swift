@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 import Foundation
-func printDebugLog<T>(_ message: T,
+func debugPrintLog<T>(_ message: T,
                       file: String = #file,
                       method: String = #function,
                       line: Int = #line)

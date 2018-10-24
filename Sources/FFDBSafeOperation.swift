@@ -34,7 +34,7 @@ extension FFDBSafeOperation {
                 if let completion = completion { completion(true) }
             }catch{
                 if let completion = completion { completion(false) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -56,7 +56,7 @@ extension FFDBSafeOperation {
                 if let completion = completion { completion(true) }
             }catch{
                 if let completion = completion { completion(false) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -93,7 +93,7 @@ extension FFDBSafeOperation {
                 if let completion = completion { completion(objects) }
             }catch{
                 if let completion = completion { completion(nil) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
         
@@ -124,7 +124,7 @@ extension FFDBSafeOperation {
                 if let completion = completion { completion(objects) }
             }catch{
                 if let completion = completion { completion(nil) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -152,7 +152,7 @@ extension FFDBSafeOperation {
                 if let completion = completion { completion(true) }
             }catch{
                 if let completion = completion { completion(false) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -177,7 +177,7 @@ extension FFDBSafeOperation {
                 if let completion = completion { completion(true) }
             }catch{
                 if let completion = completion { completion(false) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }

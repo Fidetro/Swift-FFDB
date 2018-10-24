@@ -32,7 +32,7 @@ extension FFObject {
         do {
             return try FFDBManager.select(self, nil, where: condition, values: values, order: nil) as? [FFObject]
         } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
             return nil
         }
     }
@@ -43,7 +43,7 @@ extension FFObject {
         do {
             return try FFDBManager.delete(self, where: condition, values: values)
         } catch  {
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
             return false
         }
     }
@@ -54,7 +54,7 @@ extension FFObject {
         do {
             return try FFDBManager.insert(self, columns, values: values)
         } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
             return false
         }
     }
@@ -66,7 +66,7 @@ extension FFObject {
         do {
             return try FFDBManager.update(self, set: setFormat, where: condition, values: values)
         } catch  {
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
             return false
         }
     }
@@ -76,7 +76,7 @@ extension FFObject {
         do {
             return try FFDBManager.insert(self)
         } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
             return false
         }
     }
@@ -93,7 +93,7 @@ extension FFObject {
             values.append(valueNotNullFrom(subType.primaryKeyColumn()))
             return try FFDBManager.update(subType, set: subType.columnsOfSelf(), where: "\(subType.primaryKeyColumn()) = ?",values:values)
         } catch {
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
         }
         return false
     }
@@ -103,7 +103,7 @@ extension FFObject {
         do{
             return try FFDBManager.delete(subType, where: "\(subType.primaryKeyColumn()) = ?", values: [valueNotNullFrom(subType.primaryKeyColumn())])
         }catch{
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
         }
         return false
     }
@@ -130,6 +130,10 @@ extension FFObject {
         let selfProtocol = self.init()
         let mirror  = Mirror(reflecting: selfProtocol)
         for case let (label?, value) in mirror.children {
+            if label == primaryKeyColumn() {
+                columnsType[label] = "integer PRIMARY KEY AUTOINCREMENT"
+                continue
+            }
             if let type = customColumnsType()?[label] {
                 columnsType[label] = type
                 continue

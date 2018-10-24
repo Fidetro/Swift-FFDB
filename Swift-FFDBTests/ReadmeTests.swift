@@ -16,6 +16,7 @@ class ReadmeTests: XCTestCase {
     }
     
     func testReadme() {
+        Person.registerTable()
         let person = Person()
         person.name = "fidetro"
         person.insert()

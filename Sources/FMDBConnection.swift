@@ -74,7 +74,7 @@ public struct FMDBConnection:FFDBConnection {
     private func columnExists(_ columnName: String, inTableWithName: String) -> Bool {
         let database = self.database()
         guard database.open() else {
-            printDebugLog("Unable to open database")
+            debugPrintLog("Unable to open database")
             return false
         }
         let result = database.columnExists(columnName, inTableWithName: inTableWithName)
@@ -86,7 +86,7 @@ extension FMDatabase {
     
     func executeDBUpdate(sql:String,values:[Any]?,completion:UpdateResult?) throws {
         guard open() else {
-            printDebugLog("Unable to open database")
+            debugPrintLog("Unable to open database")
             if let completion = completion { completion(false) }
             return
         }
@@ -106,7 +106,7 @@ extension FMDatabase {
                 do{
                     return try JSONSerialization.data(withJSONObject: json, options: .prettyPrinted).base64EncodedString()
                 }catch{
-                    printDebugLog("\(error)")
+                    debugPrintLog("\(error)")
                     assertionFailure()
                 }
             }
@@ -121,7 +121,7 @@ extension FMDatabase {
     
     func executeDBQuery<T:Decodable>(return type:T.Type, sql:String, values:[Any]?,completion: QueryResult?) throws  {
         guard self.open() else {
-            printDebugLog("Unable to open database")
+            debugPrintLog("Unable to open database")
             if let completion = completion  { completion(nil) }
             return
         }
@@ -139,7 +139,7 @@ extension FMDatabase {
                     let model = try decoder.decode(type, from: jsonData)
                     modelArray.append(model)
                 }catch{
-                    printDebugLog(error)
+                    debugPrintLog(error)
                     assertionFailure("check you func columntype,func customColumnsType,property type")
                 }
                 

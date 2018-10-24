@@ -38,7 +38,7 @@ extension FFDBTransaction {
             }catch{
                 if let isRollback = isRollback { rollback.pointee = isRollback }
                 if let completion = completion { completion(false) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -63,7 +63,7 @@ extension FFDBTransaction {
             }catch{
                 if let isRollback = isRollback { rollback.pointee = isRollback }
                 if let completion = completion { completion(false) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -102,7 +102,7 @@ extension FFDBTransaction {
             }catch{
                 if let isRollback = isRollback { rollback.pointee = isRollback }
                 if let completion = completion { completion(nil) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -135,7 +135,7 @@ extension FFDBTransaction {
             }catch{
                 if let isRollback = isRollback { rollback.pointee = isRollback }
                 if let completion = completion { completion(nil) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -166,7 +166,7 @@ extension FFDBTransaction {
             }catch{
                 if let isRollback = isRollback { rollback.pointee = isRollback }
                 if let completion = completion { completion(false) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }
@@ -195,7 +195,7 @@ extension FFDBTransaction {
             }catch{
                 if let isRollback = isRollback { rollback.pointee = isRollback }
                 if let completion = completion { completion(false) }
-                printDebugLog("failed: \(error.localizedDescription)")
+                debugPrintLog("failed: \(error.localizedDescription)")
             }
         }
     }

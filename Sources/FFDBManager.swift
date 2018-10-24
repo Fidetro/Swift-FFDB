@@ -309,7 +309,7 @@ extension FFDBManager {
             })
             return _result
         } catch  {
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
             return false
         }
     }
@@ -359,7 +359,7 @@ extension FFDBManager {
             
             return _result
         } catch  {
-            printDebugLog("failed: \(error.localizedDescription)")
+            debugPrintLog("failed: \(error.localizedDescription)")
             return false
         }
     }

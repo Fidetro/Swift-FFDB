@@ -18,6 +18,8 @@ class FFDBManagerTest: XCTestCase {
 
     
     func testManager() {
+        Person.registerTable()
+        Person.delete()
         insert()
         select()
         update()
