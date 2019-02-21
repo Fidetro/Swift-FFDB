@@ -18,7 +18,7 @@ public struct FMDBConnection:FFDBConnection {
     
     public static let share = FMDBConnection()
     
-    public var databasePath : String?
+    public static var databasePath : String?
     
     
     
@@ -44,7 +44,10 @@ public struct FMDBConnection:FFDBConnection {
     ///
     /// - Returns: databaseURL
     public func databasePathURL() -> URL {
-        let executableFile = databasePath ?? (Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String)  as! String)
+        if let databasePath = FMDBConnection.databasePath {
+            return URL(fileURLWithPath: databasePath)
+        }
+        let executableFile = (Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String)  as! String)
         let fileURL = try! FileManager.default
             .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
             .appendingPathComponent(executableFile)

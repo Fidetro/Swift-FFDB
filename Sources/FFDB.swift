@@ -46,7 +46,7 @@ public protocol FFDBConnection {
     
     associatedtype T
     
-    var databasePath : String? {get set}
+    static var databasePath : String? {get set}
     
     func database() -> T
     
