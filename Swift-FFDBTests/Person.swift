@@ -10,10 +10,7 @@ import Foundation
 
 class Person: FFObject {
 
-    
-    
-    
-
+    var number : Int64?
     var primaryID: Int64?
     var name : String?
     var birthday : Date?

@@ -30,7 +30,12 @@ extension FFObject {
                               orderBy orderCondition:String?=nil,
                               orderByType:OrderByType?=nil) -> [FFObject]? {
         do {
-            return try FFDBManager.select(self, nil, where: condition, values: values, order: nil) as? [FFObject]
+            if let orderCondition = orderCondition,
+                let orderByType = orderByType {
+                return try FFDBManager.select(self, nil, where: condition, values: values, order: [(orderCondition,orderByType)]) as? [FFObject]
+            }else{
+                return try FFDBManager.select(self, nil, where: condition, values: values, order: nil) as? [FFObject]
+            }
         } catch {
             debugPrintLog("failed: \(error.localizedDescription)")
             return nil
@@ -213,7 +218,7 @@ extension FFObject {
         
         if let memoryPropertys = memoryPropertys() {
             for memoryProperty in memoryPropertys {
-                if let index = columns.index(of: memoryProperty) {
+                if let index = columns.firstIndex(of: memoryProperty) {
                     columns.remove(at: index)
                 }
             }

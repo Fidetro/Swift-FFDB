@@ -21,7 +21,7 @@ public struct OrderBy:STMT {
 extension OrderBy {
     init(_ stmt : String,format:String?=nil) {
         self.stmt = stmt +
-                    "orderby" +
+                    "order by" +
                     " " +
                     (format ?? "") +
                     " "
@@ -34,12 +34,12 @@ extension OrderBy {
             if index == 0 {
                 orderString = orderString +
                     orderCondition.column +
-                    (orderCondition.orderByType == .asc ? "asc":"desc")
+                    (orderCondition.orderByType == .asc ? " asc":" desc")
             }else{
                 orderString = orderString +
                     "," +
                     orderCondition.column +
-                    (orderCondition.orderByType == .asc ? "asc":"desc")
+                    (orderCondition.orderByType == .asc ? " asc":" desc")
             }
         }
         self.init(stmt, format: orderString)

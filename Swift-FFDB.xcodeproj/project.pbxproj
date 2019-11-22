@@ -72,6 +72,7 @@
 		9A884C1C20C1513B00AE3345 /* TableModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA707C1FC28ACD008B58B0 /* TableModel.swift */; };
 		9A884C1D20C1513D00AE3345 /* CustomCollectionViewLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9ADA706E1FC28ACD008B58B0 /* CustomCollectionViewLayout.swift */; };
 		9A8BE7D820C6D3050026855F /* FMDBConnection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A8BE7D720C6D3050026855F /* FMDBConnection.swift */; };
+		9AA578A22388522900350658 /* OrderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AA578A12388522900350658 /* OrderTests.swift */; };
 		9AAB28011F760B8A0043DCA7 /* FFDBManagerTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */; };
 		9AAB28061F760D4D0043DCA7 /* TestStoreModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28051F760D4D0043DCA7 /* TestStoreModel.swift */; };
 		9AAB280A1F7648750043DCA7 /* UpdateTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AAB28091F7648740043DCA7 /* UpdateTest.swift */; };
@@ -150,6 +151,7 @@
 		9A884C1420C1486F00AE3345 /* Alter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alter.swift; sourceTree = "<group>"; };
 		9A884C1620C14D2200AE3345 /* Add.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Add.swift; sourceTree = "<group>"; };
 		9A8BE7D720C6D3050026855F /* FMDBConnection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FMDBConnection.swift; sourceTree = "<group>"; };
+		9AA578A12388522900350658 /* OrderTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderTests.swift; sourceTree = "<group>"; };
 		9AAB28001F760B8A0043DCA7 /* FFDBManagerTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FFDBManagerTest.swift; sourceTree = "<group>"; };
 		9AAB28051F760D4D0043DCA7 /* TestStoreModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestStoreModel.swift; sourceTree = "<group>"; };
 		9AAB28091F7648740043DCA7 /* UpdateTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdateTest.swift; sourceTree = "<group>"; };
@@ -248,6 +250,7 @@
 			isa = PBXGroup;
 			children = (
 				9A4E5AB61F663B1E0084812C /* Swift_FFDBTests.swift */,
+				9AA578A12388522900350658 /* OrderTests.swift */,
 				9A4E5AB81F663B1E0084812C /* Info.plist */,
 				9AD614541F906DE8009DB6FA /* DeleteTest.swift */,
 				9A4E5ABE1F663B300084812C /* InsertTest.swift */,
@@ -553,6 +556,7 @@
 				9A4DC50120C52120004D9CB0 /* Columns.swift in Sources */,
 				9A4E5ABF1F663B300084812C /* InsertTest.swift in Sources */,
 				9A4DC4F620C5211A004D9CB0 /* FFDBSafeOperation.swift in Sources */,
+				9AA578A22388522900350658 /* OrderTests.swift in Sources */,
 				9AD614551F906DE8009DB6FA /* DeleteTest.swift in Sources */,
 				9A28D7892057CBCB005758B9 /* ProtocolTests.swift in Sources */,
 				9A4DC4F520C52118004D9CB0 /* FFDBManager.swift in Sources */,
@@ -716,7 +720,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Fidetro.Swift-FFDB";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -737,7 +741,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.Fidetro.Swift-FFDB";
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.2;
+				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
