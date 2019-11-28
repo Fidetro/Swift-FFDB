@@ -4,7 +4,7 @@ Pod::Spec.new do |s|
 
 
   s.name         = "SwiftFFDB"
-  s.version      = "2.0.1.2"
+  s.version      = "2.0.1.3"
   s.summary      = "a Object/Relational Mapping (ORM) support to iOS."
   s.homepage     = "https://github.com/Fidetro/SwiftFFDB"
   s.license      = { :type => "MIT", :file => "LICENSE" }

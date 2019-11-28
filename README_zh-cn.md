@@ -69,7 +69,7 @@ struct Person:FFObject {
     
     var name : String?
     
-    static func memoryPropertys() -> [String]? {
+    static func ignoreProperties() -> [String]? {
         return nil
     }
     

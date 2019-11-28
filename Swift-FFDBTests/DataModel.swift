@@ -27,7 +27,7 @@ class DataModel: FFObject {
         return "primaryID"
     }
     
-    static func memoryPropertys() -> [String]? {
+    static func ignoreProperties() -> [String]? {
         return nil
     }
     

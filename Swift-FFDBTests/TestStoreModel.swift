@@ -19,7 +19,7 @@ struct TestStoreModel:FFObject {
     var date : Int?
     var name : String?
     
-    static func memoryPropertys() -> [String]? {
+    static func ignoreProperties() -> [String]? {
         return nil
     }
     

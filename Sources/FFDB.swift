@@ -113,7 +113,7 @@ public protocol FFObject:FIDRuntime,Decodable {
     /// - Returns: value
     func valueNotNullFrom(_ key: String) -> Any
     static func columnsOfSelf() -> Array<String>
-    static func memoryPropertys() -> [String]?
+    static func ignoreProperties() -> [String]?
     static func customColumnsType() -> [String:String]?
     static func customColumns() -> [String:String]?
     static func primaryKeyColumn() -> String

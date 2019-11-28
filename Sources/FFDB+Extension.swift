@@ -216,9 +216,9 @@ extension FFObject {
         var columns = propertyOfSelf()
         var newColumns = [String]()
         
-        if let memoryPropertys = memoryPropertys() {
-            for memoryProperty in memoryPropertys {
-                if let index = columns.firstIndex(of: memoryProperty) {
+        if let ignoreProperties = ignoreProperties() {
+            for ignoreProperty in ignoreProperties {
+                if let index = columns.firstIndex(of: ignoreProperty) {
                     columns.remove(at: index)
                 }
             }

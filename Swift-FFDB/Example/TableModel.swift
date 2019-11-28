@@ -17,7 +17,7 @@ struct FFShop :FFObject {
     var address = String()
     var  test: Float?
     
-    static func memoryPropertys() -> [String]? {
+    static func ignoreProperties() -> [String]? {
         return nil
     }
     
@@ -42,7 +42,7 @@ struct FFGood :FFObject {
     var creatTime : Date?
     var price = Float()
     
-    static func memoryPropertys() -> [String]? {
+    static func ignoreProperties() -> [String]? {
         return nil
     }
     
