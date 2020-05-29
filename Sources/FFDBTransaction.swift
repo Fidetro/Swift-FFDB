@@ -8,7 +8,7 @@
 
 import FMDB
 
-struct FFDBTransaction {}
+public struct FFDBTransaction {}
 
 
 // MARK: Insert
