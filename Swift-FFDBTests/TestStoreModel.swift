@@ -6,7 +6,7 @@
 //  Copyright © 2017年 Fidetro. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 struct TestStoreModel:FFObject {
     static func primaryKeyColumn() -> String {

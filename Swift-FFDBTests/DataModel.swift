@@ -6,7 +6,7 @@
 //  Copyright © 2018 Fidetro. All rights reserved.
 //
 
-import UIKit
+import Foundation
 
 
 
