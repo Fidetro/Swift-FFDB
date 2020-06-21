@@ -10,7 +10,7 @@ import XCTest
 
 class OrderTests: XCTestCase {
 
-    func testOrder() {
+    func test1() {
         Person.registerTable()
         Person.delete()
         let person = Person()
@@ -24,11 +24,9 @@ class OrderTests: XCTestCase {
         person.number = 3
         person.insert()
         
-        test1()
-        test2()
     }
     
-    func test1() {
+    func test2() {
         guard let list = Person.select(where: "name = 'zhang'", orderBy: "number", orderByType: .desc) as? [Person] else {
             XCTFail()
             return
@@ -36,7 +34,7 @@ class OrderTests: XCTestCase {
         orderTest(list: list)
     }
     
-    func test2() {
+    func test3() {
         
         do{
             guard let list = try FFDBManager.select(Person.self, nil, where: nil, values: nil, order: [("number",OrderByType.desc),("primaryID",OrderByType.asc)], database: nil) as? [Person] else {

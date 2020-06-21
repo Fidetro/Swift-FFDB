@@ -23,11 +23,13 @@ protocol STMT {
 extension STMT {
     public func executeDBQuery<R:Decodable>(return type: R.Type,values: [Any]?,
                                      completion:QueryResult?) throws {
+        debugPrintLog("debug sql:"+stmt)
         try FFDB.share.connection().executeDBQuery(return: type, sql: stmt, values: values, completion: completion)
     }
     
     public func executeDBUpdate(values: [Any]?,
                                 completion:UpdateResult?) throws {
+        debugPrintLog("debug sql:"+stmt)
         try FFDB.share.connection().executeDBUpdate(sql: stmt, values: values, completion: completion)
     }
 }
