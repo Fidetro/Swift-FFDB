@@ -16,11 +16,15 @@ public struct Limit:STMT {
 // MARK: - internal
 extension Limit {
     init(_ stmt : String,format:String?=nil) {
+        if let format = format {
         self.stmt = stmt +
                     "limit" +
                     " " +
-                    (format ?? "") +
+                    format +
                     " "
+        } else {
+            self.stmt = stmt + " "
+        }
     }
 }
 

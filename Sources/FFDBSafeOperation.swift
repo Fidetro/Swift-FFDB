@@ -79,6 +79,7 @@ extension FFDBSafeOperation {
                                                       columns:[String]? = nil,
                                                       where condition:String? = nil,
                                                       values:[Any]? = nil,
+                                                      limit: String?=nil,
                                                       return type:U.Type,
                                                       completion: QueryResult?) {
         executeDBQuery { (db) in
@@ -87,6 +88,7 @@ extension FFDBSafeOperation {
                                                      where: condition,
                                                      values: values,
                                                      order: nil,
+                                                     limit: limit,
                                                      return: type,
                                                      database: db)
                 
@@ -112,6 +114,7 @@ extension FFDBSafeOperation {
                                           columns:[String]? = nil,
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
+                                          limit: String?=nil,
                                           completion:QueryResult? = nil) {
         executeDBQuery { (db) in
             do{
@@ -119,6 +122,7 @@ extension FFDBSafeOperation {
                                                      where: condition,
                                                      values: values,
                                                      order: nil,
+                                                     limit: limit,
                                                      database: db)
                 
                 if let completion = completion { completion(objects) }

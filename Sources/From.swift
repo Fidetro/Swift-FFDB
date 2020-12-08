@@ -46,7 +46,7 @@ extension From {
 
 // MARK: - Limit
 extension From {
-    public func limit(_ limit:String) -> Limit {
+    public func limit(_ limit:String?) -> Limit {
         return Limit(stmt, format: limit)
     }
 }

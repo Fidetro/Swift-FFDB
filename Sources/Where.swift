@@ -37,7 +37,7 @@ extension Where {
 
 // MARK: - Limit
 extension Where {
-    public func limit(_ limit:String) -> Limit {
+    public func limit(_ limit:String?) -> Limit {
         return Limit(stmt, format: limit)
     }
 }

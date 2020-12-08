@@ -95,6 +95,7 @@ extension FFDBManager {
                                                       where condition:String? = nil,
                                                       values:[Any]? = nil,
                                                       order orderConditions:[(column:String,orderByType:OrderByType)]?=nil,
+                                                      limit :String?=nil,
                                                       return type:U.Type,
                                                       database db:FMDatabase? = nil) throws -> [Decodable]? {
         var _result : [Decodable]?
@@ -105,6 +106,7 @@ extension FFDBManager {
                      try Select(col)
                         .from(table)
                         .where(format)
+                        .limit(limit)
                         .executeDBQuery(return: type, values: values, completion: { (result) in
                             _result = result
                         })
@@ -112,6 +114,7 @@ extension FFDBManager {
                      try Select("*")
                         .from(table)
                         .where(format)
+                        .limit(limit)
                         .executeDBQuery(return: type, values: values, completion: { (result) in
                             _result = result
                         })
@@ -120,12 +123,14 @@ extension FFDBManager {
                 if let col = columns {
                      try Select(col)
                         .from(table)
+                        .limit(limit)
                         .executeDBQuery(return: type, values: values, completion: { (result) in
                             _result = result
                         })
                 }else{
                      try Select("*")
                         .from(table)
+                        .limit(limit)
                         .executeDBQuery(return: type, values: values, completion: { (result) in
                             _result = result
                         })
@@ -139,6 +144,7 @@ extension FFDBManager {
                     .from(table)
                     .where(format)
                     .orderBy(orderConditions)
+                    .limit(limit)
                     .executeDBQuery(return: type, values: values, completion: { (result) in
                         _result = result
                     })
@@ -147,6 +153,7 @@ extension FFDBManager {
                     .from(table)
                     .where(format)
                     .orderBy(orderConditions)
+                    .limit(limit)
                     .executeDBQuery(return: type, values: values, completion: { (result) in
                         _result = result
                     })
@@ -156,6 +163,7 @@ extension FFDBManager {
                  try Select(col)
                     .from(table)
                     .orderBy(orderConditions)
+                    .limit(limit)
                     .executeDBQuery(return: type, values: values, completion: { (result) in
                         _result = result
                     })
@@ -163,6 +171,7 @@ extension FFDBManager {
                  try Select("*")
                     .from(table)
                     .orderBy(orderConditions)
+                    .limit(limit)
                     .executeDBQuery(return: type, values: values, completion: { (result) in
                         _result = result
                     })
@@ -186,12 +195,14 @@ extension FFDBManager {
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
                                           order orderConditions:[(column:String,orderByType:OrderByType)]?=nil,
+                                          limit: String?=nil,
                                           database db:FMDatabase? = nil) throws -> Array<Decodable>? {
         
         return try select(table, columns,
                           where: condition,
                           values: values,
                           order: orderConditions,
+                          limit: limit,
                           return: table,
                           database: db)
     }

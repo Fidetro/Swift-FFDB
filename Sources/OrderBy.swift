@@ -49,7 +49,7 @@ extension OrderBy {
 
 // MARK: - Limit
 extension OrderBy {
-    public func limit(_ limit:String) -> Limit {
+    public func limit(_ limit:String?) -> Limit {
         return Limit(stmt, format: limit)
     }
 }

@@ -51,10 +51,12 @@ class FFDBManagerTest: XCTestCase {
             XCTAssertTrue(5 == totalCount)
             let count2 = try FFDBManager.select(Person.self, nil, where: "name = ?", values: ["2"], order: nil)?.count
             XCTAssertTrue(2 == count2)
-            let count4 = try FFDBManager.select(Person.self, nil, where: "name = ?", values: ["4"], order: nil)?.count
-            XCTAssertTrue(1 == count4)
-            
-
+            let count3 = try FFDBManager.select(Person.self, nil, where: "name = ?", values: ["4"], order: nil)?.count
+            XCTAssertTrue(1 == count3)
+            let count4 = try FFDBManager.select(Person.self,limit:"3")?.count
+            XCTAssertTrue(3 == count4)
+            let count5 = try FFDBManager.select(Person.self, nil, order: [(column:"name",orderByType:.desc)],limit: "4")?.count
+            XCTAssertTrue(4 == count5)
             guard let model = try FFDBManager.select(Person.self, ["name"], where: "name = 3", order: nil,return:ManagerTestModel.self)?.first as? ManagerTestModel else {
                 XCTFail()
                 return

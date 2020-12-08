@@ -87,6 +87,7 @@ extension FFDBTransaction {
                                                       columns:[String]? = nil,
                                                       where condition:String? = nil,
                                                       values:[Any]? = nil,
+                                                      limit: String?=nil,
                                                       return type:U.Type,
                                                       isRollback:ObjCBool? = false,
                                                       completion:QueryResult? = nil) {
@@ -96,6 +97,7 @@ extension FFDBTransaction {
                                                      where: condition,
                                                      values: values,
                                                      order: nil,
+                                                     limit: limit,
                                                      return: type,
                                                      database: db)
                 if let completion = completion { completion(objects) }
@@ -121,6 +123,7 @@ extension FFDBTransaction {
                                           columns:[String]? = nil,
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
+                                          limit: String?=nil,
                                           isRollback:ObjCBool? = false,
                                           completion:QueryResult? = nil)  {
         
@@ -130,6 +133,7 @@ extension FFDBTransaction {
                                                      where: condition,
                                                      values: values,
                                                      order: nil,
+                                                     limit: limit,
                                                      database: db)
                 if let completion = completion { completion(objects) }
             }catch{
