@@ -14,7 +14,7 @@ More examples of usage in the [wiki](https://github.com/Fidetro/Swift-FFDB/wiki)
 
 # Requirements
 ## iOS
-* Build  Swift4.0 releases toolchain   
+* Build  Swift5.0 releases toolchain   
 * Deployment on iOS 8 or above  
 * depend [FMDB](https://github.com/ccgus/fmdb)
 
