@@ -123,6 +123,7 @@ extension FFDBTransaction {
                                           columns:[String]? = nil,
                                           where condition:String? = nil,
                                           values:[Any]? = nil,
+                                          order orderConditions:[(column:String,orderByType:OrderByType)]?=nil,
                                           limit: String?=nil,
                                           isRollback:ObjCBool? = false,
                                           completion:QueryResult? = nil)  {
@@ -132,7 +133,7 @@ extension FFDBTransaction {
                 let objects = try FFDBManager.select(table, columns,
                                                      where: condition,
                                                      values: values,
-                                                     order: nil,
+                                                     order: orderConditions,
                                                      limit: limit,
                                                      database: db)
                 if let completion = completion { completion(objects) }
