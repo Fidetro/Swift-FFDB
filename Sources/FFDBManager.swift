@@ -42,7 +42,7 @@ extension FFDBManager {
             .into(object.subType)
             .columns(columns ?? object.subType.columnsOfSelf())
             .values(values.count)
-            .executeDBUpdate(values: values, completion: { (result) in
+            .executeDBUpdate(db: db,values: values, completion: { (result) in
                 _result = result
             })
         return _result
@@ -68,7 +68,7 @@ extension FFDBManager {
             .into(table)
             .columns(columns)
             .values(columns.count)
-            .executeDBUpdate(values: values, completion: { (result) in
+            .executeDBUpdate(db: db, values: values, completion: { (result) in
                 _result = result
             })
         return _result
@@ -107,7 +107,7 @@ extension FFDBManager {
                         .from(table)
                         .where(format)
                         .limit(limit)
-                        .executeDBQuery(return: type, values: values, completion: { (result) in
+                        .executeDBQuery(db: db, return: type, values: values, completion: { (result) in
                             _result = result
                         })
                 }else{
@@ -115,7 +115,7 @@ extension FFDBManager {
                         .from(table)
                         .where(format)
                         .limit(limit)
-                        .executeDBQuery(return: type, values: values, completion: { (result) in
+                        .executeDBQuery(db: db, return: type, values: values, completion: { (result) in
                             _result = result
                         })
                 }
@@ -124,14 +124,14 @@ extension FFDBManager {
                      try Select(col)
                         .from(table)
                         .limit(limit)
-                        .executeDBQuery(return: type, values: values, completion: { (result) in
+                        .executeDBQuery(db: db, return: type, values: values, completion: { (result) in
                             _result = result
                         })
                 }else{
                      try Select("*")
                         .from(table)
                         .limit(limit)
-                        .executeDBQuery(return: type, values: values, completion: { (result) in
+                        .executeDBQuery(db: db, return: type, values: values, completion: { (result) in
                             _result = result
                         })
                 }
@@ -145,7 +145,7 @@ extension FFDBManager {
                     .where(format)
                     .orderBy(orderConditions)
                     .limit(limit)
-                    .executeDBQuery(return: type, values: values, completion: { (result) in
+                    .executeDBQuery(db: db, return: type, values: values, completion: { (result) in
                         _result = result
                     })
             }else{
@@ -154,7 +154,7 @@ extension FFDBManager {
                     .where(format)
                     .orderBy(orderConditions)
                     .limit(limit)
-                    .executeDBQuery(return: type, values: values, completion: { (result) in
+                    .executeDBQuery(db: db, return: type, values: values, completion: { (result) in
                         _result = result
                     })
             }
@@ -164,7 +164,7 @@ extension FFDBManager {
                     .from(table)
                     .orderBy(orderConditions)
                     .limit(limit)
-                    .executeDBQuery(return: type, values: values, completion: { (result) in
+                    .executeDBQuery(db: db, return: type, values: values, completion: { (result) in
                         _result = result
                     })
             }else{
@@ -172,7 +172,7 @@ extension FFDBManager {
                     .from(table)
                     .orderBy(orderConditions)
                     .limit(limit)
-                    .executeDBQuery(return: type, values: values, completion: { (result) in
+                    .executeDBQuery(db: db, return: type, values: values, completion: { (result) in
                         _result = result
                     })
             }
@@ -232,14 +232,14 @@ extension FFDBManager {
              try Update(table)
                 .set(setFormat)
                 .where(condition)
-                .executeDBUpdate(values: values, completion: { (result) in
+                .executeDBUpdate(db: db, values: values, completion: { (result) in
                     _result = result
                 })
             return _result
         }else{
              try Update(table)
                 .set(setFormat)
-                .executeDBUpdate(values: values, completion: { (result) in
+                .executeDBUpdate(db: db, values: values, completion: { (result) in
                     _result = result
                 })
             return _result
@@ -257,14 +257,14 @@ extension FFDBManager {
             try Update(table)
                 .set(setColumns)
                 .where(condition)
-                .executeDBUpdate(values: values, completion: { (result) in
+                .executeDBUpdate(db: db, values: values, completion: { (result) in
                     _result = result
                 })
             return _result
         }else{
             try Update(table)
                 .set(setColumns)
-                .executeDBUpdate(values: values, completion: { (result) in
+                .executeDBUpdate(db: db, values: values, completion: { (result) in
                     _result = result
                 })
             return _result
@@ -295,13 +295,13 @@ extension FFDBManager {
              try Delete()
                 .from(table)
                 .where(format)
-                .executeDBUpdate(values: values, completion: { (result) in
+                .executeDBUpdate(db: db, values: values, completion: { (result) in
                     _result = result
                 })
         }else{
              try Delete()
                 .from(table)
-                .executeDBUpdate(values: values, completion: { (result) in
+                .executeDBUpdate(db: db, values: values, completion: { (result) in
                     _result = result
                 })
         }
@@ -315,7 +315,7 @@ extension FFDBManager {
     static func create(_ table:FFObject.Type) -> Bool {
         do {
             var _result = false
-             try Create(table).executeDBUpdate(values: nil, completion: { (result) in
+            try Create(table).executeDBUpdate(db: nil, values: nil, completion: { (result) in
                 _result = result
             })
             return _result
@@ -328,9 +328,9 @@ extension FFDBManager {
 
 // MARK: - SQL excute
 extension FFDBManager {
-    public static func executeDBQuery<T:Decodable>(return type: T.Type, sql: String, values: [Any]?) throws -> [Decodable]?  {
+    public static func executeDBQuery<T:Decodable>(db: FMDatabase, return type: T.Type, sql: String, values: [Any]?) throws -> [Decodable]?  {
         var _result : [Decodable]?
-         try FFDB.share.connection().executeDBQuery(return: type, sql: sql, values: values, completion: { (result) in
+        try FFDB.share.connection().executeDBQuery(db: db, return: type, sql: sql, values: values, completion: { (result) in
             _result = result
         })
         return _result
@@ -338,9 +338,9 @@ extension FFDBManager {
     
     
     @discardableResult
-    public static func executeDBUpdate(sql: String, values: [Any]?) throws -> Bool {
+    public static func executeDBUpdate(db: FMDatabase,sql: String, values: [Any]?) throws -> Bool {
         var _result = false
-        try FFDB.share.connection().executeDBUpdate(sql: sql, values: values, completion: { (result) in
+        try FFDB.share.connection().executeDBUpdate(db: db, sql: sql, values: values, completion: { (result) in
             _result = result
         })        
         return _result
@@ -359,7 +359,7 @@ extension FFDBManager {
                 return _result
             }
             for newColumn in newColumns {
-                try Alter(table).add(column: newColumn, table: table).executeDBUpdate(values: nil, completion: { (result) in
+                try Alter(table).add(column: newColumn, table: table).executeDBUpdate(db: nil, values: nil, completion: { (result) in
                     _result = result
                 })
                 if _result == false {

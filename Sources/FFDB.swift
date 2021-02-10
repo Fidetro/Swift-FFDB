@@ -52,12 +52,14 @@ public protocol FFDBConnection {
     
      func findNewColumns(_ table:FFObject.Type) -> [String]?
     
-    func executeDBQuery<R:Decodable>(return type: R.Type,
+    func executeDBQuery<R:Decodable>(db: T?,
+                                     return type: R.Type,
                                      sql: String,
                                      values: [Any]?,
                                      completion:QueryResult?) throws
     
-    func executeDBUpdate(sql: String,
+    func executeDBUpdate(db: T?,
+                         sql: String,
                          values: [Any]?,
                          completion:UpdateResult?) throws
 }

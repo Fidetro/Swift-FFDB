@@ -24,17 +24,29 @@ public struct FMDBConnection:FFDBConnection {
     
     private init() {}
     
-    public func executeDBQuery<R:Decodable>(return type: R.Type,
+    public func executeDBQuery<R:Decodable>(db:FMDatabase?,
+                                            return type: R.Type,
                                             sql: String,
                                             values: [Any]?,
                                             completion: QueryResult?) throws {
-        try database().executeDBQuery(return: type, sql: sql, values: values, completion: completion)
+        if let db = db {
+            try db.executeDBQuery(return: type, sql: sql, values: values, completion: completion)
+        } else {
+            try database().executeDBQuery(return: type, sql: sql, values: values, completion: completion)
+        }
+        
     }
     
-    public func executeDBUpdate(sql: String,
+    public func executeDBUpdate(db:FMDatabase?,
+                                sql: String,
                                 values: [Any]?,
                                 completion: UpdateResult?) throws {
-        try database().executeDBUpdate(sql: sql, values: values, completion: completion)
+        if let db = db {
+            try db.executeDBUpdate(sql: sql, values: values, completion: completion)
+        } else {
+            try database().executeDBUpdate(sql: sql, values: values, completion: completion)
+        }
+        
     }
     
     
