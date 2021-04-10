@@ -62,7 +62,7 @@ public struct FMDBConnection:FFDBConnection {
         let executableFile = (Bundle.main.object(forInfoDictionaryKey: kCFBundleExecutableKey as String)  as! String)
         let fileURL = try! FileManager.default
             .url(for: .documentDirectory, in: .userDomainMask, appropriateFor: nil, create: false)
-            .appendingPathComponent(executableFile)
+            .appendingPathComponent(executableFile+".sqlite")
         return fileURL
     }
     
